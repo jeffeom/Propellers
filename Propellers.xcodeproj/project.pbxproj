@@ -22,6 +22,7 @@
 		4019CEEC1FA1BEA600B738B4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE71FA1BEA600B738B4 /* Settings.storyboard */; };
 		4019CEED1FA1BEA600B738B4 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE81FA1BEA600B738B4 /* Logs.storyboard */; };
 		4019CEF01FA1BF1200B738B4 /* Date+milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */; };
+		401C2BCB1FA1C388002129BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */; };
 		6B41851FBAB7374DC0654D1F /* Pods_PropellersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B387BBFAC22AE2309B1CC22 /* Pods_PropellersTests.framework */; };
 		B0098B2BC96A905B4A81B943 /* Pods_PropellersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783E1CC98B45396CFAFB374C /* Pods_PropellersUITests.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		4019CEE71FA1BEA600B738B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		4019CEE81FA1BEA600B738B4 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
 		4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+milliseconds.swift"; sourceTree = "<group>"; };
+		401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7703AA096D6ED47B499A1D49 /* Pods-PropellersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropellersUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PropellersUITests/Pods-PropellersUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		783E1CC98B45396CFAFB374C /* Pods_PropellersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PropellersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B387BBFAC22AE2309B1CC22 /* Pods_PropellersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PropellersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +162,7 @@
 			children = (
 				4019CEEE1FA1BF1200B738B4 /* Extensions */,
 				4019CEB11FA1BDAB00B738B4 /* Info.plist */,
+				401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */,
 				4019CEA51FA1BDAB00B738B4 /* AppDelegate.swift */,
 			);
 			path = "Supporting Files";
@@ -352,6 +355,7 @@
 			files = (
 				4019CEB01FA1BDAB00B738B4 /* LaunchScreen.storyboard in Resources */,
 				4019CEEA1FA1BEA600B738B4 /* Friends.storyboard in Resources */,
+				401C2BCB1FA1C388002129BB /* GoogleService-Info.plist in Resources */,
 				4019CEAD1FA1BDAB00B738B4 /* Assets.xcassets in Resources */,
 				4019CEED1FA1BEA600B738B4 /* Logs.storyboard in Resources */,
 				4019CEE91FA1BEA600B738B4 /* Chat.storyboard in Resources */,
