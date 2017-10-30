@@ -79,6 +79,7 @@ extension NetworkingService {
     let userRef = databaseRef.child("users").child(user.uid)
     // Save the user info in the Database
     userRef.setValue(userInfo)
+    completion(true)
   }
 }
 //MARK: SignIn
