@@ -205,7 +205,11 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
       
       let newKeyboardLocation = endFrame
       let keyboardHeight = newKeyboardLocation?.size.height ?? 0
-      let inputBarHeight = inputBarView.frame.height
+      let inputBarHeight: CGFloat = 20
+      if let inputBarView = inputBarView {
+        let inputBarHeight = inputBarView.frame.height
+        /*let bottomInset*/ _ = inputBarView.frame.height
+      }
       
       let isInsideTabBar = (nil != self.tabBarController)
       let tabBarHeight = self.tabBarController?.tabBar.frame.size.height ?? 0
@@ -218,7 +222,6 @@ open class NMessengerViewController: UIViewController, UITextViewDelegate, NMess
       if (isKeyboardOffScreen)
       {
         self.inputBarBottomSpacing.constant = 0
-        /*let bottomInset*/ _ = inputBarView.frame.height
         self.isKeyboardIsShown = false
       }
       else

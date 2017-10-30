@@ -9,27 +9,31 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+  @IBOutlet weak var firstNameField: UITextField!
+  @IBOutlet weak var lastNameField: UITextField!
+  @IBOutlet weak var emailField: UITextField!
+  @IBOutlet weak var passwordField: UITextField!
+  
+  var imageData: Data?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//MARK: IBAction
+extension SignUpViewController {
+  @IBAction func signUpButtonPressed(_ sender: UIButton) {
+    let imageData = UIImageJPEGRepresentation(#imageLiteral(resourceName: "userPlaceHolder"), 0.8)
+    guard let email = emailField.text, let password = passwordField.text, let firstName = firstNameField.text, let lastName = lastNameField.text, let data = imageData else { return }
+    guard !email.isEmpty, !firstName.isEmpty, !lastName.isEmpty else { return }
+    NetworkingService.shared.signUp(email, firstName: firstName, lastName: lastName, password: password, data: data) { (success) in
+      if success {
+        let mainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainScreen") as! UITabBarController
+        self.present(mainScreen, animated: true, completion: nil)
+      }else {
+        print("Failure to create a user")
+      }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  }
 }

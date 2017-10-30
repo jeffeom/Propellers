@@ -87,10 +87,8 @@ extension NetworkingService {
   func signIn(_ email: String, password: String, completion: @escaping (_ result: Bool) -> Void) {
     Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
       if error == nil {
-        if let user = user {
-          self.checkAndSubscribeToOneSignal(user: user, completion: {
+        if let _ = user {
             completion(true)
-          })
         }else {
           completion(false)
         }
