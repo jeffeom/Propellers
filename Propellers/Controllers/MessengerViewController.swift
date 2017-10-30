@@ -18,7 +18,7 @@ class MessengerViewController: NMessengerViewController {
   
   let messageTimestamp = MessageSentIndicator()
   
-  private(set) var lastMessageGroup:MessageGroup? = nil
+  private(set) var lastMessageGroup: MessageGroup? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -72,16 +72,13 @@ extension MessengerViewController {
   fileprivate func postText(_ message: MessageNode, isIncomingMessage: Bool) {
     if self.lastMessageGroup == nil || self.lastMessageGroup?.isIncomingMessage == !isIncomingMessage {
       self.lastMessageGroup = self.createMessageGroup()
-      
       //add avatar if incoming message
       if isIncomingMessage {
         self.lastMessageGroup?.avatarNode = self.createAvatar()
       }
-      
       self.lastMessageGroup!.isIncomingMessage = isIncomingMessage
       self.messengerView.addMessageToMessageGroup(message, messageGroup: self.lastMessageGroup!, scrollsToLastMessage: false)
       self.messengerView.addMessage(self.lastMessageGroup!, scrollsToMessage: true, withAnimation: isIncomingMessage ? .left : .right)
-      
     } else {
       self.messengerView.addMessageToMessageGroup(message, messageGroup: self.lastMessageGroup!, scrollsToLastMessage: true)
     }
