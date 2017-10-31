@@ -29,6 +29,7 @@
 		403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */; };
 		403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */; };
 		403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EE1FA7F2A800110BB1 /* Message.swift */; };
+		40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E59B3A1FA859870069B8B2 /* RoomViewController.swift */; };
 		5B39A83FF1E6F8CFF119BBA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F98590F576E6B6CA288BD58 /* SystemConfiguration.framework */; };
 		69AB96C5C0BBF92E2F30842A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D153278B379AE31820B2E7D5 /* CoreMedia.framework */; };
 		6B41851FBAB7374DC0654D1F /* Pods_PropellersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B387BBFAC22AE2309B1CC22 /* Pods_PropellersTests.framework */; };
@@ -87,6 +88,7 @@
 		403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercase.swift"; sourceTree = "<group>"; };
 		403E56EE1FA7F2A800110BB1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		40E59B3A1FA859870069B8B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		463D1F281314420CA8AD01DE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4F98590F576E6B6CA288BD58 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7110476E181E301EA02DCF56 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			children = (
 				4019CEA71FA1BDAB00B738B4 /* LogInViewController.swift */,
 				403E56E71FA7C5AF00110BB1 /* SignUpViewController.swift */,
+				40E59B3A1FA859870069B8B2 /* RoomViewController.swift */,
 				4019CED81FA1BE4200B738B4 /* MessengerViewController.swift */,
 			);
 			path = Controllers;
@@ -588,6 +591,7 @@
 				4019CEA61FA1BDAB00B738B4 /* AppDelegate.swift in Sources */,
 				403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */,
 				403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */,
+				40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */,
 				403E56E81FA7C5AF00110BB1 /* SignUpViewController.swift in Sources */,
 				403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */,
 			);

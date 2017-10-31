@@ -10,26 +10,37 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Room View Controller-->
         <scene sceneID="E8J-s2-Lsk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mbY-qp-0KN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="KAF-eZ-B82" sceneMemberID="viewController">
+                <viewController id="KAF-eZ-B82" customClass="RoomViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZEg-QU-fGM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o5M-MO-HhG">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="U37-j1-5IC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="roomTableViewCell" textLabel="mIr-cP-I3g" style="IBUITableViewCellStyleDefault" id="U37-j1-5IC" customClass="RoomTableViewCell" customModule="Propellers" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U37-j1-5IC" id="VDg-KO-De0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mIr-cP-I3g">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="roomNameLabel" destination="mIr-cP-I3g" id="JCi-Bd-Fqq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -44,15 +55,18 @@
                         <viewLayoutGuide key="safeArea" id="pO8-Ip-jhV"/>
                     </view>
                     <navigationItem key="navigationItem" id="K59-CG-9s7"/>
+                    <connections>
+                        <outlet property="roomTableView" destination="o5M-MO-HhG" id="nmb-GC-tTw"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbY-qp-0KN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="454" y="242"/>
         </scene>
         <!--Messenger View Controller-->
         <scene sceneID="PTC-Zs-hKf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sj8-od-tnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="hhG-BO-OCH" customClass="MessengerViewController" customModule="FriendHunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="messageVC" id="hhG-BO-OCH" customClass="MessengerViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eIw-Oc-fwB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,13 +75,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="IQf-vD-yzs"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sj8-od-tnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="311" y="995"/>
         </scene>
         <!--Chat-->
         <scene sceneID="bPc-w5-5cN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ozg-Sb-ts0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="xEt-T8-lYL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" id="FrH-in-0EV"/>
                     <toolbarItems/>
@@ -78,9 +92,10 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="hhG-BO-OCH" kind="relationship" relationship="rootViewController" id="dgu-17-jod"/>
+                        <segue destination="KAF-eZ-B82" kind="relationship" relationship="rootViewController" id="RpZ-zJ-KUh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ozg-Sb-ts0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-308" y="259"/>
         </scene>

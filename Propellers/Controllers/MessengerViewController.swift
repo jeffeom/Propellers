@@ -15,6 +15,7 @@ class MessengerViewController: NMessengerViewController {
   let segmentedControlHeight: CGFloat = 30
   var messageGroups: [MessageGroup]?
   let messageTimestamp = MessageSentIndicator()
+  var roomKey: String?
   
   private(set) var lastMessageGroup: MessageGroup? = nil
   
@@ -26,8 +27,9 @@ class MessengerViewController: NMessengerViewController {
     super.viewDidLoad()
     currentUID = NetworkingService.shared.currentUID
     appearance()
-    fetchMessages()
-    fetchMessagesByChildAdded()
+    guard let roomID = roomKey else { return }
+    fetchMessages(roomID: roomID)
+    fetchMessagesByChildAdded(roomID: roomID)
   }
   
   override func sendText(_ text: String, isIncomingMessage: Bool) -> GeneralMessengerCell {
@@ -51,10 +53,10 @@ extension MessengerViewController {
     automaticallyAdjustsScrollViewInsets = false
   }
   
-  func fetchMessages() {
+  func fetchMessages(roomID: String) {
     guard let currentUID = currentUID else { return }
     self.messageGroups = [MessageGroup]()
-    NetworkingService.shared.fetchMessagesBySingleEvent(roomID: "abcd") { (messages) in
+    NetworkingService.shared.fetchMessagesBySingleEvent(roomID: roomID) { (messages) in
       guard let messages = messages else { return }
       for message in messages {
         guard let messageText = message.text else { return }
@@ -79,8 +81,8 @@ extension MessengerViewController {
     }
   }
   
-  func fetchMessagesByChildAdded() {
-    NetworkingService.shared.fetchMessagesByChildAdded(roomID: "abcd") { (message) in
+  func fetchMessagesByChildAdded(roomID: String) {
+    NetworkingService.shared.fetchMessagesByChildAdded(roomID: roomID) { (message) in
       if message.senderID != self.currentUID {
         let textContent = TextContentNode(textMessageString: message.text!, currentViewController: self, bubbleConfiguration: self.sharedBubbleConfiguration)
         let newMessage = MessageNode(content: textContent)
