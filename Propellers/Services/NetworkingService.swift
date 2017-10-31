@@ -20,6 +20,18 @@ struct NetworkingService {
   var storageRef: StorageReference {
     return Storage.storage().reference()
   }
+  
+  var chatRef: DatabaseReference {
+    return Database.database().reference().child("chat").child("messages")
+  }
+  
+  var userRef: DatabaseReference {
+    return Database.database().reference().child("users")
+  }
+  
+  var currentUID: String {
+    return (Auth.auth().currentUser?.uid)!
+  }
 }
 
 //MARK: SignUp
@@ -76,12 +88,13 @@ extension NetworkingService {
     }
     let userInfo = ["email": email, "first_name": firstName.uppercaseFirst, "last_name": lastName.uppercaseFirst, "uid": user.uid, "photo_url": url.absoluteString]
     // create user reference
-    let userRef = databaseRef.child("users").child(user.uid)
+    let theUserRef = userRef.child(user.uid)
     // Save the user info in the Database
-    userRef.setValue(userInfo)
+    theUserRef.setValue(userInfo)
     completion(true)
   }
 }
+
 //MARK: SignIn
 extension NetworkingService {
   // Signing in the User
@@ -89,7 +102,7 @@ extension NetworkingService {
     Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
       if error == nil {
         if let _ = user {
-            completion(true)
+          completion(true)
         }else {
           completion(false)
         }
@@ -100,3 +113,48 @@ extension NetworkingService {
     })
   }
 }
+
+
+//MARK: Chat
+extension NetworkingService {
+  func sendMessage(roomID: String, senderID: String, withText messageText: String, onDate date: Int64){
+    let theRoomRef = chatRef.child(roomID).childByAutoId()
+    let message = Message(senderID: senderID, text: messageText, date: date)
+    theRoomRef.setValue(message.json())
+  }
+  
+  func fetchMessagesBySingleEvent(roomID: String, completion: @escaping ([Message]?) -> ()) {
+    var messageArray: [Message] = []
+    let theRoomRef = chatRef.child(roomID)
+    theRoomRef.observe(.value) { (snapshot) in
+      guard let chats = snapshot.children.allObjects as? [DataSnapshot] else {
+        completion(nil)
+        return
+      }
+      for aChat in chats {
+        let theMessage = Message(snapshot: aChat)
+        messageArray.append(theMessage!)
+        if messageArray.count == snapshot.children.allObjects.count {
+          completion(messageArray)
+        }
+      }
+    }
+  }
+  
+  func fetchMessagesByChildAdded(roomID: String, completion: @escaping (Message) -> ()) {
+    var message: Message?
+    let theRoomRef = chatRef.child(roomID)
+    theRoomRef.observe(.childAdded) { (snapshot) in
+      message = Message(snapshot: snapshot)
+      completion(message!)
+    }
+  }
+}
+
+
+
+
+
+
+
+
