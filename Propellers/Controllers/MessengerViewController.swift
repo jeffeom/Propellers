@@ -26,7 +26,7 @@ class MessengerViewController: NMessengerViewController {
     super.viewDidLoad()
     currentUID = NetworkingService.shared.currentUID
     appearance()
-    fetchMessages()
+//    fetchMessages()
     fetchMessagesByChildAdded()
   }
   
@@ -80,20 +80,15 @@ extension MessengerViewController {
 
   func fetchMessagesByChildAdded() {
     NetworkingService.shared.fetchMessagesByChildAdded(roomID: "abcd") { (message) in
-      if !self.firstLoad {
-        if message.senderID == self.currentUID {
-          let textContent = TextContentNode(textMessageString: message.text!, currentViewController: self, bubbleConfiguration: self.sharedBubbleConfiguration)
-          let newMessage = MessageNode(content: textContent)
-          newMessage.cellPadding = self.messagePadding
-          newMessage.currentViewController = self
-        }else {
+//      if !self.firstLoad {
+        if message.senderID != self.currentUID {
           let textContent = TextContentNode(textMessageString: message.text!, currentViewController: self, bubbleConfiguration: self.sharedBubbleConfiguration)
           let newMessage = MessageNode(content: textContent)
           newMessage.cellPadding = self.messagePadding
           newMessage.currentViewController = self
           self.postText(newMessage, isIncomingMessage: true)
         }
-      }
+//      }
     }
   }
 
@@ -114,11 +109,11 @@ extension MessengerViewController {
     } else {
       messageGroups?.last?.addMessageToGroup(newMessage, completion: nil)
     }
-    if lastMessage {
-      messengerView.addMessage(newMessage, scrollsToMessage: false)
-      messengerView.scrollToLastMessage(animated: false)
-      lastMessageGroup = messageGroups?.last
-    }
+//    if lastMessage {
+//      messengerView.addMessage(newMessage, scrollsToMessage: false)
+//      messengerView.scrollToLastMessage(animated: false)
+//      lastMessageGroup = messageGroups?.last
+//    }
   }
 }
 
@@ -155,7 +150,7 @@ extension MessengerViewController {
 
 //MARK: Helper method
 extension MessengerViewController {
-  fileprivate func postText(_ message: MessageNode, isIncomingMessage: Bool) {
+  private func postText(_ message: MessageNode, isIncomingMessage: Bool) {
     if self.lastMessageGroup == nil || self.lastMessageGroup?.isIncomingMessage == !isIncomingMessage {
       self.lastMessageGroup = self.createMessageGroup()
       //add avatar if incoming message
@@ -165,6 +160,7 @@ extension MessengerViewController {
       self.lastMessageGroup!.isIncomingMessage = isIncomingMessage
       self.messengerView.addMessageToMessageGroup(message, messageGroup: self.lastMessageGroup!, scrollsToLastMessage: false)
       self.messengerView.addMessage(self.lastMessageGroup!, scrollsToMessage: true, withAnimation: isIncomingMessage ? .left : .right)
+      
     } else {
       self.messengerView.addMessageToMessageGroup(message, messageGroup: self.lastMessageGroup!, scrollsToLastMessage: true)
     }
