@@ -126,7 +126,7 @@ extension NetworkingService {
   func fetchMessagesBySingleEvent(roomID: String, completion: @escaping ([Message]?) -> ()) {
     var messageArray: [Message] = []
     let theRoomRef = chatRef.child(roomID)
-    theRoomRef.observe(.value) { (snapshot) in
+    theRoomRef.observeSingleEvent(of: .value) { (snapshot) in
       guard let chats = snapshot.children.allObjects as? [DataSnapshot] else {
         completion(nil)
         return

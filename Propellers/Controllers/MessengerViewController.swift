@@ -20,13 +20,14 @@ class MessengerViewController: NMessengerViewController {
   
   var currentUID: String?
   
+  var firstLoad = true
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    messageGroups = [MessageGroup]()
     currentUID = NetworkingService.shared.currentUID
     appearance()
-//    fetchMessagesByChildAdded()
     fetchMessages()
+    fetchMessagesByChildAdded()
   }
   
   override func sendText(_ text: String, isIncomingMessage: Bool) -> GeneralMessengerCell {
@@ -43,8 +44,15 @@ class MessengerViewController: NMessengerViewController {
 
 //MARK: NetworkingServices
 extension MessengerViewController {
+  fileprivate func reloadMessengerView() {
+    self.messengerView.addMessages(self.messageGroups!, scrollsToMessage: false)
+    self.messengerView.scrollToLastMessage(animated: false)
+    self.lastMessageGroup = self.messageGroups?.last
+  }
+  
   func fetchMessages() {
     guard let currentUID = currentUID else { return }
+    self.messageGroups = [MessageGroup]()
     NetworkingService.shared.fetchMessagesBySingleEvent(roomID: "abcd") { (messages) in
       guard let messages = messages else { return }
       for message in messages {
@@ -52,12 +60,16 @@ extension MessengerViewController {
         if message.senderID == currentUID {
           if message == messages.last {
             self.fetchMessage(withText: messageText, isIncomingMessage: false, lastMessage: true)
+            self.reloadMessengerView()
+            self.firstLoad = false
           }else {
             self.fetchMessage(withText: messageText, isIncomingMessage: false, lastMessage: false)
           }
         }else {
           if message == messages.last {
             self.fetchMessage(withText: messageText, isIncomingMessage: true, lastMessage: true)
+            self.reloadMessengerView()
+            self.firstLoad = false
           }else {
             self.fetchMessage(withText: messageText, isIncomingMessage: true, lastMessage: false)
           }
@@ -65,31 +77,31 @@ extension MessengerViewController {
       }
     }
   }
-//
-//  func fetchMessagesByChildAdded() {
-//    NetworkingService.shared.fetchMessagesByChildAdded(roomID: "abcd") { (message) in
-//      if message.senderID == self.currentUID {
-//        if message == messages.last {
-//          self.fetchMessage(withText: messageText, isIncomingMessage: false, lastMessage: true)
-//        }else {
-//          self.fetchMessage(withText: messageText, isIncomingMessage: false, lastMessage: false)
-//        }
-//      }else {
-//        if message == messages.last {
-//          self.fetchMessage(withText: messageText, isIncomingMessage: true, lastMessage: true)
-//        }else {
-//          self.fetchMessage(withText: messageText, isIncomingMessage: true, lastMessage: false)
-//        }
-//      }
-//    }
-//  }
+
+  func fetchMessagesByChildAdded() {
+    NetworkingService.shared.fetchMessagesByChildAdded(roomID: "abcd") { (message) in
+      if !self.firstLoad {
+        if message.senderID == self.currentUID {
+          let textContent = TextContentNode(textMessageString: message.text!, currentViewController: self, bubbleConfiguration: self.sharedBubbleConfiguration)
+          let newMessage = MessageNode(content: textContent)
+          newMessage.cellPadding = self.messagePadding
+          newMessage.currentViewController = self
+        }else {
+          let textContent = TextContentNode(textMessageString: message.text!, currentViewController: self, bubbleConfiguration: self.sharedBubbleConfiguration)
+          let newMessage = MessageNode(content: textContent)
+          newMessage.cellPadding = self.messagePadding
+          newMessage.currentViewController = self
+          self.postText(newMessage, isIncomingMessage: true)
+        }
+      }
+    }
+  }
 
   func fetchMessage(withText text: String, isIncomingMessage: Bool, lastMessage: Bool) {
     let textContent = TextContentNode(textMessageString: text, currentViewController: self, bubbleConfiguration: self.sharedBubbleConfiguration)
     let newMessage = MessageNode(content: textContent)
     newMessage.cellPadding = self.messagePadding
     newMessage.currentViewController = self
-    
     if messageGroups?.last == nil || messageGroups?.last?.isIncomingMessage == !isIncomingMessage {
       let newMessageGroup = self.createMessageGroup()
       //add avatar if incoming message
@@ -103,7 +115,7 @@ extension MessengerViewController {
       messageGroups?.last?.addMessageToGroup(newMessage, completion: nil)
     }
     if lastMessage {
-      messengerView.addMessages(messageGroups!, scrollsToMessage: false)
+      messengerView.addMessage(newMessage, scrollsToMessage: false)
       messengerView.scrollToLastMessage(animated: false)
       lastMessageGroup = messageGroups?.last
     }
