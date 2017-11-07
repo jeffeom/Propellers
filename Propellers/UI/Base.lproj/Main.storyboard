@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hd1-tx-QhQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hd1-tx-QhQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,6 +19,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PGB-i0-a2A">
+                                <rect key="frame" x="260" y="114" width="65" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDb-kj-tuj">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="30"/>
+                                        <state key="normal" title="a@a.com"/>
+                                        <connections>
+                                            <action selector="testALogin:" destination="FCh-bB-P4h" eventType="touchUpInside" id="ZMf-7f-4Ku"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkT-r8-1IO">
+                                        <rect key="frame" x="0.0" y="30" width="65" height="30"/>
+                                        <state key="normal" title="b@b.com"/>
+                                        <connections>
+                                            <action selector="testBLogin:" destination="FCh-bB-P4h" eventType="touchUpInside" id="pBr-4M-2yy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kPq-8g-nQe">
                                 <rect key="frame" x="37.5" y="278.5" width="300" height="110"/>
                                 <subviews>
@@ -56,9 +75,11 @@
                         <constraints>
                             <constraint firstItem="kPq-8g-nQe" firstAttribute="width" secondItem="KY6-CJ-T6u" secondAttribute="width" multiplier="0.8" id="B46-QA-zHu"/>
                             <constraint firstItem="jSG-4o-sGT" firstAttribute="top" secondItem="kPq-8g-nQe" secondAttribute="bottom" constant="51.5" id="CNh-cY-NYa"/>
+                            <constraint firstItem="PGB-i0-a2A" firstAttribute="top" secondItem="78j-HB-LpQ" secondAttribute="top" constant="50" id="MMH-9f-TQu"/>
                             <constraint firstItem="kPq-8g-nQe" firstAttribute="centerX" secondItem="KY6-CJ-T6u" secondAttribute="centerX" id="by6-kx-otb"/>
                             <constraint firstItem="kPq-8g-nQe" firstAttribute="centerY" secondItem="KY6-CJ-T6u" secondAttribute="centerY" id="chv-Dc-qup"/>
                             <constraint firstItem="jSG-4o-sGT" firstAttribute="centerX" secondItem="KY6-CJ-T6u" secondAttribute="centerX" id="gwo-u0-MD4"/>
+                            <constraint firstItem="78j-HB-LpQ" firstAttribute="trailing" secondItem="PGB-i0-a2A" secondAttribute="trailing" constant="50" id="v0H-21-E1Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="78j-HB-LpQ"/>
                     </view>

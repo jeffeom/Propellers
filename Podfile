@@ -4,13 +4,13 @@ inhibit_all_warnings!
 use_frameworks!
 
 def shared_pods
-  pod 'NMessenger'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'JSQMessagesViewController'
 end
 
 target 'Propellers' do

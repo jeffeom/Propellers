@@ -35,9 +35,9 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectedCell = tableView.cellForRow(at: indexPath) as! RoomTableViewCell
-    let toVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "messageVC") as! MessengerViewController
+    let toVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
     toVC.roomKey = selectedCell.roomNameLabel.text
-    hidesBottomBarWhenPushed = true
+    toVC.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(toVC, animated: true)
   }
 }
