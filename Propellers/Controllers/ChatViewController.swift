@@ -24,6 +24,8 @@ final class ChatViewController: JSQMessagesViewController {
   var roomKey: String?
   var room: Room?
   
+  @IBOutlet weak var activitySheet: UIView!
+  @IBOutlet weak var activitySheetHeightConstraint: NSLayoutConstraint!
   fileprivate var messages = [JSQMessage]()
   fileprivate var friendUID: String?
   fileprivate var imageToSend: UIImage?
@@ -203,19 +205,26 @@ extension ChatViewController {
   }
   
   override func didPressAccessoryButton(_ sender: UIButton!) {
-    let alertMessage = UIAlertController(title: "Send Photo", message: "Select Camera or Photo Library to send a picture.", preferredStyle: .actionSheet)
-    let camera = UIAlertAction(title: "Camera", style: .default, handler: { _ in
-      self.useCamera()
-    })
-    let library = UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
-      self.usePhotoLibrary()
-    })
-    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    
-    alertMessage.addAction(camera)
-    alertMessage.addAction(library)
-    alertMessage.addAction(cancel)
-    present(alertMessage, animated: true, completion: nil)
+    guard let toVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "accessoryVC") as? CustomAccessoryViewController else {
+      print("Could not instantiate view controller with identifier of type SecondViewController")
+      return
+    }
+    toVC.modalPresentationStyle = .custom
+    toVC.transitioningDelegate = self
+    present(toVC, animated: true, completion: nil)
+  }
+}
+
+//MARK: TransitioningDelegate
+extension ChatViewController: UIViewControllerTransitioningDelegate {
+  func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    return AccessoryPresentationViewController(presentedViewController: presented, presenting: presenting)
+  }
+}
+
+class AccessoryPresentationViewController : UIPresentationController {
+  override var frameOfPresentedViewInContainerView: CGRect {
+    return CGRect(x: 0, y: 0, width: containerView!.bounds.width, height: containerView!.bounds.height)
   }
 }
 

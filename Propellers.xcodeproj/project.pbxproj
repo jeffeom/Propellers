@@ -33,6 +33,7 @@
 		40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E59B3A1FA859870069B8B2 /* RoomViewController.swift */; };
 		40E661201FB135650086A75A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E6611F1FB135650086A75A /* Room.swift */; };
 		40E661221FB141C60086A75A /* AsyncPhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E661211FB141C60086A75A /* AsyncPhotoMediaItem.swift */; };
+		40E661261FB177210086A75A /* CustomAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E661251FB177210086A75A /* CustomAccessoryViewController.swift */; };
 		5B39A83FF1E6F8CFF119BBA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F98590F576E6B6CA288BD58 /* SystemConfiguration.framework */; };
 		69AB96C5C0BBF92E2F30842A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D153278B379AE31820B2E7D5 /* CoreMedia.framework */; };
 		6B41851FBAB7374DC0654D1F /* Pods_PropellersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B387BBFAC22AE2309B1CC22 /* Pods_PropellersTests.framework */; };
@@ -95,6 +96,7 @@
 		40E59B3A1FA859870069B8B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		40E6611F1FB135650086A75A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		40E661211FB141C60086A75A /* AsyncPhotoMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPhotoMediaItem.swift; sourceTree = "<group>"; };
+		40E661251FB177210086A75A /* CustomAccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccessoryViewController.swift; sourceTree = "<group>"; };
 		463D1F281314420CA8AD01DE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4F98590F576E6B6CA288BD58 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7110476E181E301EA02DCF56 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				40E59B3A1FA859870069B8B2 /* RoomViewController.swift */,
 				407225F31FB11ED000D2193E /* SettingsViewController.swift */,
 				407225F51FB12E6500D2193E /* ChatViewController.swift */,
+				40E661251FB177210086A75A /* CustomAccessoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				4019CEA61FA1BDAB00B738B4 /* AppDelegate.swift in Sources */,
 				403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */,
 				403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */,
+				40E661261FB177210086A75A /* CustomAccessoryViewController.swift in Sources */,
 				40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */,
 				403E56E81FA7C5AF00110BB1 /* SignUpViewController.swift in Sources */,
 				403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */,
