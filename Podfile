@@ -11,6 +11,7 @@ def shared_pods
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'JSQMessagesViewController'
+  pod 'SDWebImage'
 end
 
 target 'Propellers' do

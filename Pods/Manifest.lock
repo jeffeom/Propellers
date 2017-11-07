@@ -1,11 +1,4 @@
 PODS:
-  - AsyncDisplayKit (2.2):
-    - AsyncDisplayKit/PINRemoteImage (= 2.2)
-  - AsyncDisplayKit/Core (2.2)
-  - AsyncDisplayKit/PINRemoteImage (2.2):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (= 3.0.0-beta.8)
-    - PINRemoteImage/PINCache
   - Firebase/Auth (4.5.0):
     - Firebase/Core
     - FirebaseAuth (= 4.3.1)
@@ -64,32 +57,19 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
-  - leveldb-library (1.18.3)
+  - JSQMessagesViewController (7.3.5):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - NMessenger (1.0.80):
-    - AsyncDisplayKit (= 2.2)
-  - PINCache (3.0.1-beta.4):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.4)
-    - PINCache/Core (= 3.0.1-beta.4)
-  - PINCache/Arc-exception-safe (3.0.1-beta.4):
-    - PINCache/Core
-  - PINCache/Core (3.0.1-beta.4):
-    - PINOperation (= 1.0.3)
-  - PINOperation (1.0.3)
-  - PINRemoteImage/Core (3.0.0-beta.8)
-  - PINRemoteImage/iOS (3.0.0-beta.8):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.8):
-    - PINCache (= 3.0.1-beta.4)
-    - PINRemoteImage/Core
   - Protobuf (3.4.0)
-  - SDWebImage (4.2.0):
-    - SDWebImage/Core (= 4.2.0)
-  - SDWebImage/Core (4.2.0)
+  - SDWebImage (4.2.1):
+    - SDWebImage/Core (= 4.2.1)
+  - SDWebImage/Core (4.2.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -98,10 +78,10 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - FirebaseUI/Storage
-  - NMessenger
+  - JSQMessagesViewController
+  - SDWebImage
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 1585f6cd0531ae9b30476f5912f577b73ebcb0e4
   Firebase: d83d287bdb6b1c78320561482706d1fcfc8ddfc1
   FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
   FirebaseAuth: e7c2b1359c2df4af23a568100a8eace0b8c507e4
@@ -113,15 +93,13 @@ SPEC CHECKSUMS:
   FirebaseUI: 883482fea73b73bbb488c55176f4c6ad128957eb
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
-  leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
+  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  leveldb-library: 44ef425bfde64f5b41daef86b38db2d13edbbee1
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  NMessenger: ca6a89073ca40d3868cf45505f6f8318853afd40
-  PINCache: a89c8f609232afac77128557bd12c861844423d7
-  PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
-  PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
-  SDWebImage: b1189fd85365c18434270a11a5cad13a1e848d53
+  SDWebImage: 1fa4c9edf525b744f002db89f3f5a38b3cd4c541
 
-PODFILE CHECKSUM: 44a48faab123c5ebb95cc0ce77379dc0be5aab28
+PODFILE CHECKSUM: cd1c40ab72f2687f3eef8b208ad14fb35597e8db
 
 COCOAPODS: 1.1.1

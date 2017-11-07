@@ -11,6 +11,8 @@ import Firebase
 import FirebaseStorage
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorageUI
+import SDWebImage
 
 struct NetworkingService {
   static public let shared = NetworkingService()
@@ -22,7 +24,7 @@ struct NetworkingService {
   }
   
   var chatRef: DatabaseReference {
-    return Database.database().reference().child("chat").child("messages")
+    return Database.database().reference().child("chat")
   }
   
   var userRef: DatabaseReference {
@@ -31,6 +33,14 @@ struct NetworkingService {
   
   var currentUID: String {
     return (Auth.auth().currentUser?.uid)!
+  }
+}
+
+//MARK: UserInfo
+extension NetworkingService {
+  func downloadUserAvatarPhoto(withUid userId: String, to imageView: UIImageView){
+    let imageRef = NetworkingService().storageRef.child(userId).child("profileImage\(userId)")
+    imageView.sd_setImage(with: imageRef, placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
   }
 }
 
@@ -118,14 +128,14 @@ extension NetworkingService {
 //MARK: Chat
 extension NetworkingService {
   func sendMessage(roomID: String, senderID: String, withText messageText: String, onDate date: Int64){
-    let theRoomRef = chatRef.child(roomID).childByAutoId()
-    let message = Message(senderID: senderID, text: messageText, date: date)
+    let theRoomRef = chatRef.child("messages").child(roomID).childByAutoId()
+    let message = Message(senderID: senderID, text: messageText, imageURL: nil, date: date)
     theRoomRef.setValue(message.json())
   }
   
   func fetchMessagesBySingleEvent(roomID: String, completion: @escaping ([Message]?) -> ()) {
     var messageArray: [Message] = []
-    let theRoomRef = chatRef.child(roomID)
+    let theRoomRef = chatRef.child("messages").child(roomID)
     theRoomRef.observeSingleEvent(of: .value) { (snapshot) in
       guard let chats = snapshot.children.allObjects as? [DataSnapshot] else {
         completion(nil)
@@ -143,18 +153,23 @@ extension NetworkingService {
   
   func fetchMessagesByChildAdded(roomID: String, completion: @escaping (Message) -> ()) {
     var message: Message?
-    let theRoomRef = chatRef.child(roomID)
+    let theRoomRef = chatRef.child("messages").child(roomID)
     theRoomRef.observe(.childAdded) { (snapshot) in
       message = Message(snapshot: snapshot)
       completion(message!)
     }
   }
+  
+  func uploadChatImage(imageData: Data, completion: @escaping (URL?) -> ()){
+    let uploadRef = self.storageRef.child(self.currentUID).child("chatImage").child("\(Date().millisecondsSince1970 ?? 0)")
+    let metaData = StorageMetadata()
+    metaData.contentType = "image/jpeg"
+    uploadRef.putData(imageData, metadata: metaData) { (metaData, error) in
+      if error == nil{
+        completion(metaData?.downloadURL())
+      }else {
+        completion(nil)
+      }
+    }
+  }
 }
-
-
-
-
-
-
-
-
