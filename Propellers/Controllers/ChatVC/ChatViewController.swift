@@ -21,7 +21,7 @@ extension JSQMessagesInputToolbar {
 }
 
 final class ChatViewController: JSQMessagesViewController {
-  var roomKey: String?
+  var roomKey: String? 
   var room: Room?
   
   @IBOutlet weak var activitySheet: UIView!
