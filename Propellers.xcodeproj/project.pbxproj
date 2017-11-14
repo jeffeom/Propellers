@@ -101,7 +101,6 @@
 		40E661251FB177210086A75A /* CustomAccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccessoryViewController.swift; sourceTree = "<group>"; };
 		463D1F281314420CA8AD01DE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4F98590F576E6B6CA288BD58 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		7110476E181E301EA02DCF56 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		7703AA096D6ED47B499A1D49 /* Pods-PropellersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropellersUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PropellersUITests/Pods-PropellersUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		783E1CC98B45396CFAFB374C /* Pods_PropellersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PropellersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F257AFCA6E867C3919753C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
@@ -230,7 +229,6 @@
 				4019CEEE1FA1BF1200B738B4 /* Extensions */,
 				4019CEB11FA1BDAB00B738B4 /* Info.plist */,
 				401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */,
-				7110476E181E301EA02DCF56 /* Bridging-Header.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
