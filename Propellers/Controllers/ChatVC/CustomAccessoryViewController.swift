@@ -39,20 +39,6 @@ class CustomAccessoryViewController: UIViewController {
     appearanceSetup()
     delegateSetup()
   }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-      self.superView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
-    }, completion: nil)
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
-      self.superView.backgroundColor = UIColor.clear
-    }, completion: nil)
-  }
 }
 
 //MARK: Setup

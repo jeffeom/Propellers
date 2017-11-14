@@ -43,7 +43,7 @@
         <scene sceneID="Dva-ZC-puz">
             <objects>
                 <navigationController storyboardIdentifier="settingsNav" automaticallyAdjustsScrollViewInsets="NO" id="sm8-in-c4a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="a1Q-Sw-4RW"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settingsIcon08" selectedImage="settingsIconSelected08" id="a1Q-Sw-4RW" customClass="GeneralTabBarItem" customModule="Propellers" customModuleProvider="target"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kst-Gk-cQg">
@@ -60,4 +60,8 @@
             <point key="canvasLocation" x="-399" y="274"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settingsIcon08" width="33" height="33"/>
+        <image name="settingsIconSelected08" width="36" height="34"/>
+    </resources>
 </document>

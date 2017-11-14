@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Room View Controller-->
         <scene sceneID="E8J-s2-Lsk">
@@ -118,8 +123,8 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="j00-G8-FrT">
-                                                                    <rect key="frame" x="14" y="24.5" width="42" height="21"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <rect key="frame" x="14" y="25" width="42" height="20"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -188,7 +193,7 @@
         <scene sceneID="bPc-w5-5cN">
             <objects>
                 <navigationController id="xEt-T8-lYL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" id="FrH-in-0EV"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chatIcon0303" selectedImage="chatIconSelected03" id="FrH-in-0EV" customClass="GeneralTabBarItem" customModule="Propellers" customModuleProvider="target"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Iu-nw-9zC">
@@ -205,4 +210,8 @@
             <point key="canvasLocation" x="-308" y="259"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chatIcon0303" width="37" height="33"/>
+        <image name="chatIconSelected03" width="41" height="35"/>
+    </resources>
 </document>

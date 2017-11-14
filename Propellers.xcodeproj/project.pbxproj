@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01C8D41E24A4C2B99C3B0580 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 463D1F281314420CA8AD01DE /* AssetsLibrary.framework */; };
+		13FA67041FBA8E4100A016FE /* GeneralTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA67031FBA8E4100A016FE /* GeneralTabBarItem.swift */; };
 		1DA5497DC897B96CE971D1FF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC9FC8CA35DE0A1979E4448 /* CoreTelephony.framework */; };
 		3F501DDBEF9343EBF2C73E2A /* Pods_Propellers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DC02139854B5FAD3D2CBD3 /* Pods_Propellers.framework */; };
 		4019CEA61FA1BDAB00B738B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019CEA51FA1BDAB00B738B4 /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13FA67031FBA8E4100A016FE /* GeneralTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBarItem.swift; sourceTree = "<group>"; };
 		1DC9FC8CA35DE0A1979E4448 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		276226AFAF5E1A80B7B57480 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2C38738F7DFEE7C95D0F2D49 /* Pods-PropellersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropellersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PropellersTests/Pods-PropellersTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				40E661211FB141C60086A75A /* AsyncPhotoMediaItem.swift */,
+				13FA67031FBA8E4100A016FE /* GeneralTabBarItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				4019CEA81FA1BDAB00B738B4 /* LogInViewController.swift in Sources */,
 				40E661221FB141C60086A75A /* AsyncPhotoMediaItem.swift in Sources */,
 				407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */,
+				13FA67041FBA8E4100A016FE /* GeneralTabBarItem.swift in Sources */,
 				4019CEA61FA1BDAB00B738B4 /* AppDelegate.swift in Sources */,
 				403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */,
 				403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */,
