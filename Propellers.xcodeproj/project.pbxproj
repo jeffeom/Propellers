@@ -188,6 +188,7 @@
 		4019CEA41FA1BDAB00B738B4 /* Propellers */ = {
 			isa = PBXGroup;
 			children = (
+				4019CEA51FA1BDAB00B738B4 /* AppDelegate.swift */,
 				4019CED61FA1BDDE00B738B4 /* Models */,
 				4019CED51FA1BDDD00B738B4 /* Views */,
 				4019CED41FA1BDDB00B738B4 /* Controllers */,
@@ -222,7 +223,6 @@
 				4019CEEE1FA1BF1200B738B4 /* Extensions */,
 				4019CEB11FA1BDAB00B738B4 /* Info.plist */,
 				401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */,
-				4019CEA51FA1BDAB00B738B4 /* AppDelegate.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";

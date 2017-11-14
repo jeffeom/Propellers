@@ -27,8 +27,7 @@ class GeneralTabBarItem: UITabBarItem {
                                                                                   green: 74/255,
                                                                                   blue: 74/255,
                                                                                   alpha: 1.0),
-                                   NSAttributedStringKey.font: UIFont(name: "Futura-Medium",
-                                                                      size: 11) ?? UIFont.systemFont(ofSize: 10.5)],
+                                   NSAttributedStringKey.font: UIFont(name: "Futura-Medium", size: 11) ?? UIFont.systemFont(ofSize: 10.5)],
                                   for:.selected)
     }
   }

@@ -12,6 +12,7 @@ def shared_pods
   pod 'Firebase/Auth'
   pod 'JSQMessagesViewController'
   pod 'SDWebImage'
+  pod 'IQKeyboardManagerSwift'
 end
 
 target 'Propellers' do
