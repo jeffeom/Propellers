@@ -11,6 +11,13 @@ import UIKit
 class AccessoryCell: UICollectionViewCell {
   @IBOutlet weak var accessoryLabel: UILabel!
   let identifier = "accessoryCell"
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    
+    self.layer.cornerRadius = 5
+    self.clipsToBounds = true
+  }
 }
 
 class CustomAccessoryViewController: UIViewController {
@@ -19,7 +26,8 @@ class CustomAccessoryViewController: UIViewController {
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var collectionView: UICollectionView!
   
-  var accessoryItem = ["Photos", "Videos", "Contract", "Invoice", "Contact", "Money"]
+  var accessoryItemRow1 = ["Photos", "Videos", "Contract", "Invoice"]
+  var accessoryItemRow2 = ["Contact", "Money"]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,24 +65,43 @@ extension CustomAccessoryViewController {
 //MARK: CollectionViewDelegate, Datasource
 extension CustomAccessoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return accessoryItem.count
+    if section == 0 {
+      return accessoryItemRow1.count
+    }else {
+      return accessoryItemRow2.count
+    }
+  }
+  
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return 2
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccessoryCell().identifier, for: indexPath) as! AccessoryCell
-    cell.accessoryLabel.text = accessoryItem[indexPath.item]
+    if indexPath.section == 0 {
+      cell.accessoryLabel.text = accessoryItemRow1[indexPath.item]
+    }else {
+      cell.accessoryLabel.text = accessoryItemRow2[indexPath.item]
+    }
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: ((self.containerView.bounds.width - 40) / 4), height: ((self.containerView.bounds.height - 40) / 2))
+    let height = collectionView.bounds.height / 2 - 5
+    return CGSize(width: height - 5, height: height - 5)
   }
   
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//    return 20
-//  }
-//
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//    return 20
-//  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    let height = collectionView.bounds.height / 2 - 5
+    return (collectionView.bounds.width - height * 4) / 3
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    let height = collectionView.bounds.height / 2 - 5
+    return (collectionView.bounds.width - height * 4) / 3
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    return CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 5).size
+  }
 }
