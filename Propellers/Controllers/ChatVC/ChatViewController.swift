@@ -28,10 +28,6 @@ final class ChatViewController: JSQMessagesViewController {
   @IBOutlet weak var activitySheetHeightConstraint: NSLayoutConstraint!
   fileprivate var messages = [JSQMessage]()
   fileprivate var friendUID: String?
-  fileprivate var imageToSend: UIImage?
-  fileprivate var imageData: Data = Data()
-  fileprivate let picker = UIImagePickerController()
-  var selectedImage: UIImage?
   
   lazy var outgoingBubble: JSQMessagesBubbleImage = {
     return JSQMessagesBubbleImageFactory()!.outgoingMessagesBubbleImage(with: UIColor(red:0.55, green:0.85, blue:0.58, alpha:1.00))
@@ -45,7 +41,6 @@ final class ChatViewController: JSQMessagesViewController {
     super.viewDidLoad()
     senderId = NetworkingService.shared.currentUID
     senderDisplayName = ""
-    picker.delegate = self
     fetchMessages()
     friendUID = fetchFriendsUID()
     collectionView.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.95, alpha:1.00)
@@ -211,6 +206,7 @@ extension ChatViewController {
     }
     toVC.modalPresentationStyle = .custom
     toVC.transitioningDelegate = self
+    toVC.roomKey = roomKey
     present(toVC, animated: true, completion: nil)
   }
 }
@@ -251,68 +247,5 @@ extension ChatViewController {
   func userIsUid1(room: Room?) -> Bool {
     let myUid = NetworkingService.shared.currentUID
     return room?.uid1 == myUid
-  }
-}
-
-//MARK: Attachment+ImagePickerDelegate
-extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  func useCamera() {
-    if UIImagePickerController.isSourceTypeAvailable(.camera) {
-      self.picker.allowsEditing = false
-      self.picker.sourceType = UIImagePickerControllerSourceType.camera
-      self.picker.cameraCaptureMode = .photo
-      self.picker.modalPresentationStyle = .fullScreen
-      self.present(self.picker,animated: true,completion: nil)
-    } else {
-      let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .alert)
-      let okAction = UIAlertAction(title: "OK", style:.default, handler: nil)
-      alertVC.addAction(okAction)
-      self.present( alertVC, animated: true, completion: nil)
-    }
-  }
-  
-  func usePhotoLibrary() {
-    self.picker.allowsEditing = false
-    self.picker.sourceType = .photoLibrary
-    self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
-    self.picker.modalPresentationStyle = .popover
-    self.present(self.picker, animated: true, completion: nil)
-  }
-  
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    self.imageToSend = info[UIImagePickerControllerOriginalImage] as? UIImage
-    guard let imageToSend = self.imageToSend else {
-      dismiss(animated: true, completion: {
-        let alertView = UIAlertController(title: "Error", message: "Something went wrong, failed to fetch the image. Please try again later.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertView.addAction(okAction)
-        self.present(alertView, animated: true, completion: nil)
-      })
-      return
-    }
-    self.imageData = UIImageJPEGRepresentation(imageToSend, 0.1) ?? #imageLiteral(resourceName: "userPlaceHolder").sd_imageData()!
-    dismiss(animated:true, completion: {
-      self.sendImageAttachment()
-    })
-  }
-  
-  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    dismiss(animated: true, completion: nil)
-  }
-  
-  func sendImageAttachment() {
-    guard let key = roomKey else { return }
-    NetworkingService.shared.uploadChatImage(imageData: self.imageData, completion: { url in
-      let messageRef = NetworkingService.shared.chatRef.child("messages").child(key).childByAutoId()
-      let roomRef = NetworkingService.shared.chatRef.child("rooms").child(key)
-      guard let dateInt = Date().millisecondsSince1970 else { return }
-      guard let url = url else { return }
-      let stringURL = url.absoluteString
-      let message = Message(senderID: NetworkingService.shared.currentUID, text: nil, imageURL: stringURL, date: dateInt)
-      
-      messageRef.setValue(message.json())
-      roomRef.updateChildValues(["latestText": "[Photo]", "date": dateInt])
-      self.finishSendingMessage()
-    })
   }
 }
