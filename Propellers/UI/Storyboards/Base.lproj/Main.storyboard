@@ -241,6 +241,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V8D-jD-1m8"/>
                     </view>
+                    <navigationItem key="navigationItem" id="gKH-am-biN" customClass="FixedImageNavigationItem" customModule="Propellers" customModuleProvider="target"/>
                     <connections>
                         <outlet property="emailField" destination="xM1-yU-4sH" id="biy-94-ryb"/>
                         <outlet property="firstNameField" destination="Gms-pw-sW1" id="wSD-YD-HzI"/>
@@ -302,7 +303,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgO-ZY-Aeb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="201"/>
+            <point key="canvasLocation" x="388" y="193"/>
         </scene>
         <!--Chat-->
         <scene sceneID="6BM-5x-Y6p">
@@ -314,15 +315,15 @@
             </objects>
             <point key="canvasLocation" x="388" y="74"/>
         </scene>
-        <!--Search-->
+        <!--Explore-->
         <scene sceneID="aUY-AR-bGc">
             <objects>
-                <viewControllerPlaceholder storyboardName="Search" id="lj8-df-dAw" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Explore" id="lj8-df-dAw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Njp-gZ-2UH"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMO-ur-cuc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="134"/>
+            <point key="canvasLocation" x="402" y="132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C8c-vG-Gk6">

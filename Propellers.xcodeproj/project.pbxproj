@@ -20,7 +20,7 @@
 		4019CEC61FA1BDAB00B738B4 /* PropellersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019CEC51FA1BDAB00B738B4 /* PropellersUITests.swift */; };
 		4019CEE91FA1BEA600B738B4 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE41FA1BEA500B738B4 /* Chat.storyboard */; };
 		4019CEEA1FA1BEA600B738B4 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE51FA1BEA600B738B4 /* Friends.storyboard */; };
-		4019CEEB1FA1BEA600B738B4 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE61FA1BEA600B738B4 /* Search.storyboard */; };
+		4019CEEB1FA1BEA600B738B4 /* Explore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE61FA1BEA600B738B4 /* Explore.storyboard */; };
 		4019CEEC1FA1BEA600B738B4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE71FA1BEA600B738B4 /* Settings.storyboard */; };
 		4019CEED1FA1BEA600B738B4 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE81FA1BEA600B738B4 /* Logs.storyboard */; };
 		4019CEF01FA1BF1200B738B4 /* Date+milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */; };
@@ -29,6 +29,11 @@
 		403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */; };
 		403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */; };
 		403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EE1FA7F2A800110BB1 /* Message.swift */; };
+		405A456E1FCCCDD800DCC527 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A456D1FCCCDD800DCC527 /* FriendsViewController.swift */; };
+		405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45731FCCCF8000DCC527 /* ThemeColor.swift */; };
+		405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */; };
+		405A457B1FCCD22A00DCC527 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A457A1FCCD22A00DCC527 /* ExploreViewController.swift */; };
+		405A457D1FCCD23000DCC527 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A457C1FCCD23000DCC527 /* LogsViewController.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
 		407225F61FB12E6500D2193E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F51FB12E6500D2193E /* ChatViewController.swift */; };
 		40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E59B3A1FA859870069B8B2 /* RoomViewController.swift */; };
@@ -84,7 +89,7 @@
 		4019CEC71FA1BDAB00B738B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4019CEE41FA1BEA500B738B4 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		4019CEE51FA1BEA600B738B4 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
-		4019CEE61FA1BEA600B738B4 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		4019CEE61FA1BEA600B738B4 /* Explore.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Explore.storyboard; sourceTree = "<group>"; };
 		4019CEE71FA1BEA600B738B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		4019CEE81FA1BEA600B738B4 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
 		4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+milliseconds.swift"; sourceTree = "<group>"; };
@@ -93,6 +98,11 @@
 		403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercase.swift"; sourceTree = "<group>"; };
 		403E56EE1FA7F2A800110BB1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		405A456D1FCCCDD800DCC527 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		405A45731FCCCF8000DCC527 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedImageNavigationItem.swift; sourceTree = "<group>"; };
+		405A457A1FCCD22A00DCC527 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		405A457C1FCCD23000DCC527 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		407225F51FB12E6500D2193E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		40E59B3A1FA859870069B8B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 		13F660001FB90DC800638825 /* ChatVC */ = {
 			isa = PBXGroup;
 			children = (
+				40E59B3A1FA859870069B8B2 /* RoomViewController.swift */,
 				407225F51FB12E6500D2193E /* ChatViewController.swift */,
 				40E661251FB177210086A75A /* CustomAccessoryViewController.swift */,
 			);
@@ -236,11 +247,12 @@
 		4019CED41FA1BDDB00B738B4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				405A45701FCCCDEB00DCC527 /* Login&SignUp */,
+				405A456F1FCCCDDB00DCC527 /* FriendsVC */,
 				13F660001FB90DC800638825 /* ChatVC */,
-				4019CEA71FA1BDAB00B738B4 /* LogInViewController.swift */,
-				403E56E71FA7C5AF00110BB1 /* SignUpViewController.swift */,
-				40E59B3A1FA859870069B8B2 /* RoomViewController.swift */,
-				407225F31FB11ED000D2193E /* SettingsViewController.swift */,
+				405A45771FCCD1EE00DCC527 /* ExploreVC */,
+				405A45791FCCD20800DCC527 /* LogsVC */,
+				405A45711FCCCDF600DCC527 /* SettingsVC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -266,6 +278,7 @@
 		4019CED71FA1BE0C00B738B4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				405A45721FCCCF1000DCC527 /* Theme */,
 				407225F71FB12F3B00D2193E /* Storyboards */,
 				4019CEAC1FA1BDAB00B738B4 /* Assets.xcassets */,
 			);
@@ -289,15 +302,65 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		405A456F1FCCCDDB00DCC527 /* FriendsVC */ = {
+			isa = PBXGroup;
+			children = (
+				405A456D1FCCCDD800DCC527 /* FriendsViewController.swift */,
+			);
+			path = FriendsVC;
+			sourceTree = "<group>";
+		};
+		405A45701FCCCDEB00DCC527 /* Login&SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				4019CEA71FA1BDAB00B738B4 /* LogInViewController.swift */,
+				403E56E71FA7C5AF00110BB1 /* SignUpViewController.swift */,
+			);
+			path = "Login&SignUp";
+			sourceTree = "<group>";
+		};
+		405A45711FCCCDF600DCC527 /* SettingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				407225F31FB11ED000D2193E /* SettingsViewController.swift */,
+			);
+			path = SettingsVC;
+			sourceTree = "<group>";
+		};
+		405A45721FCCCF1000DCC527 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				405A45731FCCCF8000DCC527 /* ThemeColor.swift */,
+				405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		405A45771FCCD1EE00DCC527 /* ExploreVC */ = {
+			isa = PBXGroup;
+			children = (
+				405A457A1FCCD22A00DCC527 /* ExploreViewController.swift */,
+			);
+			path = ExploreVC;
+			sourceTree = "<group>";
+		};
+		405A45791FCCD20800DCC527 /* LogsVC */ = {
+			isa = PBXGroup;
+			children = (
+				405A457C1FCCD23000DCC527 /* LogsViewController.swift */,
+			);
+			path = LogsVC;
+			sourceTree = "<group>";
+		};
 		407225F71FB12F3B00D2193E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				4019CEA91FA1BDAB00B738B4 /* Main.storyboard */,
 				4019CEAE1FA1BDAB00B738B4 /* LaunchScreen.storyboard */,
-				4019CEE41FA1BEA500B738B4 /* Chat.storyboard */,
 				4019CEE51FA1BEA600B738B4 /* Friends.storyboard */,
+				4019CEE41FA1BEA500B738B4 /* Chat.storyboard */,
+				4019CEE61FA1BEA600B738B4 /* Explore.storyboard */,
 				4019CEE81FA1BEA600B738B4 /* Logs.storyboard */,
-				4019CEE61FA1BEA600B738B4 /* Search.storyboard */,
 				4019CEE71FA1BEA600B738B4 /* Settings.storyboard */,
 			);
 			path = Storyboards;
@@ -457,7 +520,7 @@
 				4019CEAD1FA1BDAB00B738B4 /* Assets.xcassets in Resources */,
 				4019CEED1FA1BEA600B738B4 /* Logs.storyboard in Resources */,
 				4019CEE91FA1BEA600B738B4 /* Chat.storyboard in Resources */,
-				4019CEEB1FA1BEA600B738B4 /* Search.storyboard in Resources */,
+				4019CEEB1FA1BEA600B738B4 /* Explore.storyboard in Resources */,
 				4019CEAB1FA1BDAB00B738B4 /* Main.storyboard in Resources */,
 				4019CEEC1FA1BEA600B738B4 /* Settings.storyboard in Resources */,
 			);
@@ -683,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4019CEF01FA1BF1200B738B4 /* Date+milliseconds.swift in Sources */,
+				405A456E1FCCCDD800DCC527 /* FriendsViewController.swift in Sources */,
 				407225F61FB12E6500D2193E /* ChatViewController.swift in Sources */,
 				4019CEA81FA1BDAB00B738B4 /* LogInViewController.swift in Sources */,
 				40E661221FB141C60086A75A /* AsyncPhotoMediaItem.swift in Sources */,
@@ -694,7 +758,11 @@
 				40E661261FB177210086A75A /* CustomAccessoryViewController.swift in Sources */,
 				40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */,
 				403E56E81FA7C5AF00110BB1 /* SignUpViewController.swift in Sources */,
+				405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */,
+				405A457B1FCCD22A00DCC527 /* ExploreViewController.swift in Sources */,
+				405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */,
 				403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */,
+				405A457D1FCCD23000DCC527 /* LogsViewController.swift in Sources */,
 				40E661201FB135650086A75A /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

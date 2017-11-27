@@ -59,14 +59,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pO8-Ip-jhV"/>
                     </view>
-                    <navigationItem key="navigationItem" id="K59-CG-9s7"/>
+                    <navigationItem key="navigationItem" id="K59-CG-9s7" customClass="FixedImageNavigationItem" customModule="Propellers" customModuleProvider="target"/>
                     <connections>
                         <outlet property="roomTableView" destination="o5M-MO-HhG" id="nmb-GC-tTw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbY-qp-0KN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="242"/>
+            <point key="canvasLocation" x="454" y="259"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="PTC-Zs-hKf">

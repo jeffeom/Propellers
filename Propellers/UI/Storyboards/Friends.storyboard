@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Friends View Controller-->
         <scene sceneID="faJ-kx-V2y">
             <objects>
-                <viewController id="9Lx-fq-Wk3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friendsVC" id="9Lx-fq-Wk3" customClass="FriendsViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xuk-H3-mk6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,7 +42,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lWp-6o-qHy"/>
                     </view>
-                    <navigationItem key="navigationItem" id="J1b-WP-tE4"/>
+                    <navigationItem key="navigationItem" id="FIl-sC-v2A" customClass="FixedImageNavigationItem" customModule="Propellers" customModuleProvider="target">
+                        <nil key="title"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPI-DR-Q8F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

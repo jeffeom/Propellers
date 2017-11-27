@@ -13,7 +13,7 @@
         <!--Settings View Controller-->
         <scene sceneID="mgH-wH-Jjf">
             <objects>
-                <viewController id="1CY-Fk-Cy6" customClass="SettingsViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsVC" id="1CY-Fk-Cy6" customClass="SettingsViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="puZ-aC-acF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,7 +33,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kuF-L5-EAF"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PPt-Qn-arl"/>
+                    <navigationItem key="navigationItem" id="PPt-Qn-arl" customClass="FixedImageNavigationItem" customModule="Propellers" customModuleProvider="target"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kGE-Rf-yFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
