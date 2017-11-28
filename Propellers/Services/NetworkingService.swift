@@ -158,6 +158,16 @@ extension NetworkingService {
       }
     }
   }
+  
+  func fetchUser(withUID uid: String, completion: @escaping (UserModel?) -> ()) {
+    userRef.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+      if snapshot.exists() {
+        completion(UserModel(snapshot: snapshot))
+      }else {
+        completion(nil)
+      }
+    }
+  }
 }
 
 

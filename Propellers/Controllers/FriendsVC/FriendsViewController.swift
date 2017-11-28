@@ -9,12 +9,12 @@
 import UIKit
 
 enum UserStatusType {
-  case yellow, red
+  case client, freeLancer
 }
 
 class UserCell: UITableViewCell {
   static let identifier = "userCell"
-  var statusType: UserStatusType  = .yellow
+  var statusType: UserStatusType  = .client
   
   @IBOutlet private weak var statusView: UIView!
   @IBOutlet weak var userImageView: UIImageView!
@@ -24,9 +24,9 @@ class UserCell: UITableViewCell {
     super.awakeFromNib()
     
     switch statusType {
-    case .yellow:
+    case .client:
       statusView.backgroundColor = .yellow
-    case .red:
+    case .freeLancer:
       statusView.backgroundColor = .red
     }
     
@@ -41,11 +41,13 @@ class UserCell: UITableViewCell {
 class FriendsViewController: UIViewController {
   static let identifier = "friendsVC"
   @IBOutlet weak var friendsTableView: UITableView!
+  @IBOutlet weak var searchBar: UISearchBar!
   var friendsArray: [UserModel]?
   var selectedUser: UserModel?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    searchBar.backgroundImage = UIImage()
     setupDelegates()
     fetchMyFriends()
   }
@@ -100,6 +102,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let section = indexPath.section
     selectedUser = friendsArray?[section]
+    performSegue(withIdentifier: "profileDetails", sender: nil)
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

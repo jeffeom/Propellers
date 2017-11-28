@@ -20,7 +20,13 @@ class UserProfile: NSObject {
     guard let snapshotValue = snapshot.value as? [String:AnyObject] else { return nil }
     key = snapshot.key
     about = snapshotValue["about"] as? String
-    projects = snapshotValue["projects"] as? [Project]
+    guard let projectsDict = snapshotValue["projects"] as? [String: [String: AnyObject]] else { return }
+    projects = []
+    for aKey in projectsDict.keys {
+      guard let aProject = projectsDict[aKey] else { return nil }
+      let projectFetched = Project(data: aProject)
+      self.projects?.append(projectFetched)
+    }
     skills = snapshotValue["skills"] as? String
     ref = snapshot.ref
   }

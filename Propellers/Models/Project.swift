@@ -11,7 +11,8 @@ import Firebase
 
 class Project: NSObject {
   var key: String?
-  var favorite: Int?
+  var imageURL: String?
+  var favorite: Int = 0
   var title: String?
   var type: String?
   var ref: DatabaseReference?
@@ -19,19 +20,28 @@ class Project: NSObject {
   init?(snapshot: DataSnapshot) {
     guard let snapshotValue = snapshot.value as? [String:AnyObject] else { return nil }
     key = snapshot.key
-    favorite = snapshotValue["favorite"] as? Int
+    imageURL = snapshotValue["imageURL"] as? String
+    favorite = snapshotValue["favorite"] as! Int
     title = snapshotValue["title"] as? String
     type = snapshotValue["type"] as? String
     ref = snapshot.ref
   }
   
-  init(title: String?, type: String?) {
-    self.favorite = 0
+  init(imageURL: String?, title: String?, type: String?, favorite: Int) {
+    self.imageURL = imageURL
+    self.favorite = favorite
     self.title = title
     self.type = type
   }
   
+  init(data: [String: AnyObject]) {
+    self.imageURL = data["imageURL"] as? String
+    self.favorite = data["favorite"] as! Int
+    self.title = data["title"] as? String
+    self.type = data["type"] as? String
+  }
+  
   func json() -> [String:Any]? {
-    return ["title": title ?? "", "type": type ?? "", "favorite": favorite ?? 0] as [String : AnyObject]
+    return ["title": title ?? "", "type": type ?? "", "favorite": favorite, "imageURL": imageURL ?? ""] as [String : AnyObject]
   }
 }

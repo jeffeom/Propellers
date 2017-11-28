@@ -38,6 +38,7 @@
 		405A45811FCCD75200DCC527 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45801FCCD75200DCC527 /* UserModel.swift */; };
 		405A45831FCCD89E00DCC527 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45821FCCD89E00DCC527 /* UserProfile.swift */; };
 		405A45851FCCD99D00DCC527 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45841FCCD99D00DCC527 /* Project.swift */; };
+		405A45871FCD0F5300DCC527 /* UIFont+SizeOfString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
 		407225F61FB12E6500D2193E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F51FB12E6500D2193E /* ChatViewController.swift */; };
 		40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E59B3A1FA859870069B8B2 /* RoomViewController.swift */; };
@@ -111,6 +112,7 @@
 		405A45801FCCD75200DCC527 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		405A45821FCCD89E00DCC527 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		405A45841FCCD99D00DCC527 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+SizeOfString.swift"; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		407225F51FB12E6500D2193E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		40E59B3A1FA859870069B8B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			children = (
 				4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */,
 				403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */,
+				405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				4019CEF01FA1BF1200B738B4 /* Date+milliseconds.swift in Sources */,
 				405A456E1FCCCDD800DCC527 /* FriendsViewController.swift in Sources */,
 				407225F61FB12E6500D2193E /* ChatViewController.swift in Sources */,
+				405A45871FCD0F5300DCC527 /* UIFont+SizeOfString.swift in Sources */,
 				4019CEA81FA1BDAB00B738B4 /* LogInViewController.swift in Sources */,
 				40E661221FB141C60086A75A /* AsyncPhotoMediaItem.swift in Sources */,
 				405A457F1FCCD66200DCC527 /* ProfileDetailViewController.swift in Sources */,
