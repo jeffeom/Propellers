@@ -34,6 +34,10 @@ struct NetworkingService {
   var currentUID: String {
     return (Auth.auth().currentUser?.uid)!
   }
+  
+  var profileRef: DatabaseReference {
+    return Database.database().reference().child("profile")
+  }
 }
 
 //MARK: UserInfo
@@ -121,6 +125,38 @@ extension NetworkingService {
         completion(false)
       }
     })
+  }
+}
+
+//MARK: Friends
+extension NetworkingService {
+  func fetchFriends(completion: @escaping ([UserModel]) -> ()) {
+    userRef.child(currentUID).child("friends").observeSingleEvent(of: .value) { (snapshot) in
+      var fetchedFriends: [UserModel] = []
+      guard let listOfFreindsUID = snapshot.value as? [String: Bool] else {
+        completion([])
+        return
+      }
+      for aFriend in listOfFreindsUID.keys {
+        self.userRef.child(aFriend).observeSingleEvent(of: .value, with: { (snapshot) in
+          let aFriend = UserModel(snapshot: snapshot)
+          fetchedFriends.append(aFriend!)
+          if fetchedFriends.count == listOfFreindsUID.count {
+            completion(fetchedFriends)
+          }
+        })
+      }
+    }
+  }
+  
+  func fetchProfileForFriend(withUID uid: String, completion: @escaping (UserProfile?) -> ()) {
+    profileRef.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+      if snapshot.exists() {
+        completion(UserProfile(snapshot: snapshot))
+      }else {
+        completion(nil)
+      }
+    }
   }
 }
 

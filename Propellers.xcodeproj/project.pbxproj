@@ -34,6 +34,10 @@
 		405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */; };
 		405A457B1FCCD22A00DCC527 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A457A1FCCD22A00DCC527 /* ExploreViewController.swift */; };
 		405A457D1FCCD23000DCC527 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A457C1FCCD23000DCC527 /* LogsViewController.swift */; };
+		405A457F1FCCD66200DCC527 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A457E1FCCD66200DCC527 /* ProfileDetailViewController.swift */; };
+		405A45811FCCD75200DCC527 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45801FCCD75200DCC527 /* UserModel.swift */; };
+		405A45831FCCD89E00DCC527 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45821FCCD89E00DCC527 /* UserProfile.swift */; };
+		405A45851FCCD99D00DCC527 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45841FCCD99D00DCC527 /* Project.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
 		407225F61FB12E6500D2193E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F51FB12E6500D2193E /* ChatViewController.swift */; };
 		40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E59B3A1FA859870069B8B2 /* RoomViewController.swift */; };
@@ -103,6 +107,10 @@
 		405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedImageNavigationItem.swift; sourceTree = "<group>"; };
 		405A457A1FCCD22A00DCC527 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		405A457C1FCCD23000DCC527 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		405A457E1FCCD66200DCC527 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		405A45801FCCD75200DCC527 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		405A45821FCCD89E00DCC527 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		405A45841FCCD99D00DCC527 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		407225F51FB12E6500D2193E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		40E59B3A1FA859870069B8B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +279,9 @@
 			children = (
 				403E56EE1FA7F2A800110BB1 /* Message.swift */,
 				40E6611F1FB135650086A75A /* Room.swift */,
+				405A45801FCCD75200DCC527 /* UserModel.swift */,
+				405A45821FCCD89E00DCC527 /* UserProfile.swift */,
+				405A45841FCCD99D00DCC527 /* Project.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				405A456D1FCCCDD800DCC527 /* FriendsViewController.swift */,
+				405A457E1FCCD66200DCC527 /* ProfileDetailViewController.swift */,
 			);
 			path = FriendsVC;
 			sourceTree = "<group>";
@@ -750,6 +762,7 @@
 				407225F61FB12E6500D2193E /* ChatViewController.swift in Sources */,
 				4019CEA81FA1BDAB00B738B4 /* LogInViewController.swift in Sources */,
 				40E661221FB141C60086A75A /* AsyncPhotoMediaItem.swift in Sources */,
+				405A457F1FCCD66200DCC527 /* ProfileDetailViewController.swift in Sources */,
 				407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */,
 				13FA67041FBA8E4100A016FE /* GeneralTabBarItem.swift in Sources */,
 				4019CEA61FA1BDAB00B738B4 /* AppDelegate.swift in Sources */,
@@ -758,12 +771,15 @@
 				40E661261FB177210086A75A /* CustomAccessoryViewController.swift in Sources */,
 				40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */,
 				403E56E81FA7C5AF00110BB1 /* SignUpViewController.swift in Sources */,
+				405A45851FCCD99D00DCC527 /* Project.swift in Sources */,
 				405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */,
 				405A457B1FCCD22A00DCC527 /* ExploreViewController.swift in Sources */,
+				405A45831FCCD89E00DCC527 /* UserProfile.swift in Sources */,
 				405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */,
 				403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */,
 				405A457D1FCCD23000DCC527 /* LogsViewController.swift in Sources */,
 				40E661201FB135650086A75A /* Room.swift in Sources */,
+				405A45811FCCD75200DCC527 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
