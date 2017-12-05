@@ -20,12 +20,15 @@ class RoomViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupDelegates()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     fetchRoom()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
     navigationController?.navigationBar.barTintColor = ThemeColor.lightBlueColor
     navigationController?.navigationBar.tintColor = .white
     navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "Montserrat-SemiBold", size: 18) ?? UIFont.systemFont(ofSize: 18)]
@@ -36,6 +39,7 @@ class RoomViewController: UIViewController {
 //MARK: NetworkingService
 extension RoomViewController {
   func fetchRoom() {
+    fetchedRooms = []
     NetworkingService.shared.fetchRooms { (rooms) in
       let currentUID = NetworkingService.shared.currentUID
       for aRoom in rooms {
@@ -44,6 +48,11 @@ extension RoomViewController {
             let roomName = user?.fullName!
             self.fetchedRooms.append(RoomWithName(name: roomName, room: aRoom))
             if self.fetchedRooms.count == rooms.count {
+              self.fetchedRooms.sort(by: { (firstRoom, secondRoom) -> Bool in
+                let firstDate = firstRoom.room?.date
+                let secondDate = secondRoom.room?.date
+                return firstDate! > secondDate!
+              })
               self.roomTableView.reloadData()
             }
           })

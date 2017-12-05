@@ -238,9 +238,15 @@ extension NetworkingService {
   }
   
   func sendMessage(roomID: String, senderID: String, withText messageText: String, onDate date: Int64){
-    let theRoomRef = chatRef.child("messages").child(roomID).childByAutoId()
+    let theChatRef = chatRef.child("messages").child(roomID).childByAutoId()
     let message = Message(senderID: senderID, text: messageText, imageURL: nil, date: date)
-    theRoomRef.setValue(message.json())
+    let roomRef = chatRef.child("rooms").child(roomID)
+    roomRef.updateChildValues(
+      [ "latestText": messageText,
+        "date": date
+    ]) { (_, _) in
+      theChatRef.setValue(message.json())
+    }
   }
   
   func fetchMessagesBySingleEvent(roomID: String, completion: @escaping ([Message]?) -> ()) {
