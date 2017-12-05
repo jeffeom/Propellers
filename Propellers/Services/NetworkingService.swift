@@ -189,7 +189,6 @@ extension NetworkingService {
   }
 }
 
-
 //MARK: Chat
 extension NetworkingService {
   func fetchRooms(completion: @escaping ([Room]) -> ()) {

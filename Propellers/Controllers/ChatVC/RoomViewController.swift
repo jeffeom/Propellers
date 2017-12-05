@@ -8,9 +8,14 @@
 
 import UIKit
 
+struct RoomWithName {
+  var name: String?
+  var room: Room?
+}
+
 class RoomViewController: UIViewController {
   @IBOutlet weak var roomTableView: UITableView!
-  var fetchedRooms: [Room] = []
+  var fetchedRooms: [RoomWithName] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,8 +37,26 @@ class RoomViewController: UIViewController {
 extension RoomViewController {
   func fetchRoom() {
     NetworkingService.shared.fetchRooms { (rooms) in
-      self.fetchedRooms = rooms
-      self.roomTableView.reloadData()
+      let currentUID = NetworkingService.shared.currentUID
+      for aRoom in rooms {
+        if aRoom.uid1 == currentUID {
+          NetworkingService.shared.fetchUser(withUID: aRoom.uid2!, completion: { (user) in
+            let roomName = user?.fullName!
+            self.fetchedRooms.append(RoomWithName(name: roomName, room: aRoom))
+            if self.fetchedRooms.count == rooms.count {
+              self.roomTableView.reloadData()
+            }
+          })
+        }else {
+          NetworkingService.shared.fetchUser(withUID: aRoom.uid1!, completion: { (user) in
+            let roomName = user?.fullName!
+            self.fetchedRooms.append(RoomWithName(name: roomName, room: aRoom))
+            if self.fetchedRooms.count == rooms.count {
+              self.roomTableView.reloadData()
+            }
+          })
+        }
+      }
     }
   }
 }
@@ -54,22 +77,65 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: RoomTableViewCell().identifier, for: indexPath) as! RoomTableViewCell
-    cell.roomNameLabel.text = fetchedRooms[indexPath.section].key!
+    let currentUID = NetworkingService.shared.currentUID
+    let aRoom = fetchedRooms[indexPath.section].room!
+    if aRoom.uid1 == currentUID {
+      NetworkingService.shared.fetchUser(withUID: aRoom.uid2!, completion: { (user) in
+        cell.userImageView.sd_setImage(with: URL(string: (user?.imageURL!)!), completed: nil)
+        cell.roomNameLabel.text = user?.fullName
+        cell.roomLatestTextLabel.text = aRoom.latestText
+        cell.dateLabel.text = Date(milliseconds: aRoom.date)?.toString(dateFormat: "h:mm a")
+        cell.isNew = true
+      })
+    }else {
+      NetworkingService.shared.fetchUser(withUID: aRoom.uid2!, completion: { (user) in
+        cell.userImageView.sd_setImage(with: URL(string: (user?.imageURL!)!), completed: nil)
+        cell.roomNameLabel.text = user?.fullName
+        cell.roomLatestTextLabel.text = aRoom.latestText
+        cell.dateLabel.text = Date(milliseconds: aRoom.date)?.toString(dateFormat: "h:mm a")
+        cell.isNew = false
+      })
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let selectedCell = tableView.cellForRow(at: indexPath) as! RoomTableViewCell
     let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-    let selectedRoom = fetchedRooms[indexPath.section]
-    let chatInfoToSend = ChatInfo(roomKey: selectedRoom.key, room: selectedRoom)
+    let selectedRoom = fetchedRooms[indexPath.section].room
+    let chatInfoToSend = ChatInfo(roomKey: selectedRoom?.key!, room: selectedRoom)
     chatVC.chatInfo = chatInfoToSend
-    chatVC.hidesBottomBarWhenPushed = true
     navigationController?.pushViewController(chatVC, animated: true)
+  }
+  
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 6
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let clearView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 6 ))
+    clearView.backgroundColor = .clear
+    return clearView
   }
 }
 
 class RoomTableViewCell: UITableViewCell {
+  @IBOutlet weak var userImageView: UIImageView!
   @IBOutlet weak var roomNameLabel: UILabel!
+  @IBOutlet weak var roomLatestTextLabel: UILabel!
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var newIndicatorImageView: UIImageView!
+  
+  var isNew: Bool = false {
+    didSet {
+      newIndicatorImageView.isHidden = !isNew
+    }
+  }
   let identifier = "roomTableViewCell"
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    
+    layer.cornerRadius = 8
+    clipsToBounds = true
+  }
 }
