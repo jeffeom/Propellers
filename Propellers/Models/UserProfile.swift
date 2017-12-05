@@ -24,7 +24,7 @@ class UserProfile: NSObject {
     projects = []
     for aKey in projectsDict.keys {
       guard let aProject = projectsDict[aKey] else { return nil }
-      let projectFetched = Project(data: aProject)
+      let projectFetched = Project(data: aProject, withKey: aKey)
       self.projects?.append(projectFetched)
     }
     skills = snapshotValue["skills"] as? String

@@ -13,6 +13,7 @@ def shared_pods
   pod 'JSQMessagesViewController'
   pod 'SDWebImage'
   pod 'IQKeyboardManagerSwift'
+  pod 'TagListView'
 end
 
 target 'Propellers' do

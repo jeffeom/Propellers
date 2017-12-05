@@ -10,10 +10,12 @@ import UIKit
 
 class RoomViewController: UIViewController {
   @IBOutlet weak var roomTableView: UITableView!
+  var fetchedRooms: [Room] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupDelegates()
+    fetchRoom()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -23,6 +25,16 @@ class RoomViewController: UIViewController {
     navigationController?.navigationBar.tintColor = .white
     navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "Montserrat-SemiBold", size: 18) ?? UIFont.systemFont(ofSize: 18)]
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+  }
+}
+
+//MARK: NetworkingService
+extension RoomViewController {
+  func fetchRoom() {
+    NetworkingService.shared.fetchRooms { (rooms) in
+      self.fetchedRooms = rooms
+      self.roomTableView.reloadData()
+    }
   }
 }
 
@@ -36,22 +48,24 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
     return 1
   }
   
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return fetchedRooms.count
+  }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: RoomTableViewCell().identifier, for: indexPath) as! RoomTableViewCell
-    cell.roomNameLabel.text = "abcd"
+    cell.roomNameLabel.text = fetchedRooms[indexPath.section].key!
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let selectedCell = tableView.cellForRow(at: indexPath) as! RoomTableViewCell
-    let toVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-    guard let dateInt = Date().millisecondsSince1970 else { return }
-    toVC.roomKey = selectedCell.roomNameLabel.text
-    // TEST
-    let testRoom = Room(uid1: "KYe3f3iEcZaY6nPeU8FFOcZ2sSF2", uid2: "PK7GpUTq6Fd7zonzLoVAZIwBm793", latestText: "hi", date: dateInt)
-    toVC.room = testRoom
-    toVC.hidesBottomBarWhenPushed = true
-    navigationController?.pushViewController(toVC, animated: true)
+    let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+    let selectedRoom = fetchedRooms[indexPath.section]
+    let chatInfoToSend = ChatInfo(roomKey: selectedRoom.key, room: selectedRoom)
+    chatVC.chatInfo = chatInfoToSend
+    chatVC.hidesBottomBarWhenPushed = true
+    navigationController?.pushViewController(chatVC, animated: true)
   }
 }
 

@@ -128,11 +128,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EeO-iv-bzS">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeO-iv-bzS">
                                 <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SYX-Bl-SUN">
-                                        <rect key="frame" x="17" y="20" width="341" height="611.5"/>
+                                        <rect key="frame" x="17" y="20" width="341" height="583.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRL-cF-Ese">
                                                 <rect key="frame" x="0.0" y="0.0" width="341" height="135"/>
@@ -186,7 +186,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="aqc-ul-S5S"/>
                                                         </constraints>
-                                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
@@ -197,7 +197,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NYY-OD-3sa">
-                                                <rect key="frame" x="0.0" y="296.5" width="341" height="71.5"/>
+                                                <rect key="frame" x="0.0" y="296.5" width="341" height="43.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SKILLS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gu-xQ-1FB">
                                                         <rect key="frame" x="0.0" y="0.0" width="38" height="16.5"/>
@@ -205,23 +205,40 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CFw-bp-JYj">
-                                                        <rect key="frame" x="0.0" y="21.5" width="341" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="90p-hh-fda"/>
-                                                        </constraints>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LR6-TM-JHm" customClass="TagListView" customModule="TagListView">
+                                                        <rect key="frame" x="0.0" y="21.5" width="341" height="22"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                                                <color key="value" red="0.9137254901960784" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                                                <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="marginY">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="CFw-bp-JYj" secondAttribute="trailing" id="6oy-X6-6fX"/>
-                                                    <constraint firstItem="CFw-bp-JYj" firstAttribute="leading" secondItem="NYY-OD-3sa" secondAttribute="leading" id="Tsx-AI-hRR"/>
+                                                    <constraint firstItem="LR6-TM-JHm" firstAttribute="width" secondItem="NYY-OD-3sa" secondAttribute="width" id="S6s-Ow-gyF"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="whm-cT-dzA">
-                                                <rect key="frame" x="0.0" y="388" width="341" height="223.5"/>
+                                                <rect key="frame" x="0.0" y="360" width="341" height="223.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROJECT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAI-7P-Sje">
                                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="16.5"/>
@@ -371,7 +388,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="SYX-Bl-SUN" secondAttribute="trailing" constant="17" id="Nwj-lm-8sI"/>
                                     <constraint firstItem="SYX-Bl-SUN" firstAttribute="leading" secondItem="EeO-iv-bzS" secondAttribute="leading" constant="17" id="Szv-eg-KVj"/>
-                                    <constraint firstAttribute="bottom" secondItem="SYX-Bl-SUN" secondAttribute="bottom" id="h3y-wn-r6Y"/>
+                                    <constraint firstAttribute="bottom" secondItem="SYX-Bl-SUN" secondAttribute="bottom" constant="20" id="h3y-wn-r6Y"/>
                                     <constraint firstItem="SYX-Bl-SUN" firstAttribute="top" secondItem="EeO-iv-bzS" secondAttribute="top" constant="20" id="svg-MR-SrF"/>
                                 </constraints>
                             </scrollView>
@@ -394,8 +411,7 @@
                         <outlet property="aboutTextView" destination="ciy-Sv-ZBx" id="n0R-6N-vF1"/>
                         <outlet property="aboutTextViewHeight" destination="aqc-ul-S5S" id="54A-NI-0is"/>
                         <outlet property="projectCollectionView" destination="EMq-NU-PcI" id="NcS-3x-k64"/>
-                        <outlet property="skillsTextView" destination="CFw-bp-JYj" id="wyp-Xu-8Ct"/>
-                        <outlet property="skillsTextViewHeight" destination="90p-hh-fda" id="H0Y-Am-QEP"/>
+                        <outlet property="skillsTagListView" destination="LR6-TM-JHm" id="Slu-4d-z07"/>
                         <outlet property="userImageView" destination="ebN-7P-w6m" id="ciz-N1-YqY"/>
                         <outlet property="userNameLabel" destination="T7x-j1-0bU" id="PLo-N0-BhI"/>
                     </connections>

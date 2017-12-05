@@ -168,11 +168,76 @@ extension NetworkingService {
       }
     }
   }
+  
+  func markFavorite(withUID uid: String, projectKey key: String, completion: @escaping () -> ()) {
+    let favoriteRef = profileRef.child(uid).child("projects").child(key).child("favorite")
+    favoriteRef.observeSingleEvent(of: .value) { (snapshot) in
+      if snapshot.exists() && snapshot.hasChildren() {
+        let favoritesDict = snapshot.value as! [String: Bool]
+        if favoritesDict.keys.contains(self.currentUID) {
+          favoriteRef.child(self.currentUID).removeValue()
+          completion()
+        }else {
+          favoriteRef.child(self.currentUID).setValue(true)
+          completion()
+        }
+      }else {
+        favoriteRef.child(self.currentUID).setValue(true)
+        completion()
+      }
+    }
+  }
 }
 
 
 //MARK: Chat
 extension NetworkingService {
+  func fetchRooms(completion: @escaping ([Room]) -> ()) {
+    chatRef.child("rooms").observeSingleEvent(of: .value) { (snapshot) in
+      var fetchedRooms: [Room] = []
+      let rooms = snapshot.children.allObjects as! [DataSnapshot]
+      for aRoom in rooms {
+        guard let theRoom = Room(snapshot: aRoom) else {
+          completion([])
+          return
+        }
+        if theRoom.uid1 == self.currentUID || theRoom.uid2 == self.currentUID {
+          fetchedRooms.append(theRoom)
+        }
+      }
+      completion(fetchedRooms)
+    }
+  }
+  
+  func createRoom(withUid uid: String, completion: @escaping (ChatInfo?) -> ()) {
+    chatRef.child("rooms").observeSingleEvent(of: .value) { (snapshot) in
+      let rooms = snapshot.children.allObjects as! [DataSnapshot]
+      var fetchedChatInfo: ChatInfo?
+      for aRoom in rooms {
+        guard let theRoom = Room(snapshot: aRoom) else {
+          completion(nil)
+          return
+        }
+        if (theRoom.uid1 == self.currentUID && theRoom.uid2 == uid) || (theRoom.uid2 == self.currentUID && theRoom.uid1 == uid) {
+          fetchedChatInfo = ChatInfo(roomKey: theRoom.key, room: theRoom)
+        }
+      }
+      if fetchedChatInfo == nil {
+        let newRoom = Room(uid1: self.currentUID, uid2: uid, latestText: "", date: Date().millisecondsSince1970 ?? 0)
+        self.chatRef.child("rooms").childByAutoId().setValue(
+          ["date": newRoom.date!,
+           "uid1": newRoom.uid1!,
+           "uid2": newRoom.uid2!,
+           "latestText": newRoom.latestText!
+          ], withCompletionBlock: { (error, ref) in
+            completion(ChatInfo(roomKey: ref.key, room: newRoom))
+        })
+      }else {
+        completion(fetchedChatInfo)
+      }
+    }
+  }
+  
   func sendMessage(roomID: String, senderID: String, withText messageText: String, onDate date: Int64){
     let theRoomRef = chatRef.child("messages").child(roomID).childByAutoId()
     let message = Message(senderID: senderID, text: messageText, imageURL: nil, date: date)

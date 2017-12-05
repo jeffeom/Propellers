@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import TagListView
 
 protocol ProjectCellDelegate: class {
-  func tappedOnFavorite()
+  func tappedOnFavorite(cell:ProjectCell)
 }
 
 class ProjectCell: UICollectionViewCell {
@@ -62,7 +63,7 @@ class ProjectCell: UICollectionViewCell {
       favoriteLabel.text = "\(Int(favoriteLabel.text!)! - 1)"
     }
     isFavorited = !isFavorited
-    projectCellDelegate?.tappedOnFavorite()
+    projectCellDelegate?.tappedOnFavorite(cell:self)
   }
 }
 
@@ -73,8 +74,7 @@ class ProfileDetailViewController: UIViewController {
   @IBOutlet weak var userImageView: UIImageView!
   @IBOutlet weak var aboutTextView: UITextView!
   @IBOutlet weak var aboutTextViewHeight: NSLayoutConstraint!
-  @IBOutlet weak var skillsTextView: UITextView!
-  @IBOutlet weak var skillsTextViewHeight: NSLayoutConstraint!
+  @IBOutlet weak var skillsTagListView: TagListView!
   
   var user: String?
   var projects: [Project]?
@@ -107,6 +107,7 @@ extension ProfileDetailViewController {
   func appearance() {
     userImageView.layer.cornerRadius = userImageView.bounds.height / 2
     userImageView.clipsToBounds = true
+    skillsTagListView.textFont = UIFont(name: "AvenirNext-Medium", size: 10) ?? UIFont.systemFont(ofSize: 10, weight: .medium)
   }
   
   func textViewAppearance() {
@@ -117,14 +118,6 @@ extension ProfileDetailViewController {
     guard let expandedSize = aboutTextView.font?.sizeOfString(string: aboutTextView.text, constrainedToWidth: Double(self.aboutTextView.bounds.width)) else { return }
     self.aboutTextView.frame.size = CGSize(width: expandedSize.width, height: expandedSize.height)
     self.aboutTextViewHeight.constant = expandedSize.height
-    
-    skillsTextView.isScrollEnabled = false
-    skillsTextView.textContainer.maximumNumberOfLines = 0
-    skillsTextView.textContainerInset = UIEdgeInsets.zero
-    skillsTextView.textContainer.lineFragmentPadding = 0
-    guard let skillsExpandedSize = skillsTextView.font?.sizeOfString(string: skillsTextView.text, constrainedToWidth: Double(self.skillsTextView.bounds.width)) else { return }
-    self.skillsTextView.frame.size = CGSize(width: skillsExpandedSize.width, height: skillsExpandedSize.height)
-    self.skillsTextViewHeight.constant = skillsExpandedSize.height
   }
 }
 
@@ -144,7 +137,7 @@ extension ProfileDetailViewController {
         self.userNameLabel.text = user?.fullName
         self.userImageView.sd_setImage(with: URL(string: user?.imageURL ?? ""))
         self.aboutTextView.text = profile?.about ?? ""
-        self.skillsTextView.text = profile?.skills ?? ""
+        self.skillsTagListView.addTags(profile?.skills?.components(separatedBy: ";") ?? [])
         self.projects = profile?.projects ?? []
         self.textViewAppearance()
         self.projectCollectionView.reloadData()
@@ -155,9 +148,13 @@ extension ProfileDetailViewController {
 
 //MARK: ProjectCellDelegate
 extension ProfileDetailViewController: ProjectCellDelegate {
-  func tappedOnFavorite() {
+  func tappedOnFavorite(cell: ProjectCell) {
     print("favorited")
-    //
+    guard let user = user else { return }
+    guard let projectIP = projectCollectionView.indexPath(for: cell) else { return }
+    guard let projects = projects else { return }
+    let project = projects[projectIP.item]
+    NetworkingService.shared.markFavorite(withUID: user, projectKey: project.key!) {}
   }
 }
 
@@ -170,13 +167,14 @@ extension ProfileDetailViewController: UICollectionViewDelegate, UICollectionVie
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.identifier, for: indexPath) as! ProjectCell
-    let theProject = projects![indexPath.row]
+    let theProject = projects![indexPath.item]
     
     cell.projectCellDelegate = self
     cell.projectImage.sd_setImage(with: URL(string: theProject.imageURL ?? ""))
     cell.projectTitleLabel.text = theProject.title ?? ""
     cell.projectTypeLabel.text = theProject.type ?? ""
-    cell.favoriteLabel.text = "\(theProject.favorite)"
+    cell.favoriteLabel.text = "\(theProject.favoriteCount)"
+    cell.isFavorited =  theProject.favorite?.keys.contains(NetworkingService.shared.currentUID) ?? false
     return cell
   }
   
@@ -188,7 +186,12 @@ extension ProfileDetailViewController: UICollectionViewDelegate, UICollectionVie
 //MARK: IBAction
 extension ProfileDetailViewController {
   @IBAction func didPressButtonToChat(_ sender: UIButton) {
-    
+    guard let user = user else { return }
+    NetworkingService.shared.createRoom(withUid: user) { (chatInfo) in
+      let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+      chatVC.chatInfo = chatInfo
+      self.navigationController?.pushViewController(chatVC, animated: true)
+    }
   }
 }
 

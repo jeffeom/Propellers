@@ -20,9 +20,13 @@ extension JSQMessagesInputToolbar {
   }
 }
 
-final class ChatViewController: JSQMessagesViewController {
+struct ChatInfo {
   var roomKey: String?
   var room: Room?
+}
+
+final class ChatViewController: JSQMessagesViewController {
+  var chatInfo: ChatInfo?
   
   @IBOutlet weak var activitySheet: UIView!
   @IBOutlet weak var activitySheetHeightConstraint: NSLayoutConstraint!
@@ -46,12 +50,22 @@ final class ChatViewController: JSQMessagesViewController {
     collectionView.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.95, alpha:1.00)
     collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 10, 10, -20)
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tabBarController?.tabBar.isHidden = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    tabBarController?.tabBar.isHidden = false
+  }
 }
 
 //MARK: NetworkingServices
 extension ChatViewController {
   func fetchMessages() {
-    NetworkingService.shared.fetchMessagesByChildAdded(roomID: roomKey ?? "") { (message) in
+    NetworkingService.shared.fetchMessagesByChildAdded(roomID: chatInfo?.roomKey ?? "") { (message) in
       let date = message.date
       let senderUID = message.senderID
       let text = message.text
@@ -206,7 +220,7 @@ extension ChatViewController {
     }
     toVC.modalPresentationStyle = .custom
     toVC.transitioningDelegate = self
-    toVC.roomKey = roomKey
+    toVC.roomKey = chatInfo?.roomKey
     present(toVC, animated: true, completion: nil)
   }
 }
@@ -228,7 +242,7 @@ class AccessoryPresentationViewController : UIPresentationController {
 extension ChatViewController {
   override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!)
   {
-    guard let key = roomKey else { return }
+    guard let key = chatInfo?.roomKey else { return }
     guard let dateInt = Date().millisecondsSince1970 else { return }
     NetworkingService.shared.sendMessage(roomID: key, senderID: senderId, withText: text, onDate: dateInt)
     self.finishSendingMessage()
@@ -240,12 +254,12 @@ extension ChatViewController {
   func fetchFriendsUID() -> String? {
     var friendUID: String?
     let myUID = senderId
-    if room?.uid1 == myUID { friendUID = room?.uid2 } else { friendUID = room?.uid1 }
+    if chatInfo?.room?.uid1 == myUID { friendUID = chatInfo?.room?.uid2 } else { friendUID = chatInfo?.room?.uid1 }
     return friendUID
   }
   
   func userIsUid1(room: Room?) -> Bool {
     let myUid = NetworkingService.shared.currentUID
-    return room?.uid1 == myUid
+    return chatInfo?.room?.uid1 == myUid
   }
 }
