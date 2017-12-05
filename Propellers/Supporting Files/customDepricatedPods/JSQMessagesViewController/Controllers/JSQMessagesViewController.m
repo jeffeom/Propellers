@@ -1053,16 +1053,16 @@ JSQMessagesKeyboardControllerDelegate>
 #pragma mark - Collection view utilities
 
 - (void)jsq_updateCollectionViewInsets
-  {
-    if (@available(iOS 11.0, *)) {
-      CGFloat topHeight = (self.navigationController) ? - self.navigationController.navigationBar.frame.size.height + 40: self.topLayoutGuide.length;
-      [self jsq_setCollectionViewInsetsTopValue:topHeight + self.topContentAdditionalInset
-                                    bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
-    }else {
-      [self jsq_setCollectionViewInsetsTopValue:self.topLayoutGuide.length + self.topContentAdditionalInset
-                                    bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
-    }
+{
+  if (@available(iOS 11.0, *)) {
+    CGFloat topHeight = (self.navigationController) ? - self.navigationController.navigationBar.frame.size.height + 35: self.topLayoutGuide.length;
+    [self jsq_setCollectionViewInsetsTopValue:topHeight + self.topContentAdditionalInset
+                                  bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame) - 10];
+  }else {
+    [self jsq_setCollectionViewInsetsTopValue:self.topLayoutGuide.length + self.topContentAdditionalInset
+                                  bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
   }
+}
 
 - (void)jsq_setCollectionViewInsetsTopValue:(CGFloat)top bottomValue:(CGFloat)bottom
 {

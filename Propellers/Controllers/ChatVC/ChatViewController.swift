@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JSQMessagesViewController
 
 extension JSQMessagesInputToolbar {
   override open func didMoveToWindow() {

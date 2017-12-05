@@ -42,7 +42,6 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 @dynamic delegate;
 
 #pragma mark - Initialization
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];

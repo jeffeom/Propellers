@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import JSQMessagesViewController
 import SDWebImage
 
 class AsyncPhotoMediaItem: JSQPhotoMediaItem {

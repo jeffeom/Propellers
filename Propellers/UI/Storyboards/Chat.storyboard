@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xEt-T8-lYL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xEt-T8-lYL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,6 +24,10 @@
         <scene sceneID="E8J-s2-Lsk">
             <objects>
                 <viewController id="KAF-eZ-B82" customClass="RoomViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KxT-9m-oA4"/>
+                        <viewControllerLayoutGuide type="bottom" id="jnW-ec-yzb"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZEg-QU-fGM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,12 +115,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o5M-MO-HhG" firstAttribute="top" secondItem="pO8-Ip-jhV" secondAttribute="top" id="4D0-uG-CHd"/>
-                            <constraint firstItem="pO8-Ip-jhV" firstAttribute="bottom" secondItem="o5M-MO-HhG" secondAttribute="bottom" id="CCt-bE-deG"/>
-                            <constraint firstItem="o5M-MO-HhG" firstAttribute="leading" secondItem="pO8-Ip-jhV" secondAttribute="leading" id="Jnc-j4-pkG"/>
-                            <constraint firstItem="pO8-Ip-jhV" firstAttribute="trailing" secondItem="o5M-MO-HhG" secondAttribute="trailing" id="vTz-e5-A4v"/>
+                            <constraint firstItem="o5M-MO-HhG" firstAttribute="top" secondItem="KxT-9m-oA4" secondAttribute="bottom" id="4D0-uG-CHd"/>
+                            <constraint firstItem="jnW-ec-yzb" firstAttribute="top" secondItem="o5M-MO-HhG" secondAttribute="bottom" id="CCt-bE-deG"/>
+                            <constraint firstItem="o5M-MO-HhG" firstAttribute="leading" secondItem="ZEg-QU-fGM" secondAttribute="leading" id="Jnc-j4-pkG"/>
+                            <constraint firstAttribute="trailing" secondItem="o5M-MO-HhG" secondAttribute="trailing" id="vTz-e5-A4v"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pO8-Ip-jhV"/>
                     </view>
                     <navigationItem key="navigationItem" id="K59-CG-9s7" customClass="FixedImageNavigationItem" customModule="Propellers" customModuleProvider="target"/>
                     <connections>
@@ -130,12 +133,15 @@
         <!--Chat View Controller-->
         <scene sceneID="PTC-Zs-hKf">
             <objects>
-                <viewController storyboardIdentifier="chatVC" id="hhG-BO-OCH" customClass="ChatViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eIw-Oc-fwB">
+                <viewController storyboardIdentifier="chatVC" id="hhG-BO-OCH" customClass="JSQChatViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vez-qa-jQi"/>
+                        <viewControllerLayoutGuide type="bottom" id="bY9-PU-DCL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Azv-lX-Nzm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="hHJ-in-TJd"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="IQf-vD-yzs"/>
                 </viewController>
@@ -147,6 +153,10 @@
         <scene sceneID="0sW-fU-udO">
             <objects>
                 <viewController storyboardIdentifier="accessoryVC" id="DTZ-qj-dIi" customClass="CustomAccessoryViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0d8-0v-Nd8"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Yp-lx-fkQ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="481-2O-wTJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,12 +235,11 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="on6-n2-cP6" firstAttribute="trailing" secondItem="8ZI-Wa-xt0" secondAttribute="trailing" id="7p5-0R-1Sl"/>
-                            <constraint firstItem="8ZI-Wa-xt0" firstAttribute="leading" secondItem="on6-n2-cP6" secondAttribute="leading" id="kYs-4P-DKW"/>
+                            <constraint firstAttribute="trailing" secondItem="8ZI-Wa-xt0" secondAttribute="trailing" id="7p5-0R-1Sl"/>
+                            <constraint firstItem="8ZI-Wa-xt0" firstAttribute="leading" secondItem="481-2O-wTJ" secondAttribute="leading" id="kYs-4P-DKW"/>
                             <constraint firstAttribute="bottom" secondItem="8ZI-Wa-xt0" secondAttribute="bottom" id="lkI-J2-iwj"/>
                             <constraint firstItem="8ZI-Wa-xt0" firstAttribute="top" secondItem="481-2O-wTJ" secondAttribute="top" id="m35-0x-YR4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="on6-n2-cP6"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Ts9-6I-a0l" id="rpb-j8-n8J"/>

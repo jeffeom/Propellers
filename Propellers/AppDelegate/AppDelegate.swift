@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
+import BuddyBuildSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

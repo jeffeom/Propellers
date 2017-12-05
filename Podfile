@@ -10,7 +10,6 @@ def shared_pods
   pod 'FirebaseUI/Storage'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
-  pod 'JSQMessagesViewController'
   pod 'SDWebImage'
   pod 'IQKeyboardManagerSwift'
   pod 'TagListView'
