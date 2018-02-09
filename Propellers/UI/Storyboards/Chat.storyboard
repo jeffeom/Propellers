@@ -157,7 +157,7 @@
         <!--Chat View Controller-->
         <scene sceneID="PTC-Zs-hKf">
             <objects>
-                <viewController storyboardIdentifier="chatVC" id="hhG-BO-OCH" customClass="JSQChatViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatVC" id="hhG-BO-OCH" customClass="ChatViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vez-qa-jQi"/>
                         <viewControllerLayoutGuide type="bottom" id="bY9-PU-DCL"/>

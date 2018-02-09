@@ -41,7 +41,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lF5-Jd-YHl">
-                                <rect key="frame" x="5" y="125" width="365" height="483"/>
+                                <rect key="frame" x="5" y="115" width="365" height="493"/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="userCell" rowHeight="68" id="P1V-kv-u1E" customClass="UserCell" customModule="Propellers" customModuleProvider="target">
@@ -109,7 +109,7 @@
                             <constraint firstItem="lF5-Jd-YHl" firstAttribute="leading" secondItem="lWp-6o-qHy" secondAttribute="leading" constant="5" id="QRD-p3-Vpz"/>
                             <constraint firstItem="lWp-6o-qHy" firstAttribute="bottom" secondItem="lF5-Jd-YHl" secondAttribute="bottom" constant="10" id="SXq-lZ-5ju"/>
                             <constraint firstItem="lWp-6o-qHy" firstAttribute="trailing" secondItem="lF5-Jd-YHl" secondAttribute="trailing" constant="5" id="kiB-mG-pu7"/>
-                            <constraint firstItem="lF5-Jd-YHl" firstAttribute="top" secondItem="LDP-Bp-sbs" secondAttribute="bottom" constant="5" id="ods-50-EBo"/>
+                            <constraint firstItem="LDP-Bp-sbs" firstAttribute="bottom" secondItem="lF5-Jd-YHl" secondAttribute="top" constant="5" id="ods-50-EBo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lWp-6o-qHy"/>
                     </view>
@@ -228,13 +228,13 @@
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                                                <real key="value" value="5"/>
+                                                                <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                                                <real key="value" value="5"/>
+                                                                <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="marginY">
-                                                                <real key="value" value="5"/>
+                                                                <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>

@@ -19,7 +19,6 @@ class UserCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
     //    switch statusType {
     //    case .client:
     //      statusView.backgroundColor = .yellow
@@ -41,6 +40,5 @@ class UserCell: UITableViewCell {
     
     self.userImageView.layer.cornerRadius = userImageView.bounds.width / 2
     self.userImageView.clipsToBounds = true
-    
   }
 }
