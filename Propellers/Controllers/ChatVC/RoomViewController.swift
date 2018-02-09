@@ -14,11 +14,13 @@ struct RoomWithName {
 }
 
 class RoomViewController: UIViewController {
+  @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var roomTableView: UITableView!
   var fetchedRooms: [RoomWithName] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    searchBar.backgroundImage = UIImage()
     setupDelegates()
   }
   
@@ -110,10 +112,10 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! JSQChatViewController
-//    let selectedRoom = fetchedRooms[indexPath.section].room
-//    let chatInfoToSend = ChatInfo(roomKey: selectedRoom?.key!, room: selectedRoom)
-//    chatVC.chatInfo = chatInfoToSend
+    let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+    let selectedRoom = fetchedRooms[indexPath.section].room
+    let chatInfoToSend = ChatInfo(roomKey: selectedRoom?.key!, room: selectedRoom)
+    chatVC.chatInfo = chatInfoToSend
     navigationController?.pushViewController(chatVC, animated: true)
   }
   
@@ -125,27 +127,5 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
     let clearView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 6 ))
     clearView.backgroundColor = .clear
     return clearView
-  }
-}
-
-class RoomTableViewCell: UITableViewCell {
-  @IBOutlet weak var userImageView: UIImageView!
-  @IBOutlet weak var roomNameLabel: UILabel!
-  @IBOutlet weak var roomLatestTextLabel: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var newIndicatorImageView: UIImageView!
-  
-  var isNew: Bool = false {
-    didSet {
-      newIndicatorImageView.isHidden = !isNew
-    }
-  }
-  let identifier = "roomTableViewCell"
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    
-    layer.cornerRadius = 8
-    clipsToBounds = true
   }
 }

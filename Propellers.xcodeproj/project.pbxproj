@@ -89,6 +89,8 @@
 		409998DB1FD6508C002CE295 /* UIDevice+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 409998AD1FD6508C002CE295 /* UIDevice+JSQMessages.m */; };
 		409998DD1FD650B7002CE295 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 409998DC1FD650B6002CE295 /* JSQSystemSoundPlayer+JSQMessages.m */; };
 		409998E01FD65F04002CE295 /* JSQChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409998DF1FD65F04002CE295 /* JSQChatViewController.swift */; };
+		40B2B65F202D57C10097E49D /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B2B65E202D57C10097E49D /* RoomTableViewCell.swift */; };
+		40B2B661202D57DF0097E49D /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B2B660202D57DF0097E49D /* UserCell.swift */; };
 		40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E59B3A1FA859870069B8B2 /* RoomViewController.swift */; };
 		40E661201FB135650086A75A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E6611F1FB135650086A75A /* Room.swift */; };
 		40E661221FB141C60086A75A /* AsyncPhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E661211FB141C60086A75A /* AsyncPhotoMediaItem.swift */; };
@@ -260,6 +262,8 @@
 		409998DC1FD650B6002CE295 /* JSQSystemSoundPlayer+JSQMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer+JSQMessages.m"; sourceTree = "<group>"; };
 		409998DE1FD650D6002CE295 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		409998DF1FD65F04002CE295 /* JSQChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSQChatViewController.swift; sourceTree = "<group>"; };
+		40B2B65E202D57C10097E49D /* RoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		40B2B660202D57DF0097E49D /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		40E59B3A1FA859870069B8B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		40E6611F1FB135650086A75A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		40E661211FB141C60086A75A /* AsyncPhotoMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPhotoMediaItem.swift; sourceTree = "<group>"; };
@@ -420,6 +424,8 @@
 			children = (
 				40E661211FB141C60086A75A /* AsyncPhotoMediaItem.swift */,
 				13FA67031FBA8E4100A016FE /* GeneralTabBarItem.swift */,
+				40B2B65E202D57C10097E49D /* RoomTableViewCell.swift */,
+				40B2B660202D57DF0097E49D /* UserCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1123,6 +1129,7 @@
 				409998BF1FD6508C002CE295 /* JSQVideoMediaItem.m in Sources */,
 				409998C91FD6508C002CE295 /* JSQMessagesInputToolbar.m in Sources */,
 				409998AE1FD6508C002CE295 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
+				40B2B65F202D57C10097E49D /* RoomTableViewCell.swift in Sources */,
 				409998CB1FD6508C002CE295 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				409998DD1FD650B7002CE295 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				409998BB1FD6508C002CE295 /* JSQMessagesBubbleImage.m in Sources */,
@@ -1161,6 +1168,7 @@
 				409998E01FD65F04002CE295 /* JSQChatViewController.swift in Sources */,
 				405A45831FCCD89E00DCC527 /* UserProfile.swift in Sources */,
 				405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */,
+				40B2B661202D57DF0097E49D /* UserCell.swift in Sources */,
 				409998B41FD6508C002CE295 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				409998D21FD6508C002CE295 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */,

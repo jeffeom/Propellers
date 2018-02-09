@@ -12,32 +12,6 @@ enum UserStatusType {
   case client, freeLancer
 }
 
-class UserCell: UITableViewCell {
-  static let identifier = "userCell"
-  var statusType: UserStatusType  = .client
-  
-  @IBOutlet private weak var statusView: UIView!
-  @IBOutlet weak var userImageView: UIImageView!
-  @IBOutlet weak var userNameLabel: UILabel!
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    
-    switch statusType {
-    case .client:
-      statusView.backgroundColor = .yellow
-    case .freeLancer:
-      statusView.backgroundColor = .red
-    }
-    
-    self.userImageView.layer.cornerRadius = userImageView.bounds.width / 2
-    self.userImageView.clipsToBounds = true
-    
-    self.layer.cornerRadius = 8
-    self.clipsToBounds = true
-  }
-}
-
 class FriendsViewController: UIViewController {
   static let identifier = "friendsVC"
   @IBOutlet weak var friendsTableView: UITableView!

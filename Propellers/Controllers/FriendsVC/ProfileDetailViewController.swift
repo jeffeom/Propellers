@@ -47,9 +47,9 @@ class ProjectCell: UICollectionViewCell {
   func createShadow() {
     contentShadowView.backgroundColor = .clear
     contentShadowView.layer.shadowColor = UIColor.black.cgColor
-    contentShadowView.layer.shadowOffset = CGSize(width: 0, height: 0.1)
-    contentShadowView.layer.shadowOpacity = 0.3
-    contentShadowView.layer.shadowRadius = 8
+    contentShadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
+    contentShadowView.layer.shadowOpacity = 0.2
+    contentShadowView.layer.shadowRadius = 2
     
     cellContentView.backgroundColor = UIColor.white
     cellContentView.layer.cornerRadius = 8
@@ -194,8 +194,3 @@ extension ProfileDetailViewController {
     }
   }
 }
-
-
-
-
-

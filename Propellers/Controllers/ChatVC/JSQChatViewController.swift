@@ -11,7 +11,6 @@ import UIKit
 class JSQChatViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     let messageVC = ChatViewController()
     let navBarHeight: CGFloat = 64
     messageVC.view.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - navBarHeight)
