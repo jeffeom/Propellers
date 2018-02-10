@@ -41,6 +41,7 @@ class NewChatViewController: UIViewController {
   //KeyboardHeight
   let notificationCenter = NotificationCenter.default
   var keyboardHeight: CGFloat?
+  var stopMovingKeyboard = false
   
   //Attachment
   fileprivate var imageToSend: UIImage?
@@ -113,12 +114,9 @@ class NewChatViewController: UIViewController {
 extension NewChatViewController {
   @IBAction func showAttachmentView(_ sender: UIButton) {
     if attachmentView.isHidden {
-      if keyboardHeight != 0 {
-        inputTextView.resignFirstResponder()
-      }
       attachmentViewShouldHide(hide: false)
     }else {
-      attachmentViewShouldHide(hide:true)
+      attachmentViewShouldHide(hide: true)
     }
   }
   
@@ -129,11 +127,13 @@ extension NewChatViewController {
   func attachmentViewShouldHide(hide: Bool) {
     if hide {
       attachmentView.isHidden = true
+      inputTextView.becomeFirstResponder()
       UIView.animate(withDuration: 0.3, animations: {
         self.moreButton.transform = CGAffineTransform.identity
       })
     }else {
       attachmentView.isHidden = false
+      inputTextView.resignFirstResponder()
       UIView.animate(withDuration: 0.3, animations: {
         self.moreButton.transform = CGAffineTransform(rotationAngle: (CGFloat(Double.pi)) / 4)
       })
@@ -211,12 +211,14 @@ extension NewChatViewController {
       UIView.animate(withDuration: 0.3, animations: {
         self.view.layoutIfNeeded()
         self.keyboardHeight = nil
+        self.stopMovingKeyboard = false
       })
     }
   }
   
   @objc func adjustKeyboardShowing(notification: Notification) {
     if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+      guard !stopMovingKeyboard else { return }
       let keyboardRectangle = keyboardFrame.cgRectValue
       keyboardHeight = keyboardRectangle.height
       let topHeight = (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height
@@ -237,6 +239,7 @@ extension NewChatViewController {
       }
       UIView.animate(withDuration: 0.3, animations: {
         self.view.layoutIfNeeded()
+        self.stopMovingKeyboard = true
       })
     }
   }
