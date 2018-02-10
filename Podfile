@@ -13,6 +13,8 @@ def shared_pods
   pod 'SDWebImage'
   pod 'IQKeyboardManagerSwift'
   pod 'TagListView'
+  pod 'Popover'
+  pod 'KRPullLoader'
 end
 
 target 'Propellers' do
