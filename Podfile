@@ -11,6 +11,7 @@ def shared_pods
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'SDWebImage'
+  pod 'NYTPhotoViewer'
   pod 'IQKeyboardManagerSwift'
   pod 'TagListView'
   pod 'Popover'

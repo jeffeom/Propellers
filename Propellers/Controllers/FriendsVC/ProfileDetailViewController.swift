@@ -188,8 +188,8 @@ extension ProfileDetailViewController {
   @IBAction func didPressButtonToChat(_ sender: UIButton) {
     guard let user = user else { return }
     NetworkingService.shared.createRoom(withUid: user) { (chatInfo) in
-      let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-      chatVC.chatInfo = chatInfo
+      let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "newChatVC") as! NewChatViewController
+      chatVC.room = chatInfo?.room
       self.navigationController?.pushViewController(chatVC, animated: true)
     }
   }

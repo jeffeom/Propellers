@@ -16,6 +16,7 @@ class Room: NSObject {
   var latestText: String?
   var date: Int64?
   var ref: DatabaseReference?
+  var unreadMessagesCounter = 0
   
   init?(snapshot: DataSnapshot) {
     guard let snapshotValue = snapshot.value as? [String:AnyObject] else { return nil }

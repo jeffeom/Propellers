@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hd1-tx-QhQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hd1-tx-QhQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,18 +20,22 @@
         <scene sceneID="N54-gd-onb">
             <objects>
                 <viewController id="FCh-bB-P4h" customClass="LoginViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="akE-fQ-L5K"/>
+                        <viewControllerLayoutGuide type="bottom" id="ds4-EN-zzK"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KY6-CJ-T6u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZYy-Cs-j8F">
-                                <rect key="frame" x="15" y="64" width="345" height="540.5"/>
+                                <rect key="frame" x="15" y="64" width="345" height="508.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBd-w3-a8K">
-                                        <rect key="frame" x="52.5" y="0.0" width="240" height="196.5"/>
+                                        <rect key="frame" x="52.5" y="0.0" width="240" height="164.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="propellersAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Xng-u0-i8P">
-                                                <rect key="frame" x="73.5" y="56" width="93" height="85"/>
+                                                <rect key="frame" x="73.5" y="40" width="93" height="85"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Xng-u0-i8P" secondAttribute="height" multiplier="93:85" id="ht5-g6-V0p"/>
                                                 </constraints>
@@ -44,7 +47,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kPq-8g-nQe">
-                                        <rect key="frame" x="21.5" y="236.5" width="302" height="130"/>
+                                        <rect key="frame" x="21.5" y="204.5" width="302" height="130"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxU-LR-Buw">
                                                 <rect key="frame" x="0.0" y="0.0" width="302" height="38"/>
@@ -112,7 +115,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ZcX-Da-pnA">
-                                        <rect key="frame" x="21.5" y="406.5" width="302" height="134"/>
+                                        <rect key="frame" x="21.5" y="374.5" width="302" height="134"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="men-03-LAQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="302" height="40"/>
@@ -170,13 +173,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.3411764705882353" green="0.79607843137254897" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kPq-8g-nQe" firstAttribute="centerY" secondItem="78j-HB-LpQ" secondAttribute="centerY" id="D2u-Fi-e2e"/>
-                            <constraint firstItem="ZYy-Cs-j8F" firstAttribute="top" secondItem="78j-HB-LpQ" secondAttribute="top" id="Lio-ll-SE3"/>
-                            <constraint firstItem="78j-HB-LpQ" firstAttribute="bottom" secondItem="PGB-i0-a2A" secondAttribute="bottom" constant="10" id="MMH-9f-TQu"/>
-                            <constraint firstItem="78j-HB-LpQ" firstAttribute="trailing" secondItem="PGB-i0-a2A" secondAttribute="trailing" constant="10" id="v0H-21-E1Q"/>
+                            <constraint firstItem="kPq-8g-nQe" firstAttribute="centerY" secondItem="KY6-CJ-T6u" secondAttribute="centerY" id="D2u-Fi-e2e"/>
+                            <constraint firstItem="ZYy-Cs-j8F" firstAttribute="top" secondItem="akE-fQ-L5K" secondAttribute="bottom" id="Lio-ll-SE3"/>
+                            <constraint firstItem="ds4-EN-zzK" firstAttribute="top" secondItem="PGB-i0-a2A" secondAttribute="bottom" constant="10" id="MMH-9f-TQu"/>
+                            <constraint firstAttribute="trailing" secondItem="PGB-i0-a2A" secondAttribute="trailing" constant="10" id="v0H-21-E1Q"/>
                             <constraint firstItem="ZYy-Cs-j8F" firstAttribute="centerX" secondItem="KY6-CJ-T6u" secondAttribute="centerX" id="xrX-9F-Kqp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="78j-HB-LpQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="7JY-c6-4qb"/>
                     <connections>
@@ -192,6 +194,10 @@
         <scene sceneID="z6I-lN-xOO">
             <objects>
                 <viewController id="mnB-Y0-axw" customClass="SignUpViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="914-Xj-wRf"/>
+                        <viewControllerLayoutGuide type="bottom" id="psh-Mn-f4s"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SDt-MD-qv3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +245,6 @@
                             <constraint firstItem="gqJ-tA-rat" firstAttribute="centerX" secondItem="SDt-MD-qv3" secondAttribute="centerX" id="kXo-BC-fPR"/>
                             <constraint firstItem="gqJ-tA-rat" firstAttribute="centerY" secondItem="SDt-MD-qv3" secondAttribute="centerY" id="v7L-h3-5hx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="V8D-jD-1m8"/>
                     </view>
                     <navigationItem key="navigationItem" id="gKH-am-biN" customClass="FixedImageNavigationItem" customModule="Propellers" customModuleProvider="target"/>
                     <connections>
@@ -253,10 +258,10 @@
             </objects>
             <point key="canvasLocation" x="-970.39999999999998" y="790.25487256371821"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--General Tab Bar View Controller-->
         <scene sceneID="FEV-rU-H80">
             <objects>
-                <tabBarController storyboardIdentifier="MainScreen" automaticallyAdjustsScrollViewInsets="NO" id="JFR-m1-NfU" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainScreen" id="JFR-m1-NfU" customClass="GeneralTabBarViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qp3-c9-FTf">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -328,7 +333,7 @@
         <!--Navigation Controller-->
         <scene sceneID="C8c-vG-Gk6">
             <objects>
-                <navigationController storyboardIdentifier="MainRootScreen" automaticallyAdjustsScrollViewInsets="NO" id="hd1-tx-QhQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainRootScreen" id="hd1-tx-QhQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fjA-Ft-pUs">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

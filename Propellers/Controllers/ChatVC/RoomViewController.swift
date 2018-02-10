@@ -20,8 +20,10 @@ class RoomViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+//    automaticallyAdjustsScrollViewInsets = false
     searchBar.backgroundImage = UIImage()
     setupDelegates()
+//    fetchRoom()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +34,6 @@ class RoomViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.barTintColor = ThemeColor.lightBlueColor
-    navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44)
     navigationController?.navigationBar.tintColor = .white
     navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "Montserrat-SemiBold", size: 18) ?? UIFont.systemFont(ofSize: 18)]
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -112,11 +113,7 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let chatVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-    let selectedRoom = fetchedRooms[indexPath.section].room
-    let chatInfoToSend = ChatInfo(roomKey: selectedRoom?.key!, room: selectedRoom)
-    chatVC.chatInfo = chatInfoToSend
-    navigationController?.pushViewController(chatVC, animated: true)
+    performSegue(withIdentifier: "showChat", sender: nil)
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -127,5 +124,17 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
     let clearView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 6 ))
     clearView.backgroundColor = .clear
     return clearView
+  }
+}
+
+//MARK: Segue
+extension RoomViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard segue.identifier == "showChat" else { return }
+    guard let controller = segue.destination as? NewChatViewController, let indexPath = self.roomTableView.indexPathForSelectedRow, fetchedRooms.count != 0 else { return }
+    let selectedRoom = fetchedRooms[indexPath.section]
+    controller.room = selectedRoom.room
+    controller.title = selectedRoom.name
+    self.tabBarController?.tabBar.isHidden = true
   }
 }
