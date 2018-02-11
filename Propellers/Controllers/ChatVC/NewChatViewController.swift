@@ -137,13 +137,13 @@ extension NewChatViewController {
     if hide {
       attachmentView.isHidden = true
       inputTextView.becomeFirstResponder()
-      UIView.animate(withDuration: 0.3, animations: {
+      UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
         self.moreButton.transform = CGAffineTransform.identity
       })
     }else {
       attachmentView.isHidden = false
       inputTextView.resignFirstResponder()
-      UIView.animate(withDuration: 0.3, animations: {
+      UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
         self.moreButton.transform = CGAffineTransform(rotationAngle: (CGFloat(Double.pi)) / 4)
       })
     }
