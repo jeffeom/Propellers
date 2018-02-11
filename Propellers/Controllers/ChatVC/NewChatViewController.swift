@@ -32,6 +32,13 @@ class NewChatViewController: UIViewController {
   @IBOutlet weak var totalHeight: NSLayoutConstraint!
   @IBOutlet weak var keyboardSpacingConstraint: NSLayoutConstraint!
   @IBOutlet weak var moreButton: UIButton!
+  @IBOutlet weak var attachmentCollectionView: UICollectionView!
+  
+  //AttachmentView
+  var accessoryItemRow1 = ["Photos", "Videos", "Contract", "Payment"]
+  var accessoryImageRow1 = [#imageLiteral(resourceName: "chatPictures"), #imageLiteral(resourceName: "chatVideo"), #imageLiteral(resourceName: "chatContacts"), #imageLiteral(resourceName: "chatPayment")]
+  var accessoryItemRow2 = ["Contact", "Invoice"]
+  var accessoryImageRow2 = [#imageLiteral(resourceName: "chatContract"), #imageLiteral(resourceName: "chatInvoice")]
   
   //Dismiss
   var lastMessageToSend: String?
@@ -51,7 +58,7 @@ class NewChatViewController: UIViewController {
   
   //View
   let placeholderText = "Type Something..."
-  let placeholderFontColor =  UIColor(red: 206/255, green: 188/255, blue: 178/255, alpha: 1.0)
+  let placeholderFontColor =  UIColor.lightGray
   
   //cellEditOptions
   var cellEditTableView: UITableView?
@@ -89,6 +96,8 @@ class NewChatViewController: UIViewController {
     picker.delegate = self
     chatCollectionView.dataSource = self
     chatCollectionView.delegate = self
+    attachmentCollectionView.dataSource = self
+    attachmentCollectionView.delegate = self
     inputTextView.delegate = self
     appearance()
 //    fetchLatestDialogues(room: room)
@@ -180,11 +189,9 @@ extension NewChatViewController {
       }
     }
     inputTextView.inputAccessoryView = UIView()
+    inputTextView.layer.cornerRadius = 15
+    inputTextView.clipsToBounds = true
     createRoundShadowView(withShadowView: inputShadowView, andContentView: inputToolView, withCornerRadius: 0)
-    textViewBorder.layer.cornerRadius = 15
-    textViewBorder.layer.borderWidth = 1
-    textViewBorder.layer.borderColor = UIColor(red: 206/255, green: 188/255, blue: 178/255, alpha: 1.0).cgColor
-    textViewBorder.clipsToBounds = true
     getReadyToType()
 //    let refreshView = KRPullLoadView()
 //    refreshView.delegate = self
@@ -221,20 +228,20 @@ extension NewChatViewController {
       guard !stopMovingKeyboard else { return }
       let keyboardRectangle = keyboardFrame.cgRectValue
       keyboardHeight = keyboardRectangle.height
-      let topHeight = (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height
+//      let topHeight = (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height
       mainScrollView.isScrollEnabled = true
       attachmentViewShouldHide(hide: true)
       if UIDevice().userInterfaceIdiom == .phone {
         switch UIScreen.main.nativeBounds.height {
         case 2436:
           if #available(iOS 11.0, *) {
-            let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
-            keyboardSpacingConstraint.constant = keyboardHeight! - (bottomPadding ?? 34) - topHeight
+//            let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
+            keyboardSpacingConstraint.constant = keyboardHeight!
           }else {
-            keyboardSpacingConstraint.constant = keyboardHeight! - 34 - topHeight
+            keyboardSpacingConstraint.constant = keyboardHeight!
           }
         default:
-          keyboardSpacingConstraint.constant = keyboardHeight! - topHeight
+          keyboardSpacingConstraint.constant = keyboardHeight!
         }
       }
       UIView.animate(withDuration: 0.3, animations: {
@@ -325,8 +332,8 @@ extension NewChatViewController: UITextViewDelegate {
   }
   
   func textViewDidChange(_ textView: UITextView) {
-    guard self.messages.count != 0 else { return }
     self.consTextViewHeight.constant = Swift.min(100, textView.contentSize.height)
+    guard self.messages.count != 0 else { return }
     self.chatCollectionView.scrollToItem(at: IndexPath(item: 0, section: self.messages.count - 1), at: UICollectionViewScrollPosition.bottom, animated: false)
   }
   
@@ -495,118 +502,207 @@ extension NewChatViewController {
 //MARK: UICollectionView
 extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return messages.count
+    if collectionView == attachmentCollectionView {
+      return 2
+    }else {
+      return messages.count
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 1
+    if collectionView == attachmentCollectionView {
+      if section == 0 {
+        return accessoryItemRow1.count
+      }else {
+        return accessoryItemRow2.count
+      }
+    }else {
+      return 1
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let theChat = messages[indexPath.section]
-    switch theChat.msgType {
-    case .text:
-      if theChat.senderID == NetworkingService.shared.currentUID {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OutgoingCell.identifier, for: indexPath) as! OutgoingCell
-        cell.contentTextView.text = theChat.text
-        guard let contentInNSString = theChat.text as NSString? else { return cell }
-        let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
-        let theContentWidth = size.width
-        cell.contentWidth.constant = Swift.min(theContentWidth + 25, collectionView.bounds.width * 0.8)
-        return cell
+    if collectionView == attachmentCollectionView {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccessoryCell().identifier, for: indexPath) as! AccessoryCell
+      if indexPath.section == 0 {
+        cell.accessoryImageView.image = accessoryImageRow1[indexPath.item]
+        cell.accessoryLabel.text = accessoryItemRow1[indexPath.item]
       }else {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingCell.identifier, for: indexPath) as! IncomingCell
-        cell.contentTextView.text = theChat.text
-        guard let contentInNSString = theChat.text as NSString? else { return cell }
-        let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
-        let theContentWidth = size.width
-        cell.contentWidth.constant = Swift.min(theContentWidth + 25, collectionView.bounds.width * 0.8)
-        return cell
-      }
-    case .timestamp:
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TimeStampCell.identifier, for: indexPath) as! TimeStampCell
-      let dateDifferenceInMinutes = Date().timeIntervalSince(Date(milliseconds: theChat.time) ?? Date()) / 60
-      let dateDifferenceInHour = dateDifferenceInMinutes / 60
-      let dateDifferenceInDay = dateDifferenceInHour / 24
-      if dateDifferenceInDay > 6 {
-        cell.timeLabel.text = Date(milliseconds: theChat.time)?.toString(dateFormat: "MMM dd - hh:mm a")
-      }else {
-        cell.timeLabel.text = Date(milliseconds: theChat.time)?.toString(dateFormat: "E - hh:mm a")
+        cell.accessoryImageView.image = accessoryImageRow2[indexPath.item]
+        cell.accessoryLabel.text = accessoryItemRow2[indexPath.item]
       }
       return cell
-//    case .payment:
-//      if theChat.senderID == NetworkingService.shared.currentUID {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OutgoingPaymentCell.identifier, for: indexPath) as! OutgoingPaymentCell
-//        cell.priceLabel.text = theChat.paymentSummary?.amount
-//        cell.dateLabel.text = theChat.paymentSummary?.date
-//        cell.timeLabel.text = theChat.paymentSummary?.time
-//        return cell
-//      }else {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingPaymentCell.identifier, for: indexPath) as! IncomingPaymentCell
-//        cell.priceLabel.text = theChat.paymentSummary?.amount
-//        cell.dateLabel.text = theChat.paymentSummary?.date
-//        cell.timeLabel.text = theChat.paymentSummary?.time
-//        return cell
-//      }
-    case .image:
-      if theChat.senderID == NetworkingService.shared.currentUID {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OutgoingImageCell.identifier, for: indexPath) as! OutgoingImageCell
-        if let imageURL = URL(string: theChat.imageURL ?? "") {
-          cell.contentImageView.sd_addActivityIndicator()
-          cell.contentImageView.sd_setIndicatorStyle(.gray)
-          cell.contentImageView.sd_setImage(with: imageURL, completed: nil)
+    }else {
+      let theChat = messages[indexPath.section]
+      switch theChat.msgType {
+      case .text:
+        if theChat.senderID == NetworkingService.shared.currentUID {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OutgoingCell.identifier, for: indexPath) as! OutgoingCell
+          cell.contentTextView.text = theChat.text
+          guard let contentInNSString = theChat.text as NSString? else { return cell }
+          let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
+          let theContentWidth = size.width
+          cell.contentWidth.constant = Swift.min(theContentWidth + 25, collectionView.bounds.width * 0.8)
+          return cell
+        }else {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingCell.identifier, for: indexPath) as! IncomingCell
+          cell.contentTextView.text = theChat.text
+          guard let contentInNSString = theChat.text as NSString? else { return cell }
+          let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
+          let theContentWidth = size.width
+          cell.contentWidth.constant = Swift.min(theContentWidth + 25, collectionView.bounds.width * 0.8)
+          return cell
+        }
+      case .timestamp:
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TimeStampCell.identifier, for: indexPath) as! TimeStampCell
+        let dateDifferenceInMinutes = Date().timeIntervalSince(Date(milliseconds: theChat.time) ?? Date()) / 60
+        let dateDifferenceInHour = dateDifferenceInMinutes / 60
+        let dateDifferenceInDay = dateDifferenceInHour / 24
+        if dateDifferenceInDay > 6 {
+          cell.timeLabel.text = Date(milliseconds: theChat.time)?.toString(dateFormat: "MMM dd - hh:mm a")
+        }else {
+          cell.timeLabel.text = Date(milliseconds: theChat.time)?.toString(dateFormat: "E - hh:mm a")
         }
         return cell
-      }else {
+        //    case .payment:
+        //      if theChat.senderID == NetworkingService.shared.currentUID {
+        //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OutgoingPaymentCell.identifier, for: indexPath) as! OutgoingPaymentCell
+        //        cell.priceLabel.text = theChat.paymentSummary?.amount
+        //        cell.dateLabel.text = theChat.paymentSummary?.date
+        //        cell.timeLabel.text = theChat.paymentSummary?.time
+        //        return cell
+        //      }else {
+        //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingPaymentCell.identifier, for: indexPath) as! IncomingPaymentCell
+        //        cell.priceLabel.text = theChat.paymentSummary?.amount
+        //        cell.dateLabel.text = theChat.paymentSummary?.date
+        //        cell.timeLabel.text = theChat.paymentSummary?.time
+        //        return cell
+      //      }
+      case .image:
+        if theChat.senderID == NetworkingService.shared.currentUID {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OutgoingImageCell.identifier, for: indexPath) as! OutgoingImageCell
+          if let imageURL = URL(string: theChat.imageURL ?? "") {
+            cell.contentImageView.sd_addActivityIndicator()
+            cell.contentImageView.sd_setIndicatorStyle(.gray)
+            cell.contentImageView.sd_setImage(with: imageURL, completed: nil)
+          }
+          return cell
+        }else {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingImageCell.identifier, for: indexPath) as! IncomingImageCell
+          if let imageURL = URL(string: theChat.imageURL ?? "") {
+            cell.contentImageView.sd_addActivityIndicator()
+            cell.contentImageView.sd_setIndicatorStyle(.gray)
+            cell.contentImageView.sd_setImage(with: imageURL, completed: nil)
+          }
+          return cell
+        }
+      default:
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingImageCell.identifier, for: indexPath) as! IncomingImageCell
-        if let imageURL = URL(string: theChat.imageURL ?? "") {
-          cell.contentImageView.sd_addActivityIndicator()
-          cell.contentImageView.sd_setIndicatorStyle(.gray)
-          cell.contentImageView.sd_setImage(with: imageURL, completed: nil)
-        }
         return cell
       }
-    default:
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IncomingImageCell.identifier, for: indexPath) as! IncomingImageCell
-      return cell
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let theChat = messages[indexPath.section]
-    switch theChat.msgType {
-    case .text:
-      guard let contentInNSString = theChat.text as NSString? else { return CGSize.zero }
-      let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
-      let theContentWidth = size.width
-      let tempLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: theContentWidth, height: CGFloat.greatestFiniteMagnitude))
-      tempLabel.numberOfLines = 0
-      tempLabel.text = theChat.text
-      tempLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
-      tempLabel.sizeToFit()
-      return CGSize(width: collectionView.bounds.width - 16, height: tempLabel.frame.height + 20)
-    case .timestamp:
-      return CGSize(width: collectionView.bounds.width, height: 30)
-//    case .payment:
-//      return CGSize(width: collectionView.bounds.width, height: 85)
-    case .image:
-      return CGSize(width: collectionView.bounds.width - 16, height: 120)
-    default:
-      return CGSize(width: collectionView.bounds.width - 16, height: 38)
+    if collectionView == attachmentCollectionView {
+      let width = collectionView.bounds.width / 4
+      return CGSize(width: width - 5, height: width - 5)
+    }else {
+      let theChat = messages[indexPath.section]
+      switch theChat.msgType {
+      case .text:
+        guard let contentInNSString = theChat.text as NSString? else { return CGSize.zero }
+        let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
+        let theContentWidth = size.width
+        let tempLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: theContentWidth, height: CGFloat.greatestFiniteMagnitude))
+        tempLabel.numberOfLines = 0
+        tempLabel.text = theChat.text
+        tempLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        tempLabel.sizeToFit()
+        return CGSize(width: collectionView.bounds.width - 16, height: tempLabel.frame.height + 20)
+      case .timestamp:
+        return CGSize(width: collectionView.bounds.width, height: 30)
+        //    case .payment:
+      //      return CGSize(width: collectionView.bounds.width, height: 85)
+      case .image:
+        return CGSize(width: collectionView.bounds.width - 16, height: 120)
+      default:
+        return CGSize(width: collectionView.bounds.width - 16, height: 38)
+      }
+    }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    if collectionView == attachmentCollectionView {
+      let width = collectionView.bounds.width / 4
+      return (collectionView.bounds.width - width * 4) / 3
+    }else {
+      return 0
+    }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    if collectionView == attachmentCollectionView {
+      let width = collectionView.bounds.width / 4
+      return (collectionView.bounds.width - width * 4) / 3
+    }else {
+      return 0
+    }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    if collectionView == attachmentCollectionView {
+      if section == 0 {
+        return CGSize.zero
+      }else {
+        let width = collectionView.bounds.width / 4
+        let heightMargin = abs(collectionView.bounds.height - width * 2)
+        return CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: heightMargin).size
+      }
+    }else {
+      return CGSize.zero
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let theChat = messages[indexPath.section]
-    if theChat.msgType == .image {
-      if theChat.senderID == NetworkingService.shared.currentUID {
-        let cell = collectionView.cellForItem(at: indexPath) as! OutgoingImageCell
-        selectedImage = cell.contentImageView.image
+    if collectionView == attachmentCollectionView {
+      if indexPath.section == 0 {
+        switch indexPath.item {
+        case 0:
+          print("Photos")
+          useCamera()
+        case 1:
+          print("Videos")
+          usePhotoLibrary()
+        case 2:
+          print("Contract")
+        case 3:
+          print("Invoice")
+        default:
+          print("Default")
+        }
       }else {
-        let cell = collectionView.cellForItem(at: indexPath) as! IncomingImageCell
-        selectedImage = cell.contentImageView.image
+        switch indexPath.item {
+        case 0:
+          print("Contact")
+        case 1:
+          print("Money")
+        default:
+          print("Default")
+        }
       }
-      self.performSegue(withIdentifier: "showMedia", sender: self)
+    }else {
+      let theChat = messages[indexPath.section]
+      if theChat.msgType == .image {
+        if theChat.senderID == NetworkingService.shared.currentUID {
+          let cell = collectionView.cellForItem(at: indexPath) as! OutgoingImageCell
+          selectedImage = cell.contentImageView.image
+        }else {
+          let cell = collectionView.cellForItem(at: indexPath) as! IncomingImageCell
+          selectedImage = cell.contentImageView.image
+        }
+        self.performSegue(withIdentifier: "showMedia", sender: self)
+      }
     }
   }
 }

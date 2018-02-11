@@ -89,3 +89,15 @@ class TimeStampCell: UICollectionViewCell {
   static let identifier = "timestampCell"
   @IBOutlet weak var timeLabel: UILabel!
 }
+
+class AccessoryCell: UICollectionViewCell {
+  @IBOutlet weak var accessoryImageView: UIImageView!
+  @IBOutlet weak var accessoryLabel: UILabel!
+  let identifier = "accessoryCell"
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    self.layer.cornerRadius = 5
+    self.clipsToBounds = true
+  }
+}
