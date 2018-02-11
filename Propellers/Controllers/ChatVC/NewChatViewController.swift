@@ -196,6 +196,7 @@ extension NewChatViewController {
 //    let refreshView = KRPullLoadView()
 //    refreshView.delegate = self
 //    chatCollectionView.addPullLoadableView(refreshView, type: .refresh)
+    
   }
   
   func setupLongPressGesture() {
