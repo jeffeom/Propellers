@@ -75,10 +75,10 @@ class NewChatViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    guard let room = self.room else {
-//      navigationController?.popViewController(animated: true)
-//      return
-//    }
+    guard let room = self.room else {
+      navigationController?.popViewController(animated: true)
+      return
+    }
 //    if room.uid1 == room.uid2 {
 //      let alertView = UIAlertController(title: "Sorry", message: "You cannot message yourself.", preferredStyle: .alert)
 //      let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -100,7 +100,7 @@ class NewChatViewController: UIViewController {
     attachmentCollectionView.delegate = self
     inputTextView.delegate = self
     appearance()
-//    fetchLatestDialogues(room: room)
+    fetchLatestDialogues(room: room)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -130,7 +130,8 @@ extension NewChatViewController {
   }
   
   @IBAction func sendButtonPressed(_ sender: UIButton) {
-    
+    NetworkingService.shared.sendMessage(roomID: (room?.key!)!, senderID: NetworkingService.shared.currentUID, withText: inputTextView.text, onDate: Date().millisecondsSince1970!)
+    inputTextView.text = nil
   }
   
   func attachmentViewShouldHide(hide: Bool) {
@@ -176,15 +177,15 @@ extension NewChatViewController {
       case 2436:
         if #available(iOS 11.0, *) {
           let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
-          totalHeight.constant = self.view.frame.height
+          totalHeight.constant = self.view.frame.height - bottomPadding!
         }else {
-          totalHeight.constant = self.view.frame.height
+          totalHeight.constant = self.view.frame.height - 64
         }
       default:
         if #available(iOS 11.0, *) {
-          totalHeight.constant = self.view.frame.height
+          totalHeight.constant = self.view.frame.height - 64
         }else {
-          totalHeight.constant = self.view.frame.height
+          totalHeight.constant = self.view.frame.height - 64
         }
       }
     }
@@ -393,7 +394,8 @@ extension NewChatViewController {
       }
     }
     //found messages fetch 21 at a time.
-    NetworkingService.shared.chatRef.child("messages").child(key).queryLimited(toLast: 21).observeSingleEvent(of: .value) { (snapshot) in
+//    NetworkingService.shared.chatRef.child("messages").child(key).queryLimited(toLast: 21).observeSingleEvent(of: .value) { (snapshot) in
+    NetworkingService.shared.chatRef.child("messages").child(key).observeSingleEvent(of: .value) { (snapshot) in
       let snapshotArray = snapshot.children.allObjects as! [DataSnapshot]
       for aSnap in snapshotArray {
         if aSnap == snapshotArray.first {
@@ -407,7 +409,6 @@ extension NewChatViewController {
             guard let chat = Message(snapshot: aSnap) else { return }
             self.messages.append(Message(Date(milliseconds: chat.time) ?? Date())!)
             self.messages.append(chat)
-            
           }
         }else {
           if aSnap == snapshotArray.last {
@@ -713,7 +714,7 @@ extension NewChatViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showMedia" {
       if segue.destination is NYTPhotoViewController {
-        let zoomPhoto = ZoomPhoto(image: selectedImage, placeHolder: #imageLiteral(resourceName: "forumPlaceHolder"))
+        let zoomPhoto = ZoomPhoto(image: selectedImage, placeHolder: nil)
         let photosViewController = NYTPhotosViewController(photos: [zoomPhoto])
         present(photosViewController, animated: true, completion: {
           self.selectedImage = nil

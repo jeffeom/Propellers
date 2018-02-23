@@ -32,8 +32,10 @@ class Message: NSObject {
     date = snapshotValue["date"] as? Int64
     ref = snapshot.ref
     if let imageURLInString = snapshotValue["imageURL"] as? String {
-      imageURL = imageURLInString
-      msgType = .image
+      if !imageURLInString.isEmpty {
+        imageURL = imageURLInString
+        msgType = .image        
+      }
     }
   }
   

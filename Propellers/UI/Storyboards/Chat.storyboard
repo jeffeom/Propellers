@@ -194,7 +194,7 @@
         <!--New Chat View Controller-->
         <scene sceneID="sGW-Bj-Sd7">
             <objects>
-                <viewController storyboardIdentifier="newChatVC" automaticallyAdjustsScrollViewInsets="NO" id="Wwk-PP-Sw3" customClass="NewChatViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newChatVC" id="Wwk-PP-Sw3" customClass="NewChatViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P8j-WA-GIl"/>
                         <viewControllerLayoutGuide type="bottom" id="hJx-pz-db4"/>

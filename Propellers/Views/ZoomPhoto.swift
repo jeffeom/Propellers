@@ -18,7 +18,6 @@ class ZoomPhoto: NSObject, NYTPhoto {
   var attributedCaptionCredit: NSAttributedString?
   
   init(image: UIImage?, placeHolder: UIImage?) {
-    
     self.image = image
     self.placeholderImage = placeHolder
     super.init()
