@@ -106,8 +106,7 @@ class NewChatViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     mainScrollView.isScrollEnabled = false
-//    navigationController?.navigationBar.barTintColor = .white
-//    navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 85/255, blue: 85/255, alpha: 1.0)
+    self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Futura-Medium", size: 20)!, NSAttributedStringKey.foregroundColor: UIColor.white]
     self.tabBarController?.tabBar.isHidden = true
   }
   
@@ -350,7 +349,7 @@ extension NewChatViewController: UITextViewDelegate {
   }
   
   func textViewDidChange(_ textView: UITextView) {
-    self.consTextViewHeight.constant = Swift.min(100, textView.contentSize.height)
+    self.consTextViewHeight.constant = Swift.min(50, textView.contentSize.height)
     guard self.messages.count != 0 else { return }
     self.chatCollectionView.scrollToItem(at: IndexPath(item: 0, section: self.messages.count - 1), at: UICollectionViewScrollPosition.bottom, animated: false)
   }
@@ -631,7 +630,7 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
       case .text:
         guard let contentInNSString = theChat.text as NSString? else { return CGSize.zero }
         let size = contentInNSString.size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "AvenirNext-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)])
-        let theContentWidth = size.width
+        let theContentWidth = Swift.min(size.width, collectionView.bounds.width * 0.8)
         let tempLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: theContentWidth, height: CGFloat.greatestFiniteMagnitude))
         tempLabel.numberOfLines = 0
         tempLabel.text = theChat.text
@@ -731,7 +730,8 @@ extension NewChatViewController {
     if segue.identifier == "showMedia" {
       if segue.destination is NYTPhotoViewController {
         let zoomPhoto = ZoomPhoto(image: selectedImage, placeHolder: nil)
-        let photosViewController = NYTPhotosViewController(photos: [zoomPhoto])
+        let datasource = NYTPhotoViewerArrayDataSource(photos: [zoomPhoto])
+        let photosViewController = NYTPhotosViewController(dataSource: datasource)
         present(photosViewController, animated: true, completion: {
           self.selectedImage = nil
         })
@@ -874,7 +874,7 @@ extension NewChatViewController: UIImagePickerControllerDelegate, UINavigationCo
       guard let dateInt = Date().millisecondsSince1970 else { return }
       guard let url = url else { return }
       let stringURL = url.absoluteString
-      let message = ["uID": NetworkingService.shared.currentUID, "hideFromFirstUser": false, "hideFromSecondUser": false, "messageImagePath": stringURL, "createdTimestamp": dateInt, "userAvatarURL": ""] as [String : Any]
+      let message = ["senderID": NetworkingService.shared.currentUID, "imageURL": stringURL, "date": dateInt, "userAvatarURL": ""] as [String : Any]
       messageRef.setValue(message)
       if self.userIsUid1(room: self.room){
         roomRef.updateChildValues(["lastMessageuid1":"[PHOTO]", "lastTimestampuid1": dateInt])

@@ -93,6 +93,7 @@ class ProfileDetailViewController: UIViewController {
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+    title = ""
     tabBarController?.tabBar.isHidden = false
   }
 }
@@ -107,7 +108,7 @@ extension ProfileDetailViewController {
   func appearance() {
     userImageView.layer.cornerRadius = userImageView.bounds.height / 2
     userImageView.clipsToBounds = true
-    skillsTagListView.textFont = UIFont(name: "AvenirNext-Medium", size: 10) ?? UIFont.systemFont(ofSize: 10, weight: .medium)
+    skillsTagListView.textFont = UIFont(name: "AvenirNext-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium)
   }
   
   func textViewAppearance() {
