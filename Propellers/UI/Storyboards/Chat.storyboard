@@ -626,9 +626,9 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="130"/>
                                                                                             <subviews>
                                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TCe-k5-WMb">
-                                                                                                    <rect key="frame" x="0.0" y="-10" width="150" height="150"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="130"/>
                                                                                                     <constraints>
-                                                                                                        <constraint firstAttribute="height" constant="150" id="jFx-Nk-Njy"/>
+                                                                                                        <constraint firstAttribute="height" constant="130" id="jFx-Nk-Njy"/>
                                                                                                         <constraint firstAttribute="width" constant="150" id="o5c-7G-YcR"/>
                                                                                                     </constraints>
                                                                                                 </imageView>
@@ -686,10 +686,10 @@
                                                                                             <rect key="frame" x="209" y="0.0" width="150" height="130"/>
                                                                                             <subviews>
                                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9xU-Zk-ew5">
-                                                                                                    <rect key="frame" x="0.0" y="-10" width="150" height="150"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="130"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="width" constant="150" id="VR7-MC-WI4"/>
-                                                                                                        <constraint firstAttribute="height" constant="150" id="tif-jU-Fco"/>
+                                                                                                        <constraint firstAttribute="height" constant="130" id="tif-jU-Fco"/>
                                                                                                     </constraints>
                                                                                                 </imageView>
                                                                                             </subviews>

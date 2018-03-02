@@ -35,9 +35,9 @@ class NewChatViewController: UIViewController {
   @IBOutlet weak var attachmentCollectionView: UICollectionView!
   
   //AttachmentView
-  var accessoryItemRow1 = ["Photos", "Videos", "Contract", "Payment"]
+  var accessoryItemRow1 = ["Photos", "Videos", "Contact", "Payment"]
   var accessoryImageRow1 = [#imageLiteral(resourceName: "chatPictures"), #imageLiteral(resourceName: "chatVideo"), #imageLiteral(resourceName: "chatContacts"), #imageLiteral(resourceName: "chatPayment")]
-  var accessoryItemRow2 = ["Contact", "Invoice"]
+  var accessoryItemRow2 = ["Contract", "Invoice"]
   var accessoryImageRow2 = [#imageLiteral(resourceName: "chatContract"), #imageLiteral(resourceName: "chatInvoice")]
   
   //Dismiss
@@ -172,20 +172,37 @@ extension NewChatViewController {
 //MARK: Setup
 extension NewChatViewController {
   func appearance() {
+//    if UIDevice().userInterfaceIdiom == .phone {
+//      switch UIScreen.main.nativeBounds.height {
+//      case 2436:
+//        if #available(iOS 11.0, *) {
+//          let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
+//          totalHeight.constant = self.view.frame.height - bottomPadding!
+//        }else {
+//          totalHeight.constant = self.view.frame.height - 64
+//        }
+//      default:
+//        if #available(iOS 11.0, *) {
+//          totalHeight.constant = self.view.frame.height - 64
+//        }else {
+//          totalHeight.constant = self.view.frame.height - 64
+//        }
+//      }
+//    }
     if UIDevice().userInterfaceIdiom == .phone {
       switch UIScreen.main.nativeBounds.height {
       case 2436:
         if #available(iOS 11.0, *) {
           let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
-          totalHeight.constant = self.view.frame.height - bottomPadding!
+          totalHeight.constant = self.view.frame.height - (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height - (bottomPadding ?? 34)
         }else {
-          totalHeight.constant = self.view.frame.height - 64
+          totalHeight.constant = self.view.frame.height - (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height - 34
         }
       default:
         if #available(iOS 11.0, *) {
-          totalHeight.constant = self.view.frame.height - 64
+          totalHeight.constant = self.view.frame.height - (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height
         }else {
-          totalHeight.constant = self.view.frame.height - 64
+          totalHeight.constant = self.view.frame.height - (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height
         }
       }
     }
@@ -230,7 +247,6 @@ extension NewChatViewController {
       guard !stopMovingKeyboard else { return }
       let keyboardRectangle = keyboardFrame.cgRectValue
       keyboardHeight = keyboardRectangle.height
-//      let topHeight = (self.navigationController?.navigationBar.frame.height ?? 44) - UIApplication.shared.statusBarFrame.height
       mainScrollView.isScrollEnabled = true
       attachmentViewShouldHide(hide: true)
       if UIDevice().userInterfaceIdiom == .phone {
@@ -639,7 +655,7 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
       let width = collectionView.bounds.width / 4
       return (collectionView.bounds.width - width * 4) / 3
     }else {
-      return 0
+      return 10
     }
   }
   
@@ -648,7 +664,7 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
       let width = collectionView.bounds.width / 4
       return (collectionView.bounds.width - width * 4) / 3
     }else {
-      return 0
+      return 10
     }
   }
   
