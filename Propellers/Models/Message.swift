@@ -19,7 +19,6 @@ class Message: NSObject {
   var text: String?
   var imageURL: String?
   var date: Int64?
-  var time: Int64?
   var ref: DatabaseReference?
   var msgType: MessageType = .text
 
@@ -51,7 +50,7 @@ class Message: NSObject {
   
   init?(_ dateToShow: Date) {
     msgType = .timestamp
-    time = dateToShow.millisecondsSince1970
+    date = dateToShow.millisecondsSince1970
   }
   
   func json() -> [String:Any]? {

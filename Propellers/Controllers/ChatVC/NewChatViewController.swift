@@ -129,6 +129,7 @@ extension NewChatViewController {
   }
   
   @IBAction func sendButtonPressed(_ sender: UIButton) {
+    guard !inputTextView.text.isEmpty, inputTextView.text != "Type Something..." else { return }
     NetworkingService.shared.sendMessage(roomID: (room?.key!)!, senderID: NetworkingService.shared.currentUID, withText: inputTextView.text, onDate: Date().millisecondsSince1970!)
     inputTextView.text = nil
   }
@@ -422,7 +423,7 @@ extension NewChatViewController {
           }else {
             // else show date + message
             guard let chat = Message(snapshot: aSnap) else { return }
-            self.messages.append(Message(Date(milliseconds: chat.time) ?? Date())!)
+            self.messages.append(Message(Date(milliseconds: chat.date) ?? Date())!)
             self.messages.append(chat)
           }
         }else {
@@ -435,7 +436,7 @@ extension NewChatViewController {
             // rest of the messages
             guard let chat = Message(snapshot: aSnap) else { return }
             if self.messages.count == 1 {
-              self.messages.append(Message(Date(milliseconds: chat.time) ?? Date())!)
+              self.messages.append(Message(Date(milliseconds: chat.date) ?? Date())!)
             }
             if let previousChat = self.previousChat {
               self.applyTimeStamp(withChat: chat, andPreviousChat: previousChat)
@@ -461,7 +462,7 @@ extension NewChatViewController {
     NetworkingService.shared.chatRef.child("messages").child(key).queryLimited(toLast: 1).observe(.childAdded, with: { (snapshot) in
       guard let chat = Message(snapshot: snapshot) else { return }
       if self.messages.count == 1 {
-        let chatTimeStamp = Message(Date(milliseconds: chat.time) ?? Date())!
+        let chatTimeStamp = Message(Date(milliseconds: chat.date) ?? Date())!
         chatTimeStamp.msgType = .timestamp
         self.messages.append(chatTimeStamp)
       }
@@ -479,7 +480,7 @@ extension NewChatViewController {
   ////////////////
   
   private func applyTimeStamp(withChat currentChat: Message, andPreviousChat previousChat: Message) {
-    guard let currentTime = currentChat.time, let previouseTime = previousChat.time else { return }
+    guard let currentTime = currentChat.date, let previouseTime = previousChat.date else { return }
     guard let currentDate = Date(milliseconds: currentTime), let previousDate = Date(milliseconds: previouseTime) else { return }
     let dateDifferenceInMin = abs(currentDate.timeIntervalSince(previousDate) / 60.0)
     if dateDifferenceInMin > 30 {
@@ -490,7 +491,7 @@ extension NewChatViewController {
   }
   
   private func applyTimeStampForScroll(withChat currentChat: Message, andPreviousChat previousChat: Message) -> Bool {
-    guard let currentTime = currentChat.time, let previouseTime = previousChat.time else { return false }
+    guard let currentTime = currentChat.date, let previouseTime = previousChat.date else { return false }
     guard let currentDate = Date(milliseconds: currentTime), let previousDate = Date(milliseconds: previouseTime) else { return false }
     let dateDifferenceInMin = abs(currentDate.timeIntervalSince(previousDate) / 60.0)
     if dateDifferenceInMin > 30 {
@@ -572,13 +573,17 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
       case .timestamp:
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TimeStampCell.identifier, for: indexPath) as! TimeStampCell
-        let dateDifferenceInMinutes = Date().timeIntervalSince(Date(milliseconds: theChat.time) ?? Date()) / 60
+        let dateDifferenceInMinutes = Date().timeIntervalSince(Date(milliseconds: theChat.date) ?? Date()) / 60
         let dateDifferenceInHour = dateDifferenceInMinutes / 60
         let dateDifferenceInDay = dateDifferenceInHour / 24
         if dateDifferenceInDay > 6 {
-          cell.timeLabel.text = Date(milliseconds: theChat.time)?.toString(dateFormat: "MMM dd - hh:mm a")
+          cell.timeLabel.text = Date(milliseconds: theChat.date)?.toString(dateFormat: "MMM dd - hh:mm a")
+        }else if dateDifferenceInDay < 1 {
+          cell.timeLabel.text = "Today - " + (Date(milliseconds: theChat.date)?.toString(dateFormat: "hh:mm a"))!
+        }else if dateDifferenceInDay > 1 && dateDifferenceInDay < 2 {
+          cell.timeLabel.text = "Yesterday - " + (Date(milliseconds: theChat.date)?.toString(dateFormat: "hh:mm a"))!
         }else {
-          cell.timeLabel.text = Date(milliseconds: theChat.time)?.toString(dateFormat: "E - hh:mm a")
+          cell.timeLabel.text = Date(milliseconds: theChat.date)?.toString(dateFormat: "E - hh:mm a")
         }
         return cell
         //    case .payment:
