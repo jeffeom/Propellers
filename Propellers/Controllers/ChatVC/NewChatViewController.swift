@@ -759,7 +759,7 @@ extension NewChatViewController: UITableViewDelegate, UITableViewDataSource {
     let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
     cell.textLabel?.text = cellEditOptionsList[indexPath.row]
     cell.textLabel?.textAlignment = .center
-    cell.textLabel?.font = UIFont(name: "OpenSans-Regular", size: 14)
+    cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: 14)
     cell.textLabel?.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
     tableView.separatorColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1.0)
     tableView.separatorInset = UIEdgeInsetsMake(tableView.separatorInset.top, 6.5, tableView.separatorInset.top, 6.5)
@@ -825,7 +825,7 @@ extension NewChatViewController: UITableViewDelegate, UITableViewDataSource {
 extension NewChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func useCamera() {
     if UIImagePickerController.isSourceTypeAvailable(.camera) {
-      self.picker.allowsEditing = true
+      self.picker.allowsEditing = false
       self.picker.sourceType = UIImagePickerControllerSourceType.camera
       self.picker.cameraCaptureMode = .photo
       self.picker.modalPresentationStyle = .fullScreen
@@ -839,7 +839,7 @@ extension NewChatViewController: UIImagePickerControllerDelegate, UINavigationCo
   }
   
   func usePhotoLibrary() {
-    self.picker.allowsEditing = true
+    self.picker.allowsEditing = false
     self.picker.sourceType = .photoLibrary
     self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
     self.picker.modalPresentationStyle = .popover

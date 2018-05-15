@@ -14,8 +14,9 @@ def shared_pods
   pod 'NYTPhotoViewer'
   pod 'IQKeyboardManagerSwift'
   pod 'TagListView'
-  pod 'Popover'
+  pod 'Popover', '1.0.4'
   pod 'KRPullLoader'
+  pod 'Stripe'
 end
 
 target 'Propellers' do

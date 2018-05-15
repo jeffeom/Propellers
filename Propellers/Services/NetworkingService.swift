@@ -11,7 +11,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseAuth
 import FirebaseDatabase
-import FirebaseStorageUI
+import FirebaseUI
 import SDWebImage
 
 struct NetworkingService {
@@ -55,7 +55,7 @@ extension NetworkingService {
     Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
       if error == nil {
         UserDefaults.standard.set(true, forKey: "firstTime")
-        self.setUserInfo(user, firstName: firstName, lastName: lastName, password: password, data: data) { (result) in
+        self.setUserInfo(user?.user, firstName: firstName, lastName: lastName, password: password, data: data) { (result) in
           completion(result)
         }
       } else {
@@ -79,7 +79,15 @@ extension NetworkingService {
       if error == nil {
         let changeRequest = user.createProfileChangeRequest()
         changeRequest.displayName = "\(firstName) \(lastName)"
-        changeRequest.photoURL = metaData!.downloadURL()
+        imageRef.downloadURL(completion: { (url, error) in
+          if error != nil {
+            print(error!.localizedDescription)
+            return
+          }
+          if url != nil {
+            changeRequest.photoURL = url
+          }
+        })
         changeRequest.commitChanges(completion: { (error) in
           if error == nil {
             self.saveInfo(user, firstName: firstName, lastName: lastName, password: password) { (result) in
@@ -282,7 +290,16 @@ extension NetworkingService {
     metaData.contentType = "image/jpeg"
     uploadRef.putData(imageData, metadata: metaData) { (metaData, error) in
       if error == nil{
-        completion(metaData?.downloadURL())
+        uploadRef.downloadURL(completion: { (url, error) in
+          if error != nil {
+            print(error!.localizedDescription)
+            completion(nil)
+            return
+          }
+          if url != nil {
+            completion(url)
+          }
+        })
       }else {
         completion(nil)
       }
