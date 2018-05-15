@@ -647,7 +647,7 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
         //    case .payment:
       //      return CGSize(width: collectionView.bounds.width, height: 85)
       case .image:
-        return CGSize(width: collectionView.bounds.width - 16, height: 120)
+        return CGSize(width: collectionView.bounds.width - 16, height: 130)
       default:
         return CGSize(width: collectionView.bounds.width - 16, height: 38)
       }

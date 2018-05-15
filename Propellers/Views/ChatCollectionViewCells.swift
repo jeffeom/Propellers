@@ -37,8 +37,8 @@ class IncomingImageCell: UICollectionViewCell {
   @IBOutlet weak var contentImageView: UIImageView!
   override func awakeFromNib() {
     super.awakeFromNib()
-    imageContentView.layer.cornerRadius = 5
-    imageContentView.clipsToBounds = true
+    contentImageView.layer.cornerRadius = 10
+    contentImageView.clipsToBounds = true
   }
 }
 
@@ -48,8 +48,8 @@ class OutgoingImageCell: UICollectionViewCell {
   @IBOutlet weak var contentImageView: UIImageView!
   override func awakeFromNib() {
     super.awakeFromNib()
-    imageContentView.layer.cornerRadius = 5
-    imageContentView.clipsToBounds = true
+    contentImageView.layer.cornerRadius = 10
+    contentImageView.clipsToBounds = true
   }
 }
 
