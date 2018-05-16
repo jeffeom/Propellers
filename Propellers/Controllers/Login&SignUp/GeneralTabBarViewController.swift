@@ -14,3 +14,15 @@ class GeneralTabBarViewController: UITabBarController {
     automaticallyAdjustsScrollViewInsets = false
   }
 }
+
+//MARK: TabbarControllerDelegate
+extension GeneralTabBarViewController: UITabBarControllerDelegate {
+  func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    if viewController.tabBarItem.tag == 1 {
+      let theNav = viewController as! UINavigationController
+      guard let roomVC = theNav.viewControllers.first as? RoomViewController else { return true }
+      roomVC.fetchRooms()
+    }
+    return true
+  }
+}

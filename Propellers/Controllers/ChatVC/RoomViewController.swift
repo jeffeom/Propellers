@@ -30,7 +30,7 @@ class RoomViewController: UIViewController {
     super.viewDidLoad()
     searchBar.backgroundImage = UIImage()
     darkIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
-    activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width / 8, height: self.view.bounds.width / 8), type: .ballRotate, color: UIColor(red:255/255, green:85/255, blue:85/255, alpha:1.00), padding: nil)
+    activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width / 8, height: self.view.bounds.width / 8), type: .ballRotate, color: ThemeColor.lightBlueColor, padding: nil)
     setupActivityIndicator(darkIndicatorView: darkIndicatorView, activityIndicator: activityIndicator)
     setupDelegates()
     fetchRooms()

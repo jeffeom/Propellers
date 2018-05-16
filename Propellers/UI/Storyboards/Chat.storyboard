@@ -165,7 +165,7 @@
         <scene sceneID="bPc-w5-5cN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xEt-T8-lYL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" image="chatIcon0303" selectedImage="chatIconSelected03" id="FrH-in-0EV" customClass="GeneralTabBarItem" customModule="Propellers" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Chat" image="chatIcon0303" selectedImage="chatIconSelected03" id="FrH-in-0EV" customClass="GeneralTabBarItem" customModule="Propellers" customModuleProvider="target"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Iu-nw-9zC">
