@@ -21,8 +21,8 @@ class RoomViewController: UIViewController {
 
   var fetchedRooms: [RoomWithName] = []
   
-  var darkIndicatorView: UIView!
-  var activityIndicator: NVActivityIndicatorView!
+  var darkIndicatorView: UIView?
+  var activityIndicator: NVActivityIndicatorView?
   
   var comingFromNotification = false
   
@@ -31,7 +31,7 @@ class RoomViewController: UIViewController {
     searchBar.backgroundImage = UIImage()
     darkIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
     activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width / 8, height: self.view.bounds.width / 8), type: .ballRotate, color: ThemeColor.lightBlueColor, padding: nil)
-    setupActivityIndicator(darkIndicatorView: darkIndicatorView, activityIndicator: activityIndicator)
+    setupActivityIndicator(darkIndicatorView: darkIndicatorView!, activityIndicator: activityIndicator!)
     setupDelegates()
     fetchRooms()
   }
@@ -77,7 +77,12 @@ extension RoomViewController {
 extension RoomViewController {
   func fetchRooms() {
     fetchedRooms = []
-    startLoading(darkIndicatorView: darkIndicatorView, activityIndicator: activityIndicator)
+    if let _ = darkIndicatorView, let _ = activityIndicator {
+    }else {
+      activityIndicator = NVActivityIndicatorView(frame: CGRect.zero, type: nil, color: nil, padding: nil)
+      darkIndicatorView = UIView(frame: CGRect.zero)
+    }
+    startLoading(darkIndicatorView: darkIndicatorView!, activityIndicator: activityIndicator!)
     NetworkingService.shared.fetchRooms { (rooms) in
       let currentUID = NetworkingService.shared.currentUID
       for aRoom in rooms {
@@ -92,7 +97,7 @@ extension RoomViewController {
                 return firstDate! > secondDate!
               })
               self.roomTableView.reloadData()
-              self.stopLoading(darkIndicatorView: self.darkIndicatorView, activityIndicator: self.activityIndicator)
+              self.stopLoading(darkIndicatorView: self.darkIndicatorView!, activityIndicator: self.activityIndicator!)
             }
           })
         }else {
@@ -101,7 +106,7 @@ extension RoomViewController {
             self.fetchedRooms.append(RoomWithName(name: roomName, room: aRoom))
             if self.fetchedRooms.count == rooms.count {
               self.roomTableView.reloadData()
-              self.stopLoading(darkIndicatorView: self.darkIndicatorView, activityIndicator: self.activityIndicator)
+              self.stopLoading(darkIndicatorView: self.darkIndicatorView!, activityIndicator: self.activityIndicator!)
             }
           })
         }
@@ -127,6 +132,7 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: RoomTableViewCell().identifier, for: indexPath) as! RoomTableViewCell
     let currentUID = NetworkingService.shared.currentUID
+    guard fetchedRooms.count > 0 else { return cell }
     let aRoom = fetchedRooms[indexPath.section].room!
     if aRoom.uid1 == currentUID {
       NetworkingService.shared.fetchUser(withUID: aRoom.uid2!, completion: { (user) in

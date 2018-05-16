@@ -11,6 +11,7 @@ import UIKit
 class GeneralTabBarViewController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.delegate = self
     automaticallyAdjustsScrollViewInsets = false
   }
 }
