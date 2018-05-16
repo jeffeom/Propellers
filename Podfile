@@ -17,6 +17,7 @@ def shared_pods
   pod 'Popover', '1.0.4'
   pod 'KRPullLoader'
   pod 'Stripe'
+  pod 'NVActivityIndicatorView'
 end
 
 target 'Propellers' do

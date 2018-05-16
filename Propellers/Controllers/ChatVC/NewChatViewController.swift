@@ -79,16 +79,16 @@ class NewChatViewController: UIViewController {
       navigationController?.popViewController(animated: true)
       return
     }
-//    if room.uid1 == room.uid2 {
-//      let alertView = UIAlertController(title: "Sorry", message: "You cannot message yourself.", preferredStyle: .alert)
-//      let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
-//        NetworkingService.shared.chatRef.child("rooms").child(room.key ?? "").removeValue()
-//        self.navigationController?.popViewController(animated: true)
-//      })
-//      alertView.addAction(okAction)
-//      present(alertView, animated: true, completion: nil)
-//      return
-//    }
+    //    if room.uid1 == room.uid2 {
+    //      let alertView = UIAlertController(title: "Sorry", message: "You cannot message yourself.", preferredStyle: .alert)
+    //      let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+    //        NetworkingService.shared.chatRef.child("rooms").child(room.key ?? "").removeValue()
+    //        self.navigationController?.popViewController(animated: true)
+    //      })
+    //      alertView.addAction(okAction)
+    //      present(alertView, animated: true, completion: nil)
+    //      return
+    //    }
     setupBadgeCounts()
     setupLongPressGesture()
     setupNotification()
@@ -172,23 +172,23 @@ extension NewChatViewController {
 //MARK: Setup
 extension NewChatViewController {
   func appearance() {
-//    if UIDevice().userInterfaceIdiom == .phone {
-//      switch UIScreen.main.nativeBounds.height {
-//      case 2436:
-//        if #available(iOS 11.0, *) {
-//          let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
-//          totalHeight.constant = self.view.frame.height - bottomPadding!
-//        }else {
-//          totalHeight.constant = self.view.frame.height - 64
-//        }
-//      default:
-//        if #available(iOS 11.0, *) {
-//          totalHeight.constant = self.view.frame.height - 64
-//        }else {
-//          totalHeight.constant = self.view.frame.height - 64
-//        }
-//      }
-//    }
+    //    if UIDevice().userInterfaceIdiom == .phone {
+    //      switch UIScreen.main.nativeBounds.height {
+    //      case 2436:
+    //        if #available(iOS 11.0, *) {
+    //          let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
+    //          totalHeight.constant = self.view.frame.height - bottomPadding!
+    //        }else {
+    //          totalHeight.constant = self.view.frame.height - 64
+    //        }
+    //      default:
+    //        if #available(iOS 11.0, *) {
+    //          totalHeight.constant = self.view.frame.height - 64
+    //        }else {
+    //          totalHeight.constant = self.view.frame.height - 64
+    //        }
+    //      }
+    //    }
     if UIDevice().userInterfaceIdiom == .phone {
       switch UIScreen.main.nativeBounds.height {
       case 2436:
@@ -211,9 +211,9 @@ extension NewChatViewController {
     inputTextView.clipsToBounds = true
     createRoundShadowView(withShadowView: inputShadowView, andContentView: inputToolView, withCornerRadius: 0)
     getReadyToType()
-//    let refreshView = KRPullLoadView()
-//    refreshView.delegate = self
-//    chatCollectionView.addPullLoadableView(refreshView, type: .refresh)
+    let refreshView = KRPullLoadView()
+    refreshView.delegate = self
+    chatCollectionView.addPullLoadableView(refreshView, type: .refresh)
     
   }
   
@@ -223,8 +223,8 @@ extension NewChatViewController {
     lpgr.delegate = self
     lpgr.delaysTouchesBegan = true
     self.chatCollectionView.addGestureRecognizer(lpgr)
-}
-
+  }
+  
   func setupNotification() {
     notificationCenter.addObserver(self, selector: #selector(adjustKeyboardHiding(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
     notificationCenter.addObserver(self, selector: #selector(adjustKeyboardShowing(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -253,7 +253,7 @@ extension NewChatViewController {
         switch UIScreen.main.nativeBounds.height {
         case 2436:
           if #available(iOS 11.0, *) {
-//            let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
+            //            let bottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom
             keyboardSpacingConstraint.constant = keyboardHeight!
           }else {
             keyboardSpacingConstraint.constant = keyboardHeight!
@@ -266,6 +266,49 @@ extension NewChatViewController {
         self.view.layoutIfNeeded()
         self.stopMovingKeyboard = true
       })
+    }
+  }
+}
+
+//MARK: KRLoadView
+extension NewChatViewController: KRPullLoadViewDelegate {
+  func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
+    switch state {
+    case .none:
+      if isAllMessage {
+        pullLoadView.messageLabel.text = "No more messages found"
+        pullLoadView.activityIndicator.isHidden = true
+      }else {
+        pullLoadView.messageLabel.text = ""
+      }
+    case let .pulling(offset, threshould):
+      if isAllMessage {
+        pullLoadView.messageLabel.text = "No more messages found"
+        pullLoadView.activityIndicator.isHidden = true
+      }else {
+        if offset.y > threshould {
+          pullLoadView.messageLabel.text = "Pull more to see more messages"
+        }else {
+          pullLoadView.messageLabel.text = "You can now release"
+        }
+      }
+    case let .loading(completionHandler):
+      if isAllMessage {
+        completionHandler()
+        self.chatCollectionView.removePullLoadableView(pullLoadView)
+      }else {
+        pullLoadView.messageLabel.text = "Loading..."
+        guard let room = room else {
+          completionHandler()
+          return
+        }
+        fetchDialoguesOnScroll(room: room, completion: { isLastMessage in
+          if isLastMessage {
+            self.isAllMessage = true
+          }
+          completionHandler()
+        })
+      }
     }
   }
 }
@@ -400,18 +443,16 @@ extension NewChatViewController {
       navigationController?.popViewController(animated: true)
       return
     }
-//    startLoading()
     self.chatCollectionView.reloadData()
     //nothing found fetch new messages.
     NetworkingService.shared.chatRef.child("messages").child(key).observeSingleEvent(of: .value) { (snapshot) in
       if !snapshot.hasChildren() {
         self.fetchNewDialogues(room: room)
-//        self.stopLoading()
       }
     }
     //found messages fetch 21 at a time.
-//    NetworkingService.shared.chatRef.child("messages").child(key).queryLimited(toLast: 21).observeSingleEvent(of: .value) { (snapshot) in
-    NetworkingService.shared.chatRef.child("messages").child(key).observeSingleEvent(of: .value) { (snapshot) in
+    NetworkingService.shared.chatRef.child("messages").child(key).queryLimited(toLast: 21).observeSingleEvent(of: .value) { (snapshot) in
+      //    NetworkingService.shared.chatRef.child("messages").child(key).observeSingleEvent(of: .value) { (snapshot) in
       let snapshotArray = snapshot.children.allObjects as! [DataSnapshot]
       for aSnap in snapshotArray {
         if aSnap == snapshotArray.first {
@@ -451,7 +492,7 @@ extension NewChatViewController {
   
   func fetchNewDialogues(room: Room) {
     guard Reachability.isConnectedToNetwork() else {
-//      stopLoading()
+      //      stopLoading()
       navigationController?.popViewController(animated: true)
       return
     }
@@ -472,12 +513,91 @@ extension NewChatViewController {
       self.messages.append(chat)
       self.previousChat = chat
       self.chatCollectionView.reloadData()
-//      self.stopLoading()
+      //      self.stopLoading()
       self.chatCollectionView.scrollToItem(at: IndexPath(item: 0, section: self.messages.count - 1), at: UICollectionViewScrollPosition.bottom, animated: true)
     })
   }
   
-  ////////////////
+  func fetchDialoguesOnScroll(room: Room, completion: @escaping (Bool) -> ()) {
+    guard let key = room.key else {
+      navigationController?.popViewController(animated: true)
+      return
+    }
+    guard let lastItemKey = lastItemKey else { return }
+    let theSystemMessage = self.messages.first
+    NetworkingService.shared.chatRef.child("messages").child(key).queryEnding(atValue: nil, childKey: lastItemKey).queryLimited(toLast: 21).observeSingleEvent(of: .value) { (snapshot) in
+      let snapshotArray = snapshot.children.allObjects as! [DataSnapshot]
+      var extraLoadedCount = 0
+      var hideCount = 0
+      for aSnap in snapshotArray.reversed() {
+        if aSnap == snapshotArray.first {
+          // the last message, top of the screen
+          self.lastItemKey = aSnap.key
+          guard let chat = Message(snapshot: aSnap), chat.key != lastItemKey else {
+            completion(true)
+            return
+          }
+          if snapshotArray.count != 1 {
+            if self.messageShouldShow(chat: chat) {
+              self.messages.insert(chat, at: 0)
+              self.messages.insert(Message(Date(milliseconds: chat.date) ?? Date())!, at: 0)
+            }else {
+              if hideCount == 19 {
+                hideCount += 1
+              }else {
+                let timeStampChat = (Message(Date(milliseconds: self.messages.first?.date) ?? Date())!)
+                self.messages.insert(timeStampChat, at: 0)
+                self.lastMessageFlag = true
+                extraLoadedCount += 1
+                hideCount += 1
+              }
+            }
+          }
+          if hideCount == 20 {
+            self.chatCollectionView.reloadData()
+            completion(true)
+          }else {
+            //holdingMessage
+            guard let theSystemMessage = theSystemMessage, let systemMessageIndex = self.messages.index(of: theSystemMessage) else { return }
+            if self.messages[systemMessageIndex - 1].msgType == .timestamp {
+              self.messages.remove(at: systemMessageIndex)
+              self.messages.remove(at: systemMessageIndex - 1)
+            }else {
+              self.messages.remove(at: systemMessageIndex)
+            }
+            self.chatCollectionView.reloadData()
+            completion(false)
+            guard snapshotArray.count + extraLoadedCount - 1 >= 0 else {
+              self.chatCollectionView.scrollToItem(at: IndexPath(item: 0, section: snapshotArray.count + extraLoadedCount), at: UICollectionViewScrollPosition.top, animated: false)
+              return
+            }
+            self.chatCollectionView.scrollToItem(at: IndexPath(item: 0, section: snapshotArray.count + extraLoadedCount - 1), at: UICollectionViewScrollPosition.top, animated: false)
+          }
+        }else {
+          // rest of the messages
+          guard let chat = Message(snapshot: aSnap) else { return }
+          if aSnap != snapshotArray.last {
+            if self.messageShouldShow(chat: chat) {
+              if self.messages.count == 1 {
+                let timeStampChat = (Message(Date(milliseconds: chat.date) ?? Date())!)
+                self.messages.insert(timeStampChat, at: 0)
+              }
+              if let previousChat = self.previousChat {
+                if self.applyTimeStampForScroll(withChat: chat, andPreviousChat: previousChat) {
+                  extraLoadedCount += 1
+                }
+              }
+              self.messages.insert(chat, at: 0)
+              self.previousChat = chat
+            }else {
+              extraLoadedCount -= 1
+              hideCount += 1
+            }
+          }
+        }
+      }
+    }
+  }
   
   private func applyTimeStamp(withChat currentChat: Message, andPreviousChat previousChat: Message) {
     guard let currentTime = currentChat.date, let previouseTime = previousChat.date else { return }
@@ -507,6 +627,14 @@ extension NewChatViewController {
   fileprivate func userIsUid1(room: Room?) -> Bool {
     let myUid = NetworkingService.shared.currentUID
     return room?.uid1 == myUid
+  }
+  
+  fileprivate func messageShouldShow(chat: Message) -> Bool {
+    if self.userIsUid1(room: room){
+      return !chat.hideFromUid1
+    }else {
+      return !chat.hideFromUid2
+    }
   }
   
   fileprivate func fetchFriendsUID() -> String? {
@@ -752,7 +880,7 @@ extension NewChatViewController {
 //MARK: PopoverTableView
 extension NewChatViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return cellEditOptionsList.count
+    return cellEditOptionsList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -886,14 +1014,14 @@ extension NewChatViewController: UIImagePickerControllerDelegate, UINavigationCo
       }else {
         roomRef.updateChildValues(["lastMessageuid2":"[PHOTO]", "lastTimestampuid2": dateInt])
       }
-//      let friendUID = self.fetchFriendsUID()
-//      NetworkingService.shared.fetchSignalUID(withFriendUID: friendUID, completion: { (signalUID) in
-//        guard let signalUID = signalUID else {
-//          print("no singal uid found!")
-//          return
-//        }
-//        self.sendPushNotification(toFriendSignalUID: signalUID, withMessage: nil, withMedia: "[PHOTO]")
-//      })
+      //      let friendUID = self.fetchFriendsUID()
+      //      NetworkingService.shared.fetchSignalUID(withFriendUID: friendUID, completion: { (signalUID) in
+      //        guard let signalUID = signalUID else {
+      //          print("no singal uid found!")
+      //          return
+      //        }
+      //        self.sendPushNotification(toFriendSignalUID: signalUID, withMessage: nil, withMedia: "[PHOTO]")
+      //      })
     })
   }
 }

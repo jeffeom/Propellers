@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 
 enum MessageType {
   case text, image, payment, timestamp, error
@@ -19,6 +19,8 @@ class Message: NSObject {
   var text: String?
   var imageURL: String?
   var date: Int64?
+  var hideFromUid1: Bool = false
+  var hideFromUid2: Bool = false
   var ref: DatabaseReference?
   var msgType: MessageType = .text
 
@@ -29,6 +31,8 @@ class Message: NSObject {
     text = snapshotValue["text"] as? String
     imageURL = snapshotValue["imageURL"] as? String
     date = snapshotValue["date"] as? Int64
+    hideFromUid1 = snapshotValue["hideFromFirstUser"] as? Bool ?? false
+    hideFromUid2 = snapshotValue["hideFromSecondUser"] as? Bool ?? false
     ref = snapshot.ref
     if let imageURLInString = snapshotValue["imageURL"] as? String {
       if !imageURLInString.isEmpty {

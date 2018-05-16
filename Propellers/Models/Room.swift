@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseDatabase
 
 class Room: NSObject {
   var key: String?
@@ -16,6 +17,7 @@ class Room: NSObject {
   var latestText: String?
   var date: Int64?
   var ref: DatabaseReference?
+  
   var unreadMessagesCounter = 0
   
   init?(snapshot: DataSnapshot) {

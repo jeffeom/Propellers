@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 struct RoomWithName {
   var name: String?
@@ -16,19 +17,34 @@ struct RoomWithName {
 class RoomViewController: UIViewController {
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var roomTableView: UITableView!
+  let appDel = UIApplication.shared.delegate as? AppDelegate
+
   var fetchedRooms: [RoomWithName] = []
+  
+  var darkIndicatorView: UIView!
+  var activityIndicator: NVActivityIndicatorView!
+  
+  var comingFromNotification = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    automaticallyAdjustsScrollViewInsets = false
     searchBar.backgroundImage = UIImage()
+    darkIndicatorView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+    activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width / 8, height: self.view.bounds.width / 8), type: .ballRotate, color: UIColor(red:255/255, green:85/255, blue:85/255, alpha:1.00), padding: nil)
+    setupActivityIndicator(darkIndicatorView: darkIndicatorView, activityIndicator: activityIndicator)
     setupDelegates()
-//    fetchRoom()
+    fetchRooms()
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    fetchRoom()
+    if comingFromNotification {
+      fetchRooms()
+      comingFromNotification = false
+    }
+    fetchedRooms.sort{$0.room?.date ?? 0 > $1.room?.date ?? 0}
+    checkToDeleteBadge()
+    roomTableView.reloadData()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -40,10 +56,28 @@ class RoomViewController: UIViewController {
   }
 }
 
+//MARK: NotificationBadge
+extension RoomViewController {
+  func checkToDeleteBadge() {
+    let totalUnreadCount = fetchedRooms.compactMap({ $0.room?.unreadMessagesCounter }).reduce(0, +)
+    if totalUnreadCount == 0 {
+      for subview in (tabBarController?.tabBar.subviews)! {
+        if subview.tag == 1234 {
+          subview.removeFromSuperview()
+          break
+        }
+      }
+    }else {
+      appDel?.addRedDotAtTabBarItemIndex(index: 1, withTag: 1234)
+    }
+  }
+}
+
 //MARK: NetworkingService
 extension RoomViewController {
-  func fetchRoom() {
+  func fetchRooms() {
     fetchedRooms = []
+    startLoading(darkIndicatorView: darkIndicatorView, activityIndicator: activityIndicator)
     NetworkingService.shared.fetchRooms { (rooms) in
       let currentUID = NetworkingService.shared.currentUID
       for aRoom in rooms {
@@ -58,6 +92,7 @@ extension RoomViewController {
                 return firstDate! > secondDate!
               })
               self.roomTableView.reloadData()
+              self.stopLoading(darkIndicatorView: self.darkIndicatorView, activityIndicator: self.activityIndicator)
             }
           })
         }else {
@@ -66,6 +101,7 @@ extension RoomViewController {
             self.fetchedRooms.append(RoomWithName(name: roomName, room: aRoom))
             if self.fetchedRooms.count == rooms.count {
               self.roomTableView.reloadData()
+              self.stopLoading(darkIndicatorView: self.darkIndicatorView, activityIndicator: self.activityIndicator)
             }
           })
         }

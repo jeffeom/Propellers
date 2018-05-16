@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
 extension UIViewController {
   func giveHeavyHapticFeedback() {
@@ -28,5 +29,27 @@ extension UIViewController {
     contentView.backgroundColor = UIColor.white
     contentView.layer.cornerRadius = cornerRadius
     contentView.clipsToBounds = true
+  }
+  
+  func setupActivityIndicator(darkIndicatorView: UIView, activityIndicator: NVActivityIndicatorView) {
+    view.addSubview(darkIndicatorView)
+    darkIndicatorView.addSubview(activityIndicator)
+    activityIndicator.center = darkIndicatorView.center
+    darkIndicatorView.backgroundColor = UIColor.white
+    let tg = UIGestureRecognizer(target: self, action: #selector(stopLoading))
+    darkIndicatorView.addGestureRecognizer(tg)
+    darkIndicatorView.layer.opacity = 0
+  }
+  
+  func startLoading(darkIndicatorView: UIView, activityIndicator: NVActivityIndicatorView) {
+    darkIndicatorView.layer.opacity = 1
+    activityIndicator.startAnimating()
+  }
+  
+  @objc func stopLoading(darkIndicatorView: UIView, activityIndicator: NVActivityIndicatorView) {
+    UIView.animate(withDuration: 0.3, animations: {
+      darkIndicatorView.layer.opacity = 0
+      activityIndicator.stopAnimating()
+    })
   }
 }

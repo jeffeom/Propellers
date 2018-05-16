@@ -57,6 +57,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NVActivityIndicatorView (4.2.1):
+    - NVActivityIndicatorView/Presenter (= 4.2.1)
+  - NVActivityIndicatorView/Presenter (4.2.1)
   - NYTPhotoViewer (2.0.0):
     - NYTPhotoViewer/AnimatedGifSupport (= 2.0.0)
     - NYTPhotoViewer/Core (= 2.0.0)
@@ -81,6 +84,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - IQKeyboardManagerSwift
   - KRPullLoader
+  - NVActivityIndicatorView
   - NYTPhotoViewer
   - Popover (= 1.0.4)
   - SDWebImage
@@ -104,6 +108,7 @@ SPEC CHECKSUMS:
   KRPullLoader: b45266f518ba8affa572141b335d5d30425b58c0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NVActivityIndicatorView: 8068ba3ad39cb44cbaab25d89ff2546b3f092681
   NYTPhotoViewer: 34b8bd6bcc297466adec1668f9a01249d73c90e6
   Popover: 8bced665f98824ded3b8114a27f4d2281c78a672
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
@@ -111,6 +116,6 @@ SPEC CHECKSUMS:
   Stripe: 542f2c4493ce31a99fa041fe4973206e8c868f29
   TagListView: 669f7d4455003c877655875d34829731c4191528
 
-PODFILE CHECKSUM: 07a287de4264edcae6e046295934560e89990204
+PODFILE CHECKSUM: 75be12953bd19244ea42e060874b2af51ed52646
 
 COCOAPODS: 1.4.0
