@@ -42,6 +42,8 @@
 		405F29AE202FABDC0030E19C /* GeneralTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
 		40A64A7920AE1CBE00983ADE /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */; };
+		40A64A7B20AE2C1700983ADE /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */; };
+		40A64A7F20AE2E7A00983ADE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7E20AE2E7900983ADE /* Constants.swift */; };
 		40B0043B202F91F700683324 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0043A202F91F700683324 /* NewChatViewController.swift */; };
 		40B0043D202F990800683324 /* ChatCollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0043C202F990800683324 /* ChatCollectionViewCells.swift */; };
 		40B0043F202F996F00683324 /* UIViewController+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0043E202F996F00683324 /* UIViewController+Extra.swift */; };
@@ -123,6 +125,8 @@
 		405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBarViewController.swift; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
+		40A64A7E20AE2E7900983ADE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Propellers/Constants.swift; sourceTree = SOURCE_ROOT; };
 		40B0043A202F91F700683324 /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		40B0043C202F990800683324 /* ChatCollectionViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCells.swift; sourceTree = "<group>"; };
 		40B0043E202F996F00683324 /* UIViewController+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extra.swift"; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */,
 				405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */,
 				40B0043E202F996F00683324 /* UIViewController+Extra.swift */,
+				40A64A7E20AE2E7900983ADE /* Constants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 			children = (
 				403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */,
 				40B00440202F9A5400683324 /* Reachability.swift */,
+				40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Propellers/Pods-Propellers-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -610,6 +617,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -721,6 +729,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PropellersUITests/Pods-PropellersUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -738,6 +747,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -780,6 +790,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PropellersTests/Pods-PropellersTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -797,6 +808,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -839,12 +851,14 @@
 				4019CEA61FA1BDAB00B738B4 /* AppDelegate.swift in Sources */,
 				403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */,
 				403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */,
+				40A64A7B20AE2C1700983ADE /* StripeAPIClient.swift in Sources */,
 				40E59B3B1FA859870069B8B2 /* RoomViewController.swift in Sources */,
 				403E56E81FA7C5AF00110BB1 /* SignUpViewController.swift in Sources */,
 				405A45851FCCD99D00DCC527 /* Project.swift in Sources */,
 				405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */,
 				40B0043D202F990800683324 /* ChatCollectionViewCells.swift in Sources */,
 				405A457B1FCCD22A00DCC527 /* ExploreViewController.swift in Sources */,
+				40A64A7F20AE2E7A00983ADE /* Constants.swift in Sources */,
 				405A45831FCCD89E00DCC527 /* UserProfile.swift in Sources */,
 				405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */,
 				405F29AE202FABDC0030E19C /* GeneralTabBarViewController.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 import BuddyBuildSDK
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     BuddyBuildSDK.setup()
     FirebaseApp.configure()
     IQKeyboardManager.shared.enable = true
+    STPPaymentConfiguration.shared().publishableKey = Constants.publishableKey
     return true
   }
   func addRedDotAtTabBarItemIndex(index: Int, withTag tag: Int) {

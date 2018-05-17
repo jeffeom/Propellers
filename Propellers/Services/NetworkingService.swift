@@ -15,7 +15,8 @@ import FirebaseUI
 import SDWebImage
 
 struct NetworkingService {
-  static public let shared = NetworkingService()
+    static public let shared = NetworkingService()
+  
   var databaseRef: DatabaseReference! {
     return Database.database().reference()
   }

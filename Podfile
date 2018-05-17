@@ -18,6 +18,7 @@ def shared_pods
   pod 'KRPullLoader'
   pod 'Stripe'
   pod 'NVActivityIndicatorView'
+  pod 'Alamofire'
 end
 
 target 'Propellers' do
