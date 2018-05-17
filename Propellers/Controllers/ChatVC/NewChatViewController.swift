@@ -35,7 +35,7 @@ class NewChatViewController: UIViewController {
   @IBOutlet weak var attachmentCollectionView: UICollectionView!
   
   //AttachmentView
-  var accessoryItemRow1 = ["Photos", "Videos", "Contact", "Payment"]
+  var accessoryItemRow1 = ["Library", "Camera", "Contact", "Payment"]
   var accessoryImageRow1 = [#imageLiteral(resourceName: "chatPictures"), #imageLiteral(resourceName: "chatVideo"), #imageLiteral(resourceName: "chatContacts"), #imageLiteral(resourceName: "chatPayment")]
   var accessoryItemRow2 = ["Contract", "Invoice"]
   var accessoryImageRow2 = [#imageLiteral(resourceName: "chatContract"), #imageLiteral(resourceName: "chatInvoice")]
@@ -819,15 +819,16 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
       if indexPath.section == 0 {
         switch indexPath.item {
         case 0:
+          print("Library")
+          usePhotoLibrary()
+        case 1:
           print("Photos")
           useCamera()
-        case 1:
-          print("Videos")
-          usePhotoLibrary()
         case 2:
           print("Contract")
         case 3:
-          print("Invoice")
+          print("Payment")
+          showPaymentVC()
         default:
           print("Default")
         }
@@ -836,7 +837,7 @@ extension NewChatViewController: UICollectionViewDelegate, UICollectionViewDataS
         case 0:
           print("Contact")
         case 1:
-          print("Money")
+          print("Invoice")
         default:
           print("Default")
         }
@@ -951,6 +952,17 @@ extension NewChatViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: Attachment+ImagePickerDelegate
 extension NewChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func showPaymentVC() {
+    let toVC = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: PaymentViewController.identifier) as! PaymentViewController
+    NetworkingService.shared.fetchUser(withUID: NetworkingService.shared.currentUID) { (payer) in
+      toVC.payer = payer
+      NetworkingService.shared.fetchUser(withUID: self.fetchFriendsUID()!, completion: { (receiver) in
+        toVC.receiver = receiver
+        self.navigationController?.pushViewController(toVC, animated: true)
+      })
+    }
+  }
+  
   func useCamera() {
     if UIImagePickerController.isSourceTypeAvailable(.camera) {
       self.picker.allowsEditing = false

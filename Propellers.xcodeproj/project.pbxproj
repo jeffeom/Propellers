@@ -41,6 +41,7 @@
 		405A45871FCD0F5300DCC527 /* UIFont+SizeOfString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */; };
 		405F29AE202FABDC0030E19C /* GeneralTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
+		40A64A7920AE1CBE00983ADE /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */; };
 		40B0043B202F91F700683324 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0043A202F91F700683324 /* NewChatViewController.swift */; };
 		40B0043D202F990800683324 /* ChatCollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0043C202F990800683324 /* ChatCollectionViewCells.swift */; };
 		40B0043F202F996F00683324 /* UIViewController+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0043E202F996F00683324 /* UIViewController+Extra.swift */; };
@@ -121,6 +122,7 @@
 		405F29AC202FA9970030E19C /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBarViewController.swift; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		40B0043A202F91F700683324 /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		40B0043C202F990800683324 /* ChatCollectionViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCells.swift; sourceTree = "<group>"; };
 		40B0043E202F996F00683324 /* UIViewController+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extra.swift"; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				40E59B3A1FA859870069B8B2 /* RoomViewController.swift */,
 				40B0043A202F91F700683324 /* NewChatViewController.swift */,
+				40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */,
 			);
 			path = ChatVC;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				40B2B65F202D57C10097E49D /* RoomTableViewCell.swift in Sources */,
 				405A457F1FCCD66200DCC527 /* ProfileDetailViewController.swift in Sources */,
 				407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */,
+				40A64A7920AE1CBE00983ADE /* PaymentViewController.swift in Sources */,
 				40B00443202F9EF900683324 /* ZoomPhoto.swift in Sources */,
 				40B0043F202F996F00683324 /* UIViewController+Extra.swift in Sources */,
 				40B00441202F9A5400683324 /* Reachability.swift in Sources */,
