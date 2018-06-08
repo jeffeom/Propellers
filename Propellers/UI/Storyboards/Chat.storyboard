@@ -47,7 +47,7 @@
                                 <rect key="frame" x="0.0" y="115" width="375" height="503"/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="roomTableViewCell" id="U37-j1-5IC" customClass="RoomTableViewCell" customModule="Propellers" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="roomTableViewCell" id="U37-j1-5IC" customClass="RoomTableViewCell" customModule="Propellers" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U37-j1-5IC" id="VDg-KO-De0">
@@ -308,6 +308,16 @@
                                     <constraint firstItem="GCK-Tf-EAW" firstAttribute="width" secondItem="BBA-6C-0uX" secondAttribute="width" id="NDY-PG-cAG"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hd-RQ-GMM">
+                                <rect key="frame" x="16" y="561" width="343" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Add New Card"/>
+                                <state key="disabled" image="proceedDisabledButton"/>
+                                <connections>
+                                    <action selector="pressedAddNewCard:" destination="PZ9-bl-fcN" eventType="touchUpInside" id="7lU-ul-Gq4"/>
+                                    <action selector="pressedProceedButton:" destination="PZ9-bl-fcN" eventType="touchUpInside" id="yRW-mH-1e5"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXX-ce-HL1">
                                 <rect key="frame" x="16" y="605" width="343" height="47"/>
                                 <state key="normal" image="applyButton"/>
@@ -321,7 +331,10 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kXX-ce-HL1" firstAttribute="centerX" secondItem="ZKc-P6-ROI" secondAttribute="centerX" id="3j8-ji-TBr"/>
+                            <constraint firstItem="4Hd-RQ-GMM" firstAttribute="width" secondItem="kXX-ce-HL1" secondAttribute="width" id="4dC-SP-1Mr"/>
                             <constraint firstItem="BBA-6C-0uX" firstAttribute="width" secondItem="ZKc-P6-ROI" secondAttribute="width" multiplier="0.9" id="BWk-xs-9bX"/>
+                            <constraint firstItem="kXX-ce-HL1" firstAttribute="top" secondItem="4Hd-RQ-GMM" secondAttribute="bottom" constant="10" id="Bfo-Sj-TUr"/>
+                            <constraint firstItem="4Hd-RQ-GMM" firstAttribute="centerX" secondItem="ZKc-P6-ROI" secondAttribute="centerX" id="RmT-zD-WWS"/>
                             <constraint firstItem="Obb-Dm-zOz" firstAttribute="top" secondItem="ZVh-ig-QfD" secondAttribute="bottom" constant="9" id="Sru-i6-K35"/>
                             <constraint firstItem="Obb-Dm-zOz" firstAttribute="centerX" secondItem="ZKc-P6-ROI" secondAttribute="centerX" id="aKh-L8-qWK"/>
                             <constraint firstItem="n4k-H2-uDv" firstAttribute="top" secondItem="kXX-ce-HL1" secondAttribute="bottom" constant="15" id="sSQ-RC-AEI"/>
@@ -988,7 +1001,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXF-GX-Del">
-                                                                <rect key="frame" x="0.0" y="-519" width="375" height="250"/>
+                                                                <rect key="frame" x="0.0" y="-499" width="375" height="250"/>
                                                                 <subviews>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yVX-Ot-nC6">
                                                                         <rect key="frame" x="20" y="20" width="335" height="210"/>

@@ -15,7 +15,11 @@ import FirebaseUI
 import SDWebImage
 
 struct NetworkingService {
-    static public let shared = NetworkingService()
+  static public let shared = NetworkingService()
+  
+  var paymentToken: String? {
+    return UserDefaults.standard.value(forKey: "paymentToken") as? String
+  }
   
   var databaseRef: DatabaseReference! {
     return Database.database().reference()
