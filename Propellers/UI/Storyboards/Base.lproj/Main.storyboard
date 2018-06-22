@@ -260,7 +260,7 @@
         <!--General Tab Bar View Controller-->
         <scene sceneID="FEV-rU-H80">
             <objects>
-                <tabBarController storyboardIdentifier="MainScreen" id="JFR-m1-NfU" customClass="GeneralTabBarViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JFR-m1-NfU" customClass="GeneralTabBarViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qp3-c9-FTf">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

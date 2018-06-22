@@ -31,6 +31,8 @@
 		403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */; };
 		403E56ED1FA7CD0E00110BB1 /* String+Uppercase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */; };
 		403E56EF1FA7F2A800110BB1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E56EE1FA7F2A800110BB1 /* Message.swift */; };
+		404F67A320DC978B00D92C0F /* ProImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404F67A220DC978B00D92C0F /* ProImageView.swift */; };
+		404F67A520DC9DC500D92C0F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404F67A420DC9DC500D92C0F /* DetailViewController.swift */; };
 		405A456E1FCCCDD800DCC527 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A456D1FCCCDD800DCC527 /* FriendsViewController.swift */; };
 		405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45731FCCCF8000DCC527 /* ThemeColor.swift */; };
 		405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */; };
@@ -115,6 +117,8 @@
 		403E56EA1FA7C67E00110BB1 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		403E56EC1FA7CD0E00110BB1 /* String+Uppercase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercase.swift"; sourceTree = "<group>"; };
 		403E56EE1FA7F2A800110BB1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		404F67A220DC978B00D92C0F /* ProImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProImageView.swift; sourceTree = "<group>"; };
+		404F67A420DC9DC500D92C0F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		405A456D1FCCCDD800DCC527 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		405A45731FCCCF8000DCC527 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		405A45751FCCD0B600DCC527 /* FixedImageNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedImageNavigationItem.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 				405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */,
 				40B0043E202F996F00683324 /* UIViewController+Extra.swift */,
 				40A64A7E20AE2E7900983ADE /* Constants.swift */,
+				404F67A220DC978B00D92C0F /* ProImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				4036FC7520CA2E78004518B1 /* NewsfeedViewController.swift */,
+				404F67A420DC9DC500D92C0F /* DetailViewController.swift */,
 			);
 			path = NewsfeedVC;
 			sourceTree = "<group>";
@@ -877,12 +883,14 @@
 				403E56E81FA7C5AF00110BB1 /* SignUpViewController.swift in Sources */,
 				405A45851FCCD99D00DCC527 /* Project.swift in Sources */,
 				405A45761FCCD0B600DCC527 /* FixedImageNavigationItem.swift in Sources */,
+				404F67A320DC978B00D92C0F /* ProImageView.swift in Sources */,
 				40B0043D202F990800683324 /* ChatCollectionViewCells.swift in Sources */,
 				405A457B1FCCD22A00DCC527 /* ExploreViewController.swift in Sources */,
 				40A64A7F20AE2E7A00983ADE /* Constants.swift in Sources */,
 				4036FC7620CA2E78004518B1 /* NewsfeedViewController.swift in Sources */,
 				405A45831FCCD89E00DCC527 /* UserProfile.swift in Sources */,
 				405A45741FCCCF8000DCC527 /* ThemeColor.swift in Sources */,
+				404F67A520DC9DC500D92C0F /* DetailViewController.swift in Sources */,
 				405F29AE202FABDC0030E19C /* GeneralTabBarViewController.swift in Sources */,
 				40B2B661202D57DF0097E49D /* UserCell.swift in Sources */,
 				403E56EB1FA7C67E00110BB1 /* NetworkingService.swift in Sources */,
