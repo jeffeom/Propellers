@@ -19,7 +19,7 @@ def shared_pods
   pod 'Stripe'
   pod 'NVActivityIndicatorView'
   pod 'Alamofire'
-  pod 'Cards'
+  pod 'Hero'
 end
 
 target 'Propellers' do
