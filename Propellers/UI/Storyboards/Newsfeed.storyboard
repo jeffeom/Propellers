@@ -303,10 +303,10 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHR-6G-gEm">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                                                             <subviews>
                                                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g60-tO-WDE">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                                                                     <subviews>
                                                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WIz-Bn-WtE">
                                                                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
@@ -316,7 +316,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                                                                                             </constraints>
                                                                                                         </imageView>
                                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5DC-iE-Zfo">
-                                                                                                            <rect key="frame" x="45" y="0.0" width="290" height="35"/>
+                                                                                                            <rect key="frame" x="45" y="0.0" width="290" height="40"/>
                                                                                                             <subviews>
                                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKk-xj-PN3">
                                                                                                                     <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
@@ -328,7 +328,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                                                                                                     <nil key="highlightedColor"/>
                                                                                                                 </label>
                                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h99-wI-bZL">
-                                                                                                                    <rect key="frame" x="0.0" y="20.5" width="290" height="14.5"/>
+                                                                                                                    <rect key="frame" x="0.0" y="20.5" width="290" height="19.5"/>
                                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                                     <nil key="textColor"/>
                                                                                                                     <nil key="highlightedColor"/>
@@ -406,6 +406,27 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                     <outlet property="delegate" destination="yeT-pT-bRn" id="CTS-Sj-PpS"/>
                                 </connections>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6h-7w-ao9">
+                                <rect key="frame" x="330" y="20" width="25" height="25"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtW-ij-SY2">
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                        <state key="normal" image="exit"/>
+                                        <connections>
+                                            <action selector="pressedExitButton:" destination="yeT-pT-bRn" eventType="touchUpInside" id="2Ts-Tf-2tO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="xtW-ij-SY2" firstAttribute="leading" secondItem="c6h-7w-ao9" secondAttribute="leading" id="38h-Bm-jdv"/>
+                                    <constraint firstAttribute="bottom" secondItem="xtW-ij-SY2" secondAttribute="bottom" id="OiV-uX-ycP"/>
+                                    <constraint firstAttribute="height" constant="25" id="T8y-MF-6t6"/>
+                                    <constraint firstAttribute="width" constant="25" id="lsS-2C-P4h"/>
+                                    <constraint firstItem="xtW-ij-SY2" firstAttribute="top" secondItem="c6h-7w-ao9" secondAttribute="top" id="nY5-CP-Zmx"/>
+                                    <constraint firstAttribute="trailing" secondItem="xtW-ij-SY2" secondAttribute="trailing" id="yzu-gm-smb"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4q-Me-nLC">
                                 <rect key="frame" x="20" y="1210" width="335" height="40"/>
                                 <subviews>
@@ -443,6 +464,8 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xtw-si-5F4" firstAttribute="trailing" secondItem="P4q-Me-nLC" secondAttribute="trailing" constant="20" id="56i-wV-P7O"/>
+                            <constraint firstItem="xtw-si-5F4" firstAttribute="trailing" secondItem="c6h-7w-ao9" secondAttribute="trailing" constant="20" id="BS7-hx-ELy"/>
+                            <constraint firstItem="c6h-7w-ao9" firstAttribute="top" secondItem="paz-je-ew9" secondAttribute="top" constant="20" id="Jr7-EG-JFo"/>
                             <constraint firstItem="xtw-si-5F4" firstAttribute="bottom" secondItem="P4q-Me-nLC" secondAttribute="bottom" constant="-50" id="VF9-rt-8Hp"/>
                             <constraint firstItem="12x-NP-UZ9" firstAttribute="top" secondItem="paz-je-ew9" secondAttribute="top" id="XUH-A9-uCa"/>
                             <constraint firstItem="P4q-Me-nLC" firstAttribute="leading" secondItem="xtw-si-5F4" secondAttribute="leading" constant="20" id="bDC-jz-SUy"/>
@@ -466,6 +489,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                         <outlet property="commentsCollectionViewHeightConstraint" destination="QRX-FV-7gQ" id="kCP-wr-uzm"/>
                         <outlet property="commentsCountLabel" destination="qLQ-o3-pTU" id="cMI-Jn-hsm"/>
                         <outlet property="descriptionTextView" destination="UYP-rd-7Tv" id="LKs-Y6-aya"/>
+                        <outlet property="exitView" destination="c6h-7w-ao9" id="vre-Ok-1he"/>
                         <outlet property="mainImageView" destination="UR5-eR-EK3" id="TZP-Fw-W1K"/>
                         <outlet property="textView" destination="UYP-rd-7Tv" id="BJZ-2Q-gVn"/>
                         <outlet property="totalStackView" destination="0XE-tq-mkk" id="J5K-9l-E3e"/>
@@ -502,6 +526,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
     </scenes>
     <resources>
         <image name="chatPictures" width="54" height="52"/>
+        <image name="exit" width="16" height="16"/>
         <image name="frdIcon05" width="37" height="32"/>
         <image name="frdIconSelected05" width="40" height="34"/>
         <image name="testPic1" width="1010" height="1514"/>
