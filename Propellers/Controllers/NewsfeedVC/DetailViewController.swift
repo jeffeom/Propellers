@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
   @IBOutlet weak var totalStackView: UIStackView!
+  @IBOutlet weak var mainScrollView: UIScrollView!
   @IBOutlet weak var mainImageView: UIImageView!
   @IBOutlet weak var userImageView: ProImageView!
   @IBOutlet weak var userInfoView: UIView!
@@ -35,6 +36,7 @@ class DetailViewController: UIViewController {
     setupCommentView()
     setupExitView()
     commentsCollectionViewHeightConstraint.constant = CGFloat(commentsArray.count * 40 + commentsArray.count * 15)
+    mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(mainImageView.bounds.height, 0, 0, 0)
   }
   
   func setupHeroViews() {

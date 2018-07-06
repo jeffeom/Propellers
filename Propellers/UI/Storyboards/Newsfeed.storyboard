@@ -491,6 +491,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                         <outlet property="descriptionTextView" destination="UYP-rd-7Tv" id="LKs-Y6-aya"/>
                         <outlet property="exitView" destination="c6h-7w-ao9" id="vre-Ok-1he"/>
                         <outlet property="mainImageView" destination="UR5-eR-EK3" id="TZP-Fw-W1K"/>
+                        <outlet property="mainScrollView" destination="12x-NP-UZ9" id="DXE-iC-xEX"/>
                         <outlet property="textView" destination="UYP-rd-7Tv" id="BJZ-2Q-gVn"/>
                         <outlet property="totalStackView" destination="0XE-tq-mkk" id="J5K-9l-E3e"/>
                         <outlet property="userImageView" destination="ar7-DX-j0c" id="aJ7-sZ-XDb"/>
