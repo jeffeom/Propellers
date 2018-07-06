@@ -9,6 +9,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+  @IBOutlet weak var totalStackView: UIStackView!
   @IBOutlet weak var mainImageView: UIImageView!
   @IBOutlet weak var userImageView: ProImageView!
   @IBOutlet weak var userInfoView: UIView!
@@ -16,10 +17,22 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var userSpecialLabel: UILabel!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var buttonStackView: UIStackView!
+  @IBOutlet weak var descriptionTextView: UITextView!
+  @IBOutlet weak var commentsCountLabel: UILabel!
+  @IBOutlet weak var commentsCollectionView: UICollectionView!
+  @IBOutlet weak var commentsCollectionViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var commentView: UIView!
+  @IBOutlet weak var commentTextField: UITextField!
+  @IBOutlet weak var commentSendButton: UIButton!
+  @IBOutlet weak var commentViewBottomConstraint: NSLayoutConstraint!
+  
+  var commentsArray = ["1", "2", "3", "4"]
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupHeroViews()
+    setupCommentView()
+    commentsCollectionViewHeightConstraint.constant = CGFloat(commentsArray.count * 40 + commentsArray.count * 15)
   }
   
   func setupHeroViews() {
@@ -29,12 +42,46 @@ class DetailViewController: UIViewController {
     textView.hero.modifiers = [.translate(y: 500), .useGlobalCoordinateSpace]
     buttonStackView.hero.modifiers = [.translate(x: 500), .useGlobalCoordinateSpace]
   }
+  
+  func setupCommentView() {
+    commentView.layer.borderColor = UIColor(red: 194/255, green: 194/255, blue: 194/255, alpha: 1.0).cgColor
+    commentView.layer.borderWidth = 1
+    commentView.layer.cornerRadius = 20
+    commentView.clipsToBounds = true
+    commentSendButton.layer.cornerRadius = 15
+    commentSendButton.clipsToBounds = true
+  }
 }
 
 extension DetailViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if scrollView.contentOffset.y < -150 || scrollView.contentOffset.y > 150 {
+    if scrollView.contentOffset.y < -150 {
       self.hero.dismissViewController()
     }
+    
+    if scrollView.contentOffset.y + self.view.bounds.height > totalStackView.bounds.height * 0.95 {
+      commentViewBottomConstraint.constant = 20
+      UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+        self.view.layoutIfNeeded()
+      })
+    }else {
+      if commentViewBottomConstraint.constant == 20 {
+        commentViewBottomConstraint.constant = -50
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+          self.view.layoutIfNeeded()
+        })
+      }
+    }
+  }
+}
+
+extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 10
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommentsCollectionViewCell.identifier, for: indexPath) as! CommentsCollectionViewCell
+    return cell
   }
 }

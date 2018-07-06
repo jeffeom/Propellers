@@ -44,6 +44,7 @@
 		405A45851FCCD99D00DCC527 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45841FCCD99D00DCC527 /* Project.swift */; };
 		405A45871FCD0F5300DCC527 /* UIFont+SizeOfString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */; };
 		405F29AE202FABDC0030E19C /* GeneralTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */; };
+		406F973520EF0D400011BF93 /* CommentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F973420EF0D400011BF93 /* CommentsCollectionViewCell.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
 		40A64A7920AE1CBE00983ADE /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */; };
 		40A64A7B20AE2C1700983ADE /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */; };
@@ -131,6 +132,7 @@
 		405A45861FCD0F5300DCC527 /* UIFont+SizeOfString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+SizeOfString.swift"; sourceTree = "<group>"; };
 		405F29AC202FA9970030E19C /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBarViewController.swift; sourceTree = "<group>"; };
+		406F973420EF0D400011BF93 /* CommentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				40B2B660202D57DF0097E49D /* UserCell.swift */,
 				40B0043C202F990800683324 /* ChatCollectionViewCells.swift */,
 				40B00442202F9EF900683324 /* ZoomPhoto.swift */,
+				406F973420EF0D400011BF93 /* CommentsCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				406F973520EF0D400011BF93 /* CommentsCollectionViewCell.swift in Sources */,
 				4019CEF01FA1BF1200B738B4 /* Date+milliseconds.swift in Sources */,
 				405A456E1FCCCDD800DCC527 /* FriendsViewController.swift in Sources */,
 				405A45871FCD0F5300DCC527 /* UIFont+SizeOfString.swift in Sources */,
