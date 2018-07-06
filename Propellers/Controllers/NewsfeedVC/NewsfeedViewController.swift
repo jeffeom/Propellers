@@ -20,21 +20,16 @@ class NewsfeedViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
     navigationController?.navigationBar.barTintColor = ThemeColor.lightBlueColor
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if #available(iOS 11, *) {
-//      self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
     createRoundShadowView(withShadowView: shadowView, andContentView: contentView, withCornerRadius: 15)
     setupHeroViews()
   }
   
   @IBAction func pressedCardView(_ sender: Any) {
-    print("hi")
     let vc2 = UIStoryboard(name: "Newsfeed", bundle: nil).instantiateViewController(withIdentifier: "detailVC") as! DetailViewController
     vc2.hero.isEnabled = true
     present(vc2, animated: true, completion: nil)
