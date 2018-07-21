@@ -17,16 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   
   lazy var mainViewController = {
-    return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainScreen") as! GeneralTabBarViewController
+    return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainScreen") as! GeneralTabBarController
   }()
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     BuddyBuildSDK.setup()
     FirebaseApp.configure()
-    IQKeyboardManager.shared.enable = true
+//    IQKeyboardManager.shared.enable = true
     STPPaymentConfiguration.shared().publishableKey = Constants.publishableKey
+    UIApplication.shared.statusBarStyle = .lightContent
     return true
   }
+  
   func addRedDotAtTabBarItemIndex(index: Int, withTag tag: Int) {
     for subview in mainViewController.tabBar.subviews {
       if subview.tag == tag {

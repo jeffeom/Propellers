@@ -257,10 +257,10 @@
             </objects>
             <point key="canvasLocation" x="-970.39999999999998" y="790.25487256371821"/>
         </scene>
-        <!--General Tab Bar View Controller-->
+        <!--General Tab Bar Controller-->
         <scene sceneID="FEV-rU-H80">
             <objects>
-                <tabBarController storyboardIdentifier="MainScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JFR-m1-NfU" customClass="GeneralTabBarViewController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JFR-m1-NfU" customClass="GeneralTabBarController" customModule="Propellers" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qp3-c9-FTf">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -319,10 +319,10 @@
             </objects>
             <point key="canvasLocation" x="388" y="74"/>
         </scene>
-        <!--Explore-->
+        <!--Post-->
         <scene sceneID="aUY-AR-bGc">
             <objects>
-                <viewControllerPlaceholder storyboardName="Explore" id="lj8-df-dAw" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Post" id="lj8-df-dAw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Njp-gZ-2UH"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMO-ur-cuc" userLabel="First Responder" sceneMemberID="firstResponder"/>

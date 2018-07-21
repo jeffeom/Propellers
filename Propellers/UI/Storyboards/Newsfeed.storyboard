@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +25,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tW2-gC-ChD">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="368"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testPic1" translatesAutoresizingMaskIntoConstraints="NO" id="fmz-60-OCn">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testPic2" translatesAutoresizingMaskIntoConstraints="NO" id="fmz-60-OCn">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="368"/>
                                                 <gestureRecognizers/>
                                             </imageView>
@@ -168,16 +169,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0XE-tq-mkk">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1062.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1125"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testPic1" translatesAutoresizingMaskIntoConstraints="NO" id="UR5-eR-EK3">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testPic2" translatesAutoresizingMaskIntoConstraints="NO" id="UR5-eR-EK3">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="562.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="500" id="UWc-tY-GR6"/>
+                                                    <constraint firstAttribute="width" secondItem="UR5-eR-EK3" secondAttribute="height" multiplier="2:3" id="TDG-Js-ZDf"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xz-XZ-nSY">
-                                                <rect key="frame" x="0.0" y="500" width="375" height="562.5"/>
+                                                <rect key="frame" x="0.0" y="562.5" width="375" height="562.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ygw-4Y-pfT">
                                                         <rect key="frame" x="20" y="20" width="335" height="462.5"/>
@@ -308,15 +309,21 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g60-tO-WDE">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                                                                     <subviews>
-                                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WIz-Bn-WtE">
+                                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WIz-Bn-WtE" customClass="ProImageView" customModule="Propellers" customModuleProvider="target">
                                                                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="width" constant="35" id="5v0-8t-2Md"/>
                                                                                                                 <constraint firstAttribute="height" constant="35" id="idI-Eb-IHE"/>
                                                                                                             </constraints>
+                                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                                    <real key="value" value="17.5"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                            </userDefinedRuntimeAttributes>
                                                                                                         </imageView>
                                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5DC-iE-Zfo">
-                                                                                                            <rect key="frame" x="45" y="0.0" width="290" height="40"/>
+                                                                                                            <rect key="frame" x="45" y="0.0" width="290" height="38.5"/>
                                                                                                             <subviews>
                                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKk-xj-PN3">
                                                                                                                     <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
@@ -328,8 +335,8 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                                                                                                     <nil key="highlightedColor"/>
                                                                                                                 </label>
                                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h99-wI-bZL">
-                                                                                                                    <rect key="frame" x="0.0" y="20.5" width="290" height="19.5"/>
-                                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                                                    <rect key="frame" x="0.0" y="20.5" width="290" height="18"/>
+                                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                                                     <nil key="textColor"/>
                                                                                                                     <nil key="highlightedColor"/>
                                                                                                                 </label>
@@ -407,7 +414,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6h-7w-ao9">
-                                <rect key="frame" x="330" y="20" width="25" height="25"/>
+                                <rect key="frame" x="330" y="40" width="25" height="25"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtW-ij-SY2">
                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -465,7 +472,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                         <constraints>
                             <constraint firstItem="xtw-si-5F4" firstAttribute="trailing" secondItem="P4q-Me-nLC" secondAttribute="trailing" constant="20" id="56i-wV-P7O"/>
                             <constraint firstItem="xtw-si-5F4" firstAttribute="trailing" secondItem="c6h-7w-ao9" secondAttribute="trailing" constant="20" id="BS7-hx-ELy"/>
-                            <constraint firstItem="c6h-7w-ao9" firstAttribute="top" secondItem="paz-je-ew9" secondAttribute="top" constant="20" id="Jr7-EG-JFo"/>
+                            <constraint firstItem="c6h-7w-ao9" firstAttribute="top" secondItem="paz-je-ew9" secondAttribute="top" constant="40" id="Jr7-EG-JFo"/>
                             <constraint firstItem="xtw-si-5F4" firstAttribute="bottom" secondItem="P4q-Me-nLC" secondAttribute="bottom" constant="-50" id="VF9-rt-8Hp"/>
                             <constraint firstItem="12x-NP-UZ9" firstAttribute="top" secondItem="paz-je-ew9" secondAttribute="top" id="XUH-A9-uCa"/>
                             <constraint firstItem="P4q-Me-nLC" firstAttribute="leading" secondItem="xtw-si-5F4" secondAttribute="leading" constant="20" id="bDC-jz-SUy"/>
@@ -502,7 +509,7 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95S-e6-ngc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="72.863568215892059"/>
+            <point key="canvasLocation" x="2289" y="73"/>
         </scene>
         <!--Newsfeed-->
         <scene sceneID="b1s-PQ-1o6">
@@ -530,6 +537,6 @@ Duis vel nulla libero. Vivamus porttitor dolor eget arcu mollis, quis placerat a
         <image name="exit" width="16" height="16"/>
         <image name="frdIcon05" width="37" height="32"/>
         <image name="frdIconSelected05" width="40" height="34"/>
-        <image name="testPic1" width="1010" height="1514"/>
+        <image name="testPic2" width="1024" height="1535"/>
     </resources>
 </document>
