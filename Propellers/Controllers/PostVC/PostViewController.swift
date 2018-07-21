@@ -9,6 +9,7 @@
 import UIKit
 
 class PostViewController: UIViewController {
+  @IBOutlet weak var shadowView: UIView!
   @IBOutlet weak var passionView: UIView!
   @IBOutlet weak var portfolioView: UIView!
   
@@ -16,10 +17,13 @@ class PostViewController: UIViewController {
   fileprivate var imageData: Data = Data()
   fileprivate let picker = UIImagePickerController()
   
+  fileprivate var blurView: UIVisualEffectView!
+  
   var selectedImage: UIImage?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    blurView = UIVisualEffectView(frame: view.frame)
     picker.delegate = self
     setupTouchGesture()
   }
@@ -28,7 +32,17 @@ class PostViewController: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.isHidden = true
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    view.insertSubview(blurView, belowSubview: shadowView)
+    UIView.animate(withDuration: 0.25) {
+      self.blurView.effect = UIBlurEffect(style: .light)
+    }
+  }
+  
   @IBAction func pressedCancelButton(_ sender: UIButton) {
+    blurView.removeFromSuperview()
     dismiss(animated: true, completion: nil)
   }
 }
@@ -37,7 +51,7 @@ extension PostViewController: UIImagePickerControllerDelegate, UINavigationContr
   func setupTouchGesture() {
     let tg1 = UITapGestureRecognizer(target: self, action: #selector(openLibrary))
     let tg2 = UITapGestureRecognizer(target: self, action: #selector(openLibrary))
-
+    
     passionView.addGestureRecognizer(tg1)
     portfolioView.addGestureRecognizer(tg2)
   }

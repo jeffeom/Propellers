@@ -49,8 +49,8 @@ extension GeneralTabBarController: UITabBarControllerDelegate {
     guard let toVC = UIStoryboard(name: "Post", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as? PostViewController else { return }
     toVC.modalPresentationStyle = .custom
     toVC.transitioningDelegate = self
-    let navController = UINavigationController(rootViewController: toVC)
-    navController.view.backgroundColor = .white
-    self.present(navController, animated: true, completion: nil)
+//    let navController = UINavigationController(rootViewController: toVC)
+//    navController.view.backgroundColor = .clear
+    self.present(toVC, animated: true, completion: nil)
   }
 }

@@ -99,7 +99,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.49641481164383561" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="FrO-Xv-Px3" firstAttribute="centerX" secondItem="6bf-Og-8Ai" secondAttribute="centerX" id="12H-b9-Xra"/>
                                     <constraint firstItem="FrO-Xv-Px3" firstAttribute="top" secondItem="hLL-VC-2nq" secondAttribute="bottom" constant="50" id="5wv-Zs-TVn"/>
@@ -109,7 +108,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6bf-Og-8Ai" firstAttribute="leading" secondItem="TxD-S3-X1X" secondAttribute="leading" id="8nt-Ch-l2z"/>
                             <constraint firstItem="TxD-S3-X1X" firstAttribute="bottom" secondItem="6bf-Og-8Ai" secondAttribute="bottom" id="JC5-DS-Qza"/>
@@ -127,6 +125,7 @@
                     <connections>
                         <outlet property="passionView" destination="gqX-ZR-q8b" id="ncw-t4-Amz"/>
                         <outlet property="portfolioView" destination="vve-n1-YTX" id="qTV-fE-bcd"/>
+                        <outlet property="shadowView" destination="6bf-Og-8Ai" id="yyL-wK-xEz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rmr-Ih-eJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
