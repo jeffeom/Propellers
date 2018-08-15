@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JY6-gy-5fK">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="fJZ-SY-vKr">
+            <objects>
+                <viewController id="K63-Lh-vc3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KiV-Pu-Hdx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hJp-6e-Rwu"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dBt-5r-TPe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TCq-k8-Csz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1938.4000000000001" y="-188.45577211394306"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="Rtq-dZ-ZHl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JY6-gy-5fK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" image="frdIcon05" selectedImage="frdIconSelected05" id="v9h-5S-jZn"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZdX-zs-6bb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="K63-Lh-vc3" kind="relationship" relationship="rootViewController" id="cf8-9N-Pyb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vaJ-bK-5iM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="999.20000000000005" y="-188.45577211394306"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="frdIcon05" width="37" height="32"/>
+        <image name="frdIconSelected05" width="40" height="34"/>
+    </resources>
+</document>

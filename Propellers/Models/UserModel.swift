@@ -11,11 +11,17 @@ import FirebaseDatabase
 
 class UserModel: NSObject {
   var key: String?
+  var uid: String?
   var firstName: String?
   var lastName: String?
-  var imageURL: String?
-  var uid: String?
-  var friends: [String: Bool]?
+  var email: String?
+  var userDescription: String?
+  var profession: String?
+  var profileImage: String?
+  var mainImage: String?
+  var friends: [String]?
+  var portfolios: [String]?
+  var passions: [String]?
   var ref: DatabaseReference?
   
   var fullName: String?
@@ -23,17 +29,19 @@ class UserModel: NSObject {
   init?(snapshot: DataSnapshot) {
     guard let snapshotValue = snapshot.value as? [String:AnyObject] else { return nil }
     key = snapshot.key
+    uid = snapshotValue["uid"] as? String
     firstName = snapshotValue["first_name"] as? String
     lastName = snapshotValue["last_name"] as? String
-    imageURL = snapshotValue["photo_url"] as? String
-    friends = snapshotValue["friends"] as? [String: Bool]
-    uid = snapshotValue["uid"] as? String
+    email = snapshotValue["email"] as? String
+    userDescription = snapshotValue["description"] as? String
+    profession = snapshotValue["profession"] as? String
+    profileImage = snapshotValue["profile_image"] as? String
+    mainImage = snapshotValue["main_image"] as? String
+    friends = (snapshotValue["friends"] as? [String: Bool])?.map({ $0.key })
+    portfolios = (snapshotValue["portfolios"] as? [String: Bool])?.map({ $0.key })
+    passions = (snapshotValue["passions"] as? [String: Bool])?.map({ $0.key })
     ref = snapshot.ref
     
     fullName = (firstName?.uppercaseFirst ?? "") + " " + (lastName?.uppercaseFirst ?? "")
   }
-  
-//  func json() -> [String:Any]? {
-//    return ["firstName": firstName ?? "", "lastName": lastName ?? "", "imageURL": imageURL ?? "", "uid": uid ?? "", "friends": friends ?? []] as! [String : AnyObject]
-//  }
 }

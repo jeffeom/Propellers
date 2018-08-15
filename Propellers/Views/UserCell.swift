@@ -19,12 +19,6 @@ class UserCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    //    switch statusType {
-    //    case .client:
-    //      statusView.backgroundColor = .yellow
-    //    case .freeLancer:
-    //      statusView.backgroundColor = .red
-    //    }
     
     backgroundColor = .clear
     

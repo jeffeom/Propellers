@@ -27,21 +27,14 @@ struct NetworkingService {
   var storageRef: StorageReference {
     return Storage.storage().reference()
   }
-  
   var chatRef: DatabaseReference {
     return Database.database().reference().child("chat")
   }
-  
   var userRef: DatabaseReference {
     return Database.database().reference().child("users")
   }
-  
   var currentUID: String {
     return (Auth.auth().currentUser?.uid)!
-  }
-  
-  var profileRef: DatabaseReference {
-    return Database.database().reference().child("profile")
   }
 }
 
@@ -113,7 +106,7 @@ extension NetworkingService {
       completion(false)
       return
     }
-    let userInfo = ["email": email, "first_name": firstName.uppercaseFirst, "last_name": lastName.uppercaseFirst, "uid": user.uid, "photo_url": url.absoluteString]
+    let userInfo = ["email": email, "first_name": firstName.uppercaseFirst, "last_name": lastName.uppercaseFirst, "uid": user.uid, "profile_image": url.absoluteString]
     // create user reference
     let theUserRef = userRef.child(user.uid)
     // Save the user info in the Database
@@ -141,68 +134,7 @@ extension NetworkingService {
   }
 }
 
-//MARK: Friends
-extension NetworkingService {
-  func fetchFriends(completion: @escaping ([UserModel]) -> ()) {
-    userRef.child(currentUID).child("friends").observeSingleEvent(of: .value) { (snapshot) in
-      var fetchedFriends: [UserModel] = []
-      guard let listOfFreindsUID = snapshot.value as? [String: Bool] else {
-        completion([])
-        return
-      }
-      for aFriend in listOfFreindsUID.keys {
-        self.userRef.child(aFriend).observeSingleEvent(of: .value, with: { (snapshot) in
-          let aFriend = UserModel(snapshot: snapshot)
-          fetchedFriends.append(aFriend!)
-          if fetchedFriends.count == listOfFreindsUID.count {
-            completion(fetchedFriends)
-          }
-        })
-      }
-    }
-  }
-  
-  func fetchProfileForFriend(withUID uid: String, completion: @escaping (UserProfile?) -> ()) {
-    profileRef.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-      if snapshot.exists() {
-        completion(UserProfile(snapshot: snapshot))
-      }else {
-        completion(nil)
-      }
-    }
-  }
-  
-  func fetchUser(withUID uid: String, completion: @escaping (UserModel?) -> ()) {
-    userRef.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-      if snapshot.exists() {
-        completion(UserModel(snapshot: snapshot))
-      }else {
-        completion(nil)
-      }
-    }
-  }
-  
-  func markFavorite(withUID uid: String, projectKey key: String, completion: @escaping () -> ()) {
-    let favoriteRef = profileRef.child(uid).child("projects").child(key).child("favorite")
-    favoriteRef.observeSingleEvent(of: .value) { (snapshot) in
-      if snapshot.exists() && snapshot.hasChildren() {
-        let favoritesDict = snapshot.value as! [String: Bool]
-        if favoritesDict.keys.contains(self.currentUID) {
-          favoriteRef.child(self.currentUID).removeValue()
-          completion()
-        }else {
-          favoriteRef.child(self.currentUID).setValue(true)
-          completion()
-        }
-      }else {
-        favoriteRef.child(self.currentUID).setValue(true)
-        completion()
-      }
-    }
-  }
-}
-
-//MARK: Chat
+//MARK: Chat Service
 extension NetworkingService {
   func fetchRooms(completion: @escaping ([Room]) -> ()) {
     chatRef.child("rooms").observeSingleEvent(of: .value) { (snapshot) in

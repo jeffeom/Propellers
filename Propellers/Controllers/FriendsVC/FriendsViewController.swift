@@ -13,25 +13,59 @@ enum UserStatusType {
 }
 
 class FriendsViewController: UIViewController {
-  static let identifier = "friendsVC"
   @IBOutlet weak var friendsTableView: UITableView!
-  @IBOutlet weak var searchBar: UISearchBar!
-  var friendsArray: [UserModel]?
+  
+  static let identifier = "friendsVC"
+  var friendsArray = [UserModel]()
+  var filteredFriendsArray = [UserModel]()
   var selectedUser: UserModel?
+  let searchController = UISearchController(searchResultsController: nil)
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    searchBar.backgroundImage = UIImage()
+    navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+    if #available(iOS 11.0, *) {
+      navigationController?.navigationBar.prefersLargeTitles = true
+      navigationController?.navigationBar.largeTitleTextAttributes = [ NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40, weight: .bold)]
+    }
     setupDelegates()
     fetchMyFriends()
+    searchController.searchResultsUpdater = self
+    if #available(iOS 11.0, *) {
+      navigationItem.searchController = searchController
+    } else {
+      navigationItem.titleView = searchController.searchBar
+    }
+    searchController.dimsBackgroundDuringPresentation = false
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.barTintColor = ThemeColor.lightBlueColor
-    navigationController?.navigationBar.tintColor = .white
-    navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "Montserrat-SemiBold", size: 18) ?? UIFont.systemFont(ofSize: 18)]
+    searchController.hidesNavigationBarDuringPresentation = true
+    navigationController?.navigationBar.barTintColor = .white
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    searchController.hidesNavigationBarDuringPresentation = false
+  }
+}
+
+//MARK: SearchResultsUpdater
+extension FriendsViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let theText = searchController.searchBar.text
+    filteredFriendsArray = friendsArray.filter({ $0.fullName?.lowercased().range(of: theText!.lowercased()) != nil })
+    friendsTableView.reloadData()
+  }
+  
+  func isFiltering() -> Bool {
+    return searchController.isActive && !searchBarIsEmpty()
+  }
+  
+  func searchBarIsEmpty() -> Bool {
+    return searchController.searchBar.text?.isEmpty ?? true
   }
 }
 
@@ -56,8 +90,11 @@ extension FriendsViewController {
 //MARK: TableViewDelegates
 extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    guard let friendsArray = friendsArray else { return 0 }
-    return friendsArray.count
+    if isFiltering() {
+      return filteredFriendsArray.count
+    }else {
+      return friendsArray.count      
+    }
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +103,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let section = indexPath.section
-    let theUser = friendsArray![section]
+    let theUser = friendsArray[section]
     let userCell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as! UserCell
     userCell.userImageView.sd_setImage(with: URL(string: theUser.imageURL ?? "")!)
     userCell.userNameLabel.text = theUser.fullName ?? ""
@@ -75,8 +112,15 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let section = indexPath.section
-    selectedUser = friendsArray?[section]
-    performSegue(withIdentifier: "profileDetails", sender: nil)
+    if isFiltering() {
+      selectedUser = filteredFriendsArray[section]
+    }else {
+      selectedUser = friendsArray[section]
+    }
+    
+    let toVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "profileVC") as! ProfileDetailViewController
+    toVC.user = selectedUser?.uid
+    presentingViewController?.navigationController?.pushViewController(toVC, animated: true)
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -87,15 +131,5 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     let clearView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 6 ))
     clearView.backgroundColor = .clear
     return clearView
-  }
-}
-
-//MARK: Segue
-extension FriendsViewController {
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "profileDetails" {
-      let profileVC = segue.destination as! ProfileDetailViewController
-      profileVC.user = selectedUser?.uid
-    }
   }
 }

@@ -21,8 +21,7 @@
 		4019CEE91FA1BEA600B738B4 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE41FA1BEA500B738B4 /* Chat.storyboard */; };
 		4019CEEA1FA1BEA600B738B4 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE51FA1BEA600B738B4 /* Friends.storyboard */; };
 		4019CEEB1FA1BEA600B738B4 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE61FA1BEA600B738B4 /* Post.storyboard */; };
-		4019CEEC1FA1BEA600B738B4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE71FA1BEA600B738B4 /* Settings.storyboard */; };
-		4019CEED1FA1BEA600B738B4 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE81FA1BEA600B738B4 /* Logs.storyboard */; };
+		4019CEEC1FA1BEA600B738B4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4019CEE71FA1BEA600B738B4 /* Profile.storyboard */; };
 		4019CEF01FA1BF1200B738B4 /* Date+milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */; };
 		401C2BCB1FA1C388002129BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */; };
 		4036FC7320CA25A8004518B1 /* Newsfeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4036FC7220CA25A8004518B1 /* Newsfeed.storyboard */; };
@@ -49,6 +48,7 @@
 		405F29AE202FABDC0030E19C /* GeneralTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */; };
 		406F973520EF0D400011BF93 /* CommentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F973420EF0D400011BF93 /* CommentsCollectionViewCell.swift */; };
 		407225F41FB11ED000D2193E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407225F31FB11ED000D2193E /* SettingsViewController.swift */; };
+		407D231B2112A01F00D8099E /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 407D231A2112A01F00D8099E /* Search.storyboard */; };
 		40A64A7920AE1CBE00983ADE /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */; };
 		40A64A7B20AE2C1700983ADE /* StripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */; };
 		40A64A7F20AE2E7A00983ADE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A64A7E20AE2E7900983ADE /* Constants.swift */; };
@@ -111,8 +111,7 @@
 		4019CEE41FA1BEA500B738B4 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		4019CEE51FA1BEA600B738B4 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		4019CEE61FA1BEA600B738B4 /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
-		4019CEE71FA1BEA600B738B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		4019CEE81FA1BEA600B738B4 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
+		4019CEE71FA1BEA600B738B4 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		4019CEEF1FA1BF1200B738B4 /* Date+milliseconds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+milliseconds.swift"; sourceTree = "<group>"; };
 		401C2BCA1FA1C388002129BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4036FC7220CA25A8004518B1 /* Newsfeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Newsfeed.storyboard; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		405F29AD202FABDC0030E19C /* GeneralTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBarViewController.swift; sourceTree = "<group>"; };
 		406F973420EF0D400011BF93 /* CommentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		407225F31FB11ED000D2193E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		407D231A2112A01F00D8099E /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		40A64A7820AE1CBE00983ADE /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		40A64A7A20AE2C1700983ADE /* StripeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPIClient.swift; sourceTree = "<group>"; };
 		40A64A7E20AE2E7900983ADE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Propellers/Constants.swift; sourceTree = SOURCE_ROOT; };
@@ -451,14 +451,14 @@
 		407225F71FB12F3B00D2193E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				4036FC7220CA25A8004518B1 /* Newsfeed.storyboard */,
+				4019CEE61FA1BEA600B738B4 /* Post.storyboard */,
 				4019CEA91FA1BDAB00B738B4 /* Main.storyboard */,
 				4019CEAE1FA1BDAB00B738B4 /* LaunchScreen.storyboard */,
-				4036FC7220CA25A8004518B1 /* Newsfeed.storyboard */,
 				4019CEE51FA1BEA600B738B4 /* Friends.storyboard */,
 				4019CEE41FA1BEA500B738B4 /* Chat.storyboard */,
-				4019CEE61FA1BEA600B738B4 /* Post.storyboard */,
-				4019CEE81FA1BEA600B738B4 /* Logs.storyboard */,
-				4019CEE71FA1BEA600B738B4 /* Settings.storyboard */,
+				407D231A2112A01F00D8099E /* Search.storyboard */,
+				4019CEE71FA1BEA600B738B4 /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -615,12 +615,12 @@
 				4019CEEA1FA1BEA600B738B4 /* Friends.storyboard in Resources */,
 				401C2BCB1FA1C388002129BB /* GoogleService-Info.plist in Resources */,
 				4036FC7320CA25A8004518B1 /* Newsfeed.storyboard in Resources */,
+				407D231B2112A01F00D8099E /* Search.storyboard in Resources */,
 				4019CEAD1FA1BDAB00B738B4 /* Assets.xcassets in Resources */,
-				4019CEED1FA1BEA600B738B4 /* Logs.storyboard in Resources */,
 				4019CEE91FA1BEA600B738B4 /* Chat.storyboard in Resources */,
 				4019CEEB1FA1BEA600B738B4 /* Post.storyboard in Resources */,
 				4019CEAB1FA1BDAB00B738B4 /* Main.storyboard in Resources */,
-				4019CEEC1FA1BEA600B738B4 /* Settings.storyboard in Resources */,
+				4019CEEC1FA1BEA600B738B4 /* Profile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,6 +1096,7 @@
 			baseConfigurationReference = ED7BA3D923CA3329229B684E /* Pods-Propellers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U43R3UYB5A;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1107,6 +1108,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeom.Propellers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1117,6 +1119,7 @@
 			baseConfigurationReference = 2E8CABF75A3B59255EA4CA07 /* Pods-Propellers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U43R3UYB5A;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1128,6 +1131,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeom.Propellers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
