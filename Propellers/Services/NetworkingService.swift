@@ -44,19 +44,28 @@ extension NetworkingService {
   }
   
   func fetchMyFriends(completion: @escaping ([UserModel?]?) -> ()) {
-    userRef.child(currentUID).child("Friends").observeSingleEvent(of: .value) { (snapshot) in
-      var listOfFriends: [UserModel?]?
-      let listOfFriendsUID = snapshot.children.allObjects as? [String]
-      listOfFriendsUID?.forEach({ self.fetchUser(withUID: $0, completion: { (fetchedFriend) in
-        listOfFriends?.append(fetchedFriend)
-      })})
-      completion(listOfFriends)
+    userRef.child(currentUID).child("friends").observeSingleEvent(of: .value) { (snapshot) in
+      var listOfFriends = [UserModel?]()
+      let listOfFriendsUID = snapshot.value as? [String: Bool]
+      let group = DispatchGroup()
+      listOfFriendsUID?.keys.forEach({
+        group.enter()
+        self.fetchUser(withUID: $0, completion: { (fetchedFriend) in
+          listOfFriends.append(fetchedFriend)
+          group.leave()
+        })
+      })
+      
+      group.notify(queue: .main, execute: {
+        completion(listOfFriends)
+      })
     }
   }
   
   func fetchUser(withUID userID: String, completion: @escaping(UserModel?) -> ()) {
     userRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-      completion(UserModel(snapshot: snapshot))
+      let user = UserModel(snapshot: snapshot)
+      completion(user)
     }
   }
 }
