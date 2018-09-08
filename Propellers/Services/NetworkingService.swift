@@ -16,11 +16,9 @@ import SDWebImage
 
 struct NetworkingService {
   static public let shared = NetworkingService()
-  
   var paymentToken: String? {
     return UserDefaults.standard.value(forKey: "paymentToken") as? String
   }
-  
   var databaseRef: DatabaseReference! {
     return Database.database().reference()
   }
@@ -43,6 +41,23 @@ extension NetworkingService {
   func downloadUserAvatarPhoto(withUid userId: String, to imageView: UIImageView){
     let imageRef = NetworkingService().storageRef.child(userId).child("profileImage\(userId)")
     imageView.sd_setImage(with: imageRef, placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+  }
+  
+  func fetchMyFriends(completion: @escaping ([UserModel?]?) -> ()) {
+    userRef.child(currentUID).child("Friends").observeSingleEvent(of: .value) { (snapshot) in
+      var listOfFriends: [UserModel?]?
+      let listOfFriendsUID = snapshot.children.allObjects as? [String]
+      listOfFriendsUID?.forEach({ self.fetchUser(withUID: $0, completion: { (fetchedFriend) in
+        listOfFriends?.append(fetchedFriend)
+      })})
+      completion(listOfFriends)
+    }
+  }
+  
+  func fetchUser(withUID userID: String, completion: @escaping(UserModel?) -> ()) {
+    userRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+      completion(UserModel(snapshot: snapshot))
+    }
   }
 }
 

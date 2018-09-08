@@ -80,8 +80,8 @@ extension FriendsViewController {
 //MARK: NetworkingServices
 extension FriendsViewController {
   func fetchMyFriends() {
-    NetworkingService.shared.fetchFriends { (friends) in
-      self.friendsArray = friends
+    NetworkingService.shared.fetchMyFriends { (friends) in
+      self.friendsArray = friends as? [UserModel] ?? []
       self.friendsTableView.reloadData()
     }
   }
@@ -105,7 +105,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     let section = indexPath.section
     let theUser = friendsArray[section]
     let userCell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as! UserCell
-    userCell.userImageView.sd_setImage(with: URL(string: theUser.imageURL ?? "")!)
+    userCell.userImageView.sd_setImage(with: URL(string: theUser.profileImage ?? "")!)
     userCell.userNameLabel.text = theUser.fullName ?? ""
     return userCell
   }
@@ -119,7 +119,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     let toVC = UIStoryboard(name: "Friends", bundle: nil).instantiateViewController(withIdentifier: "profileVC") as! ProfileDetailViewController
-    toVC.user = selectedUser?.uid
+    toVC.user = selectedUser
     presentingViewController?.navigationController?.pushViewController(toVC, animated: true)
   }
   

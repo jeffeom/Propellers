@@ -136,7 +136,7 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
     let aRoom = fetchedRooms[indexPath.section].room!
     if aRoom.uid1 == currentUID {
       NetworkingService.shared.fetchUser(withUID: aRoom.uid2!, completion: { (user) in
-        cell.userImageView.sd_setImage(with: URL(string: (user?.imageURL!)!), completed: nil)
+        cell.userImageView.sd_setImage(with: URL(string: (user?.profileImage!)!), completed: nil)
         cell.roomNameLabel.text = user?.fullName
         cell.roomLatestTextLabel.text = aRoom.latestText
         cell.dateLabel.text = Date(milliseconds: aRoom.date)?.toString(dateFormat: "h:mm a")
@@ -144,7 +144,7 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
       })
     }else {
       NetworkingService.shared.fetchUser(withUID: aRoom.uid2!, completion: { (user) in
-        cell.userImageView.sd_setImage(with: URL(string: (user?.imageURL!)!), completed: nil)
+        cell.userImageView.sd_setImage(with: URL(string: (user?.profileImage!)!), completed: nil)
         cell.roomNameLabel.text = user?.fullName
         cell.roomLatestTextLabel.text = aRoom.latestText
         cell.dateLabel.text = Date(milliseconds: aRoom.date)?.toString(dateFormat: "h:mm a")

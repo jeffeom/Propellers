@@ -86,13 +86,13 @@ extension PaymentViewController {
   func appearance() {
     payerImageView.sd_addActivityIndicator()
     payerImageView.sd_setIndicatorStyle(.gray)
-    payerImageView.sd_setImage(with: URL(string: payer?.imageURL ?? ""), completed: nil)
+//    payerImageView.sd_setImage(with: URL(string: payer?.imageURL ?? ""), completed: nil)
     payerImageView.layer.cornerRadius = payerImageView.bounds.width / 2
     payerImageView.clipsToBounds = true
     payerNameLabel.text = payer?.fullName
     receiverImageView.sd_addActivityIndicator()
     receiverImageView.sd_setIndicatorStyle(.gray)
-    receiverImageView.sd_setImage(with: URL(string: receiver?.imageURL ?? ""), completed: nil)
+//    receiverImageView.sd_setImage(with: URL(string: receiver?.imageURL ?? ""), completed: nil)
     receiverImageView.layer.cornerRadius = receiverImageView.bounds.width / 2
     receiverImageView.clipsToBounds = true
     receiverLabel.text = receiver?.fullName
